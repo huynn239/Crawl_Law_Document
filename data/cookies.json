@@ -1,0 +1,236 @@
+[
+  {
+    "name": "Cookie_VB",
+    "value": "close",
+    "domain": "thuvienphapluat.vn",
+    "path": "/",
+    "secure": false,
+    "expires": -1,
+    "httponly": false
+  },
+  {
+    "name": "vqc",
+    "value": "1",
+    "domain": "thuvienphapluat.vn",
+    "path": "/",
+    "secure": false,
+    "expires": 1760080068,
+    "httponly": false
+  },
+  {
+    "name": "ruirophaply-covi19",
+    "value": "3",
+    "domain": "thuvienphapluat.vn",
+    "path": "/",
+    "secure": false,
+    "expires": 1759561668,
+    "httponly": false
+  },
+  {
+    "name": "__utma",
+    "value": "19472893.663474672.1759475262.1759475262.1759475262.1",
+    "domain": ".thuvienphapluat.vn",
+    "path": "/",
+    "secure": false,
+    "expires": 1794035268.683474,
+    "httponly": false
+  },
+  {
+    "name": "__utmc",
+    "value": "19472893",
+    "domain": ".thuvienphapluat.vn",
+    "path": "/",
+    "secure": false,
+    "expires": -1,
+    "httponly": false
+  },
+  {
+    "name": "__utmz",
+    "value": "19472893.1759475262.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)",
+    "domain": ".thuvienphapluat.vn",
+    "path": "/",
+    "secure": false,
+    "expires": 1775243268,
+    "httponly": false
+  },
+  {
+    "name": "__utmt",
+    "value": "1",
+    "domain": ".thuvienphapluat.vn",
+    "path": "/",
+    "secure": false,
+    "expires": 1759475862,
+    "httponly": false
+  },
+  {
+    "name": "_ga",
+    "value": "GA1.1.1614085152.1759475262",
+    "domain": ".thuvienphapluat.vn",
+    "path": "/",
+    "secure": false,
+    "expires": 1794035268.279413,
+    "httponly": false
+  },
+  {
+    "name": "UUID",
+    "value": "62fa0734-eb94-58da-84ad-c0cb618bc6b7",
+    "domain": ".aj1559.online",
+    "path": "/",
+    "secure": true,
+    "expires": 1794035262.492086,
+    "httponly": false
+  },
+  {
+    "name": "ucv",
+    "value": "806-JP-1759561662159-24--",
+    "domain": ".aj1559.online",
+    "path": "/",
+    "secure": true,
+    "expires": 1791011269.328539,
+    "httponly": false
+  },
+  {
+    "name": "__tvpl__",
+    "value": "tvpl_ses_1759475262_YjNmYmUzMm",
+    "domain": ".tvpl.vn",
+    "path": "/",
+    "secure": true,
+    "expires": 1794035269.542247,
+    "httponly": false
+  },
+  {
+    "name": "__tvpl__",
+    "value": "tvpl_ses_1759475262_YjNmYmUzMm",
+    "domain": ".thuvienphapluat.vn",
+    "path": "/",
+    "secure": true,
+    "expires": 1794035269.546214,
+    "httponly": false
+  },
+  {
+    "name": "G_ENABLED_IDPS",
+    "value": "google",
+    "domain": ".thuvienphapluat.vn",
+    "path": "/",
+    "secure": false,
+    "expires": 1794035264.007199,
+    "httponly": false
+  },
+  {
+    "name": "ASP.NET_SessionId",
+    "value": "h1vd2vtljzsi5n0tfitpxekh",
+    "domain": "thuvienphapluat.vn",
+    "path": "/",
+    "secure": false,
+    "expires": -1,
+    "httponly": true
+  },
+  {
+    "name": "Culture",
+    "value": "vi",
+    "domain": ".thuvienphapluat.vn",
+    "path": "/",
+    "secure": false,
+    "expires": 1791011263.578096,
+    "httponly": false
+  },
+  {
+    "name": "thuvienphapluatnew",
+    "value": "8D8439F5003A58A20390FC178338B692728434E6BFC1D57F8DD75621CF080354D525D941D59B9A050D6D7220440548D075C478541902027BCC9028D71AA7FF31238D0DE45A1D4035352FCDC4F99D713F3149988031A87AF7028C2894AAC98264261D5B038127EB734A0B28151C7F19A99A419F637C79A49F9DFDA17D832BAE20727F83D44FDE1DC2D26E5E9C18CFBD31CFA6D280566B5B12EB64A91B929C9310948D8FC3525886F03A3CEE8BE26D22A422A666A669AE3373356D46BEAE049488D62D3E1A",
+    "domain": ".thuvienphapluat.vn",
+    "path": "/",
+    "secure": false,
+    "expires": 1794035264.905705,
+    "httponly": false
+  },
+  {
+    "name": "dl_user",
+    "value": "==1kMWVXVnVhSFY1TWpNPQYm",
+    "domain": ".thuvienphapluat.vn",
+    "path": "/",
+    "secure": false,
+    "expires": 1794035264.905878,
+    "httponly": false
+  },
+  {
+    "name": "lg_user",
+    "value": "==1kMWVXVnVhSFY1TWpNc1ZFSXNSbUZzYzJVc05UZzNOakEyTXc9PQYm",
+    "domain": ".thuvienphapluat.vn",
+    "path": "/",
+    "secure": false,
+    "expires": 1794035264.905935,
+    "httponly": false
+  },
+  {
+    "name": "c_user",
+    "value": "EyRnM05qQTJNeXd5TURJMUx6RXdMekF6SURFME9qQTNPalTl",
+    "domain": ".thuvienphapluat.vn",
+    "path": "/",
+    "secure": false,
+    "expires": 1794035267.174439,
+    "httponly": false
+  },
+  {
+    "name": "_ga_PGVTRDMJGD",
+    "value": "GS2.1.s1759475262$o1$g1$t1759475267$j55$l0$h0",
+    "domain": ".thuvienphapluat.vn",
+    "path": "/",
+    "secure": false,
+    "expires": 1794035267.551196,
+    "httponly": false
+  },
+  {
+    "name": "_ga_BJ8R96BC8C",
+    "value": "GS2.1.s1759475262$o1$g1$t1759475267$j55$l0$h0",
+    "domain": ".thuvienphapluat.vn",
+    "path": "/",
+    "secure": false,
+    "expires": 1794035267.567372,
+    "httponly": false
+  },
+  {
+    "name": "_ga_E8YMVYW6Y9",
+    "value": "GS2.1.s1759475263$o1$g1$t1759475267$j56$l0$h87047149",
+    "domain": ".thuvienphapluat.vn",
+    "path": "/",
+    "secure": false,
+    "expires": 1794035268.277669,
+    "httponly": false
+  },
+  {
+    "name": "memberga",
+    "value": "nguyenhuy23[Free][5876063]",
+    "domain": ".thuvienphapluat.vn",
+    "path": "/",
+    "secure": false,
+    "expires": 1759561668,
+    "httponly": false
+  },
+  {
+    "name": "__utmb",
+    "value": "19472893.6.9.1759475268682",
+    "domain": ".thuvienphapluat.vn",
+    "path": "/",
+    "secure": false,
+    "expires": 1759477068,
+    "httponly": false
+  },
+  {
+    "name": "IDE",
+    "value": "AHWqTUnPFUQcSKwY8viAmM-Q_G0KsZ6N_puzTiTvb3MCvg77PTqTQmKHbFMMS06Jz8w",
+    "domain": ".doubleclick.net",
+    "path": "/",
+    "secure": true,
+    "expires": 1794035269.219106,
+    "httponly": true
+  },
+  {
+    "name": "FCNEC",
+    "value": "%5B%5B%22AKsRol-qxWuByy8lgJnJuAo--PgJISBuxoLdcoWNZS2PKgxUjNFAnXnOP5uEQgCMeY3ZhoYQCS7vnQ66lzZBH3LJ5AoXlHVwfeKWTVpAUqZ94tGEKrj70JnTU2_MpZd4FWg5EYOwKYJeEXI-hsG9tQOFiVjgE4uTKQ%3D%3D%22%5D%5D",
+    "domain": ".thuvienphapluat.vn",
+    "path": "/",
+    "secure": false,
+    "expires": 1791011271,
+    "httponly": false
+  }
+]

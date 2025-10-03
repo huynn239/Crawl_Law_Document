@@ -1,0 +1,21 @@
+# API service Dockerfile for TVPL crawler (FastAPI + Playwright)
+FROM mcr.microsoft.com/playwright/python:v1.55.0-jammy
+
+WORKDIR /app
+
+# Copy project files
+COPY . /app
+
+# Install Python dependencies (crawler + API)
+RUN pip install --no-cache-dir --upgrade pip \
+    && pip install --no-cache-dir -r requirements.txt \
+    && playwright install --with-deps
+
+# Expose API port
+EXPOSE 8000
+
+# Default volumes (optional). Data dir keeps cookies, downloads, screenshots
+VOLUME ["/app/data"]
+
+# Run FastAPI via uvicorn
+CMD ["python", "-m", "uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "8000"]

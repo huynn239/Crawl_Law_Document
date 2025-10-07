@@ -1,0 +1,92 @@
+version: "3.8"
+
+services:
+  # --- PostgreSQL Database ---
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: tvpl_db
+      POSTGRES_USER: tvpl_user
+      POSTGRES_PASSWORD: tvpl_pass
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U tvpl_user -d tvpl_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - tvpl-net
+
+  # --- pgAdmin GUI ---
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@tvpl.local
+      PGADMIN_DEFAULT_PASSWORD: admin123
+    ports:
+      - "8082:80"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    networks:
+      - tvpl-net
+
+  # --- TVPL Crawler API ---
+  tvpl-api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: tvpl_db
+      DB_USER: tvpl_user
+      DB_PASS: tvpl_pass
+    volumes:
+      - ./data:/app/data
+      - ./tvpl_crawler:/app/tvpl_crawler  # hot-reload code
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - tvpl-net
+
+  # --- n8n Automation ---
+  n8n:
+    image: docker.n8n.io/n8nio/n8n:latest
+    restart: unless-stopped
+    ports:
+      - "5678:5678"
+    environment:
+      DB_TYPE: postgresdb
+      DB_POSTGRESDB_HOST: postgres
+      DB_POSTGRESDB_PORT: 5432
+      DB_POSTGRESDB_DATABASE: n8n
+      DB_POSTGRESDB_USER: tvpl_user
+      DB_POSTGRESDB_PASSWORD: tvpl_pass
+      GENERIC_TIMEZONE: "Asia/Ho_Chi_Minh"
+      TZ: "Asia/Ho_Chi_Minh"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - n8n_data:/home/node/.n8n
+    networks:
+      - tvpl-net
+
+# --- Shared network and volumes ---
+volumes:
+  postgres-data:
+  pgadmin-data:
+  n8n_data:
+
+networks:
+  tvpl-net:

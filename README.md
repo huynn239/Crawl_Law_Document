@@ -124,10 +124,8 @@ docker build -f Dockerfile.api -t tvpl-crawler-api:latest .
 
 ### 2) Run API container
 ```bash
-docker run --rm -p 8000:8000 \
-  -v "${PWD}/data:/app/data" \
-  --name tvpl-crawler-api \
-  tvpl-crawler-api:latest
+docker run --rm -p 8000:8000 -v "${PWD}/data:/app/data" --name tvpl-crawler-api tvpl-crawler-api:latest
+
 ```
 
 - Endpoints:

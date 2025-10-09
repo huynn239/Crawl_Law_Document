@@ -13,7 +13,11 @@ from tvpl_crawler.main import (
     cmd_luoc_do_playwright_from_file,
 )
 from tvpl_crawler.playwright_login import login_with_playwright
-from tvpl_crawler.playwright_extract import extract_tab8_batch_with_playwright
+from tvpl_crawler.playwright_extract import (
+    extract_tab8_batch_with_playwright,
+    extract_luoc_do_with_playwright,
+)
+from compact_schema import compact_schema
 
 
 app = FastAPI(title="TVPL Crawler API", version="0.1.0")
@@ -189,4 +193,46 @@ def tab8_download(req: Tab8Request):
         return results
     except Exception as e:
         logger.exception("/tab8-download failed")
+        raise HTTPException(status_code=400, detail=str(e))
+
+
+class Tab4Request(BaseModel):
+    links: List[str]
+    cookies: Optional[str] = "data/cookies.json"
+    headed: bool = False
+    relogin_on_fail: bool = True
+    timeout_ms: int = 20000
+    screenshots: bool = True
+
+
+@app.post("/tab4-details")
+def tab4_details(req: Tab4Request):
+    """Open each document URL and parse Tab4 (Lược đồ) fields.
+    Returns a list of dicts with compact schema.
+    """
+    try:
+        results = []
+        shots_dir = Path("data/screenshots")
+        if req.screenshots:
+            shots_dir.mkdir(parents=True, exist_ok=True)
+        for idx, u in enumerate(req.links, start=1):
+            try:
+                data = extract_luoc_do_with_playwright(
+                    url=u,
+                    screenshots_dir=shots_dir,
+                    cookies_path=Path(req.cookies) if req.cookies else None,
+                    headed=req.headed,
+                    timeout_ms=req.timeout_ms,
+                    only_tab8=False,
+                    relogin_on_fail=req.relogin_on_fail,
+                    download_tab8=False,
+                    downloads_dir=Path("data/downloads"),
+                )
+                data["stt"] = idx
+                results.append(data)
+            except Exception as e:
+                logger.warning(f"Tab4 parse failed for {u}: {e}")
+        return compact_schema(results)
+    except Exception as e:
+        logger.exception("/tab4-details failed")
         raise HTTPException(status_code=400, detail=str(e))

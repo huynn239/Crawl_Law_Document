@@ -216,4 +216,15 @@ def extract_luoc_do(html: str) -> Dict:
     for k, v in best_pairs.items():
         result[k] = v
 
+    # Extract hyperlinks from Tab 4
+    hyperlinks = []
+    if tab4:
+        for a_tag in tab4.find_all("a", href=True):
+            href = a_tag["href"].strip()
+            text = normalize_text(a_tag.get_text(" ", strip=True))
+            if href and text:
+                hyperlinks.append({"text": text, "href": urljoin(soup.base_url or "", href)})
+    if hyperlinks:
+        result["tab4_hyperlinks"] = hyperlinks
+
     return result

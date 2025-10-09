@@ -24,8 +24,8 @@ services:
     image: dpage/pgadmin4
     restart: unless-stopped
     environment:
-      PGADMIN_DEFAULT_EMAIL: admin@tvpl.local
-      PGADMIN_DEFAULT_PASSWORD: admin123
+      PGADMIN_DEFAULT_EMAIL: huynn239@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: sedtome2392002
     ports:
       - "8082:80"
     depends_on:
@@ -42,6 +42,8 @@ services:
       context: .
       dockerfile: Dockerfile.api
     restart: unless-stopped
+    env_file:
+      - .env
     ports:
       - "8000:8000"
     environment:
@@ -52,6 +54,7 @@ services:
       DB_PASS: tvpl_pass
     volumes:
       - ./data:/app/data
+      - ./api:/app/api
       - ./tvpl_crawler:/app/tvpl_crawler  # hot-reload code
     depends_on:
       postgres:

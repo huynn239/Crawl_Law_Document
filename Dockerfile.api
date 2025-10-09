@@ -9,7 +9,9 @@ WORKDIR /app
 COPY requirements.txt /app/
 RUN pip install --no-cache-dir --upgrade pip \
     && pip install --no-cache-dir -r requirements.txt \
-    && playwright install --with-deps
+    && playwright install --with-deps \
+    && apt-get update && apt-get install -y --no-install-recommends xvfb \
+    && rm -rf /var/lib/apt/lists/*
 
 # --- Copy project source
 COPY . /app
@@ -29,5 +31,5 @@ EXPOSE 8000
 # --- Shared data directory
 VOLUME ["/app/data"]
 
-# --- Run FastAPI (with auto-reload for development)
-CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+# --- Run FastAPI under Xvfb to support headed browsers in container
+CMD ["bash", "-lc", "xvfb-run -s '-screen 0 1280x720x24' uvicorn api.main:app --host 0.0.0.0 --port 8000 --reload"]

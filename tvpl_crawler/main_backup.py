@@ -235,6 +235,7 @@ def cmd_links_from_search(
                 client.load_cookies(cookies_in)
 
             def _canonicalize_doc_url(u: str) -> str:
+                # Chuẩn hóa: bỏ query/fragment để loại các biến thể ?tab=...
                 pu = urlparse(u)
                 return urlunparse((pu.scheme, pu.netloc, pu.path, "", "", ""))
 
@@ -270,11 +271,11 @@ def cmd_links_from_search(
                         logger.debug(f"First 400 chars: {snippet}")
                     except Exception as _e:
                         logger.debug(f"Failed to dump debug HTML: {_e}")
-                # Canonicalize URL and assign to canonical_url
+                # Chuẩn hóa URL (bỏ query/fragment) và gán vào canonical_url
                 for it in items:
                     pu = urlparse(it["url"])
                     it["canonical_url"] = urlunparse((pu.scheme, pu.netloc, pu.path, "", "", ""))
-                # Limit 20 records per page (default requirement)
+                # Giới hạn 20 bản ghi mỗi trang (mặc định theo yêu cầu)
                 per_page_limit = 20
                 page_added = 0
                 page_seen = 0
@@ -293,14 +294,14 @@ def cmd_links_from_search(
             for it in all_items:
                 print(it.get("canonical_url") or it.get("url"))
             if out:
-                # Determine format (fallback json if no extension)
+                # Xác định format (fallback json nếu không có đuôi)
                 fmt = (fmt_opt or (out.suffix.lower().lstrip('.') or 'json')).lower()
-                # Prepare data according to only-basic requirement
+                # Chuẩn bị dữ liệu theo yêu cầu only-basic
                 if only_basic:
                     basic_items = [
                         {
                             "Stt": idx,
-                            "Ten van ban": it.get("title"),
+                            "Tên văn bản": it.get("title"),
                             "Url": it.get("canonical_url") or it.get("url"),
                         }
                         for idx, it in enumerate(all_items, start=1)
@@ -319,11 +320,11 @@ def cmd_links_from_search(
                         import csv
                         with out.open("w", encoding="utf-8", newline="") as f:
                             writer = csv.writer(f)
-                            # Column headers as required: Stt, Ten van ban, Url
-                            writer.writerow(["Stt", "Ten van ban", "Url"])
+                            # Tiêu đề cột theo yêu cầu: Stt, Tên văn bản, Url
+                            writer.writerow(["Stt", "Tên văn bản", "Url"])
                             if only_basic:
                                 for row in basic_items:
-                                    writer.writerow([row["Stt"], row["Ten van ban"], row["Url"]])
+                                    writer.writerow([row["Stt"], row["Tên văn bản"], row["Url"]])
                             else:
                                 for idx, it in enumerate(all_items, start=1):
                                     writer.writerow([idx, it.get("title", ""), it.get("canonical_url") or it.get("url")])
@@ -335,7 +336,7 @@ def cmd_links_from_search(
                             for row in basic_items:
                                 w.write({
                                     "Stt": row["Stt"],
-                                    "Ten van ban": row["Ten van ban"],
+                                    "Tên văn bản": row["Tên văn bản"],
                                     "Url": row["Url"],
                                 })
                         else:
@@ -352,7 +353,7 @@ def cmd_links_from_search(
                     logger.error(f"Write output failed: {e}")
         finally:
             await client.close()
-    # Ensure _run() is always executed
+    # Bảo đảm luôn thực thi _run()
     asyncio.run(_run())
 
 
@@ -360,75 +361,75 @@ def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog="tvpl_crawler")
     sub = p.add_subparsers(dest="cmd", required=True)
 
-    p1 = sub.add_parser("crawl-url", help="Crawl mot URL va in thong tin co ban")
+    p1 = sub.add_parser("crawl-url", help="Crawl một URL và in thông tin cơ bản")
     p1.add_argument("--url", "-u", required=True)
-    p1.add_argument("--out", "-o", type=Path, help="Luu ket qua vao file JSONL")
+    p1.add_argument("--out", "-o", type=Path, help="Lưu kết quả vào file JSONL")
 
-    p2 = sub.add_parser("links-from-search", help="Trich xuat link van ban tu trang ket qua tim kiem")
+    p2 = sub.add_parser("links-from-search", help="Trích xuất link văn bản từ trang kết quả tìm kiếm")
     p2.add_argument(
         "--url",
         "-u",
         default="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&match=True&area=0",
-        help="URL trang tim kiem (mac dinh la trang tim van ban chung)"
+        help="URL trang tìm kiếm (mặc định là trang tìm văn bản chung)"
     )
-    p2.add_argument("--out", "-o", type=Path, help="Duong dan file dau ra")
-    p2.add_argument("--max-pages", "-m", type=int, default=1, help="So trang can lay (mac dinh 1)")
-    p2.add_argument("--page-param", type=str, default="page", help="Ten tham so phan trang, mac dinh 'page'")
-    # Format option: by file extension or --format
-    p2.add_argument("--format", "-f", choices=["jsonl", "json", "csv"], help="Dinh dang xuat (mac dinh dua tren duoi file)")
-    p2.add_argument("--only-basic", "-b", action="store_true", help="Chi xuat 3 truong: Stt, Ten van ban, Url")
-    p2.add_argument("--cookies", type=Path, help="Nap cookies tu file JSON de truy cap tinh nang yeu cau dang nhap")
+    p2.add_argument("--out", "-o", type=Path, help="Đường dẫn file đầu ra")
+    p2.add_argument("--max-pages", "-m", type=int, default=1, help="Số trang cần lấy (mặc định 1)")
+    p2.add_argument("--page-param", type=str, default="page", help="Tên tham số phân trang, mặc định 'page'")
+    # Tùy chọn định dạng xuất: theo phần mở rộng file hoặc --format
+    p2.add_argument("--format", "-f", choices=["jsonl", "json", "csv"], help="Định dạng xuất (mặc định dựa trên đuôi file)")
+    p2.add_argument("--only-basic", "-b", action="store_true", help="Chỉ xuất 3 trường: Stt, Tên văn bản, Url")
+    p2.add_argument("--cookies", type=Path, help="Nạp cookies từ file JSON để truy cập tính năng yêu cầu đăng nhập")
 
-    # Quick alias: links-basic (default only-basic, JSON)
-    p3 = sub.add_parser("links-basic", help="Nhanh: xuat Stt, Ten van ban, Url (mac dinh JSON)")
+    # Alias nhanh: links-basic (mặc định only-basic, JSON)
+    p3 = sub.add_parser("links-basic", help="Nhanh: xuất Stt, Tên văn bản, Url (mặc định JSON)")
     p3.add_argument(
         "--url",
         "-u",
         default="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&match=True&area=0",
-        help="URL trang tim kiem (mac dinh la trang tim van ban chung)"
+        help="URL trang tìm kiếm (mặc định là trang tìm văn bản chung)"
     )
-    p3.add_argument("--out", "-o", type=Path, required=True, help="Duong dan file dau ra (.json, .jsonl hoac .csv)")
-    p3.add_argument("--max-pages", "-m", type=int, default=1, help="So trang can lay (mac dinh 1)")
-    p3.add_argument("--page-param", type=str, default="page", help="Ten tham so phan trang, mac dinh 'page'")
-    p3.add_argument("--cookies", type=Path, help="Nap cookies tu file JSON de truy cap tinh nang yeu cau dang nhap")
+    p3.add_argument("--out", "-o", type=Path, required=True, help="Đường dẫn file đầu ra (.json, .jsonl hoặc .csv)")
+    p3.add_argument("--max-pages", "-m", type=int, default=1, help="Số trang cần lấy (mặc định 1)")
+    p3.add_argument("--page-param", type=str, default="page", help="Tên tham số phân trang, mặc định 'page'")
+    p3.add_argument("--cookies", type=Path, help="Nạp cookies từ file JSON để truy cập tính năng yêu cầu đăng nhập")
 
     # Login via Playwright (replaces old HTTP login)
-    p4 = sub.add_parser("login-playwright", help="Dang nhap bang Playwright va luu cookies ra file JSON")
-    p4.add_argument("--login-url", default="https://thuvienphapluat.vn/", help="URL trang co form dang nhap (homepage)")
-    p4.add_argument("--username", "-U", help="Ten dang nhap (bo qua de duoc prompt)")
-    p4.add_argument("--password", "-P", help="Mat khau (bo qua de duoc prompt an toan)")
-    p4.add_argument("--cookies-out", type=Path, default=Path("data/cookies.json"), help="Duong dan luu cookies JSON")
-    p4.add_argument("--headed", action="store_true", help="Mo trinh duyet hien thi (mac dinh headless)")
-    p4.add_argument("--user-selector", help="CSS selector cho truong username (tuy chon)")
-    p4.add_argument("--pass-selector", help="CSS selector cho truong password (tuy chon)")
-    p4.add_argument("--submit-selector", help="CSS selector cho nut Dang nhap (tuy chon)")
-    p4.add_argument("--manual", action="store_true", help="Neu form khong bat duoc selector, cho phep ban dang nhap thu cong roi luu cookies")
+    p4 = sub.add_parser("login-playwright", help="Đăng nhập bằng Playwright và lưu cookies ra file JSON")
+    p4.add_argument("--login-url", default="https://thuvienphapluat.vn/", help="URL trang có form đăng nhập (homepage)")
+    p4.add_argument("--username", "-U", help="Tên đăng nhập (bỏ qua để được prompt)")
+    p4.add_argument("--password", "-P", help="Mật khẩu (bỏ qua để được prompt an toàn)")
+    p4.add_argument("--cookies-out", type=Path, default=Path("data/cookies.json"), help="Đường dẫn lưu cookies JSON")
+    p4.add_argument("--headed", action="store_true", help="Mở trình duyệt hiển thị (mặc định headless)")
+    p4.add_argument("--user-selector", help="CSS selector cho trường username (tuỳ chọn)")
+    p4.add_argument("--pass-selector", help="CSS selector cho trường password (tuỳ chọn)")
+    p4.add_argument("--submit-selector", help="CSS selector cho nút Đăng nhập (tuỳ chọn)")
+    p4.add_argument("--manual", action="store_true", help="Nếu form không bắt được selector, cho phép bạn đăng nhập thủ công rồi lưu cookies")
 
-    # Luoc do from file links
-    p5 = sub.add_parser("luoc-do-from-file", help="Doc file links JSON, loai trung va crawl tab Luoc do cua tung van ban")
-    p5.add_argument("--in", "-i", dest="input", type=Path, required=True, help="File JSON dau vao (mang cac object co truong Url hoac mang chuoi)")
-    p5.add_argument("--out", "-o", type=Path, required=True, help="File ket qua (jsonl hoac json)")
-    p5.add_argument("--format", "-f", dest="fmt", choices=["jsonl", "json"], help="Dinh dang output (mac dinh dua vao duoi file, fallback jsonl)")
-    p5.add_argument("--cookies", type=Path, help="File cookies JSON (tuy chon)")
+    # Lược đồ từ file links
+    p5 = sub.add_parser("luoc-do-from-file", help="Đọc file links JSON, loại trùng và crawl tab Lược đồ của từng văn bản")
+    p5.add_argument("--in", "-i", dest="input", type=Path, required=True, help="File JSON đầu vào (mảng các object có trường Url hoặc mảng chuỗi)")
+    p5.add_argument("--out", "-o", type=Path, required=True, help="File kết quả (jsonl hoặc json)")
+    p5.add_argument("--format", "-f", dest="fmt", choices=["jsonl", "json"], help="Định dạng output (mặc định dựa vào đuôi file, fallback jsonl)")
+    p5.add_argument("--cookies", type=Path, help="File cookies JSON (tùy chọn)")
 
-    # Luoc do using Playwright (click tab #aLuocDo -> #tab4, screenshot)
-    p6 = sub.add_parser("luoc-do-playwright-from-file", help="Dung Playwright mo tung URL, bam Luoc do (#aLuocDo) va/hoac tab Tai ve (#tab8); co screenshot")
-    p6.add_argument("--in", "-i", dest="input", type=Path, required=True, help="File JSON dau vao (mang object co Url hoac mang chuoi)")
-    p6.add_argument("--out", "-o", type=Path, required=True, help="File ket qua JSONL")
-    p6.add_argument("--cookies", type=Path, help="File cookies JSON (tuy chon)")
-    p6.add_argument("--headed", action="store_true", help="Hien trinh duyet khi chay (mac dinh headless)")
-    p6.add_argument("--shots", type=Path, default=Path("data/screenshots"), help="Thu muc luu anh screenshot")
-    p6.add_argument("--only-tab8", action="store_true", help="Chi crawl tab Tai ve (#tab8), bo qua tab Luoc do (#tab4)")
-    p6.add_argument("--relogin-on-fail", action="store_true", help="Neu phat hien chua dang nhap, tu dang nhap bang bien moi truong roi tiep tuc")
-    p6.add_argument("--download-tab8", action="store_true", help="Bam 'Tai Van ban tieng Viet' va luu file ve data/downloads")
-    p6.add_argument("--downloads-dir", type=Path, default=Path("data/downloads"), help="Thu muc luu file tai ve")
-    p6.add_argument("--login-first", action="store_true", help="Dang nhap ngay lap tuc truoc khi mo bat ky lien ket nao (su dung TVPL_USERNAME/PASSWORD)")
-    p6.add_argument("--tab8-minimal-out", action="store_true", help="Ghi JSONL chi gom stt, ten_van_ban, download_url, saved_to cho ket qua tab8")
+    # Lược đồ bằng Playwright (nhấp tab #aLuocDo -> #tab4, screenshot)
+    p6 = sub.add_parser("luoc-do-playwright-from-file", help="Dùng Playwright mở từng URL, bấm Lược đồ (#aLuocDo) và/hoặc tab Tải về (#tab8); có screenshot")
+    p6.add_argument("--in", "-i", dest="input", type=Path, required=True, help="File JSON đầu vào (mảng object có Url hoặc mảng chuỗi)")
+    p6.add_argument("--out", "-o", type=Path, required=True, help="File kết quả JSONL")
+    p6.add_argument("--cookies", type=Path, help="File cookies JSON (tùy chọn)")
+    p6.add_argument("--headed", action="store_true", help="Hiện trình duyệt khi chạy (mặc định headless)")
+    p6.add_argument("--shots", type=Path, default=Path("data/screenshots"), help="Thư mục lưu ảnh screenshot")
+    p6.add_argument("--only-tab8", action="store_true", help="Chỉ crawl tab Tải về (#tab8), bỏ qua tab Lược đồ (#tab4)")
+    p6.add_argument("--relogin-on-fail", action="store_true", help="Nếu phát hiện chưa đăng nhập, tự đăng nhập bằng biến môi trường rồi tiếp tục")
+    p6.add_argument("--download-tab8", action="store_true", help="Bấm 'Tải Văn bản tiếng Việt' và lưu file về data/downloads")
+    p6.add_argument("--downloads-dir", type=Path, default=Path("data/downloads"), help="Thư mục lưu file tải về")
+    p6.add_argument("--login-first", action="store_true", help="Đăng nhập ngay lập tức trước khi mở bất kỳ liên kết nào (sử dụng TVPL_USERNAME/PASSWORD)")
+    p6.add_argument("--tab8-minimal-out", action="store_true", help="Ghi JSONL chỉ gồm stt, ten_van_ban, download_url, saved_to cho kết quả tab8")
 
     # Refresh cookies using env (no prompt)
-    p7 = sub.add_parser("refresh-cookies", help="Dang nhap va lam moi cookies doc tu bien moi truong TVPL_USERNAME/TVPL_PASSWORD/TVPL_LOGIN_URL")
-    p7.add_argument("--headed", action="store_true", help="Mo trinh duyet hien thi (mac dinh headless)")
-    p7.add_argument("--cookies-out", type=Path, default=Path("data/cookies.json"), help="Duong dan luu cookies JSON")
+    p7 = sub.add_parser("refresh-cookies", help="Đăng nhập và làm mới cookies đọc từ biến môi trường TVPL_USERNAME/TVPL_PASSWORD/TVPL_LOGIN_URL")
+    p7.add_argument("--headed", action="store_true", help="Mở trình duyệt hiển thị (mặc định headless)")
+    p7.add_argument("--cookies-out", type=Path, default=Path("data/cookies.json"), help="Đường dẫn lưu cookies JSON")
 
     return p
 
@@ -442,11 +443,11 @@ def main():
     elif args.cmd == "links-from-search":
         cmd_links_from_search(args.url, args.out, args.max_pages, args.page_param, args.format, args.only_basic, args.cookies)
     elif args.cmd == "links-basic":
-        # Infer format from file extension, default json if none
+        # Suy ra định dạng từ đuôi file, mặc định json nếu không có
         fmt = (args.out.suffix.lower().lstrip('.') or 'json') if args.out else 'json'
         cmd_links_from_search(args.url, args.out, args.max_pages, args.page_param, fmt, True, args.cookies)
     elif args.cmd == "login-playwright":
-        # Prioritize environment variables if not passed as parameters
+        # Ưu tiên lấy từ biến môi trường nếu không truyền tham số
         username = args.username or os.getenv("TVPL_USERNAME") or input("Username: ")
         password = args.password or os.getenv("TVPL_PASSWORD") or getpass("Password: ")
         login_url = args.login_url or os.getenv("TVPL_LOGIN_URL", "https://thuvienphapluat.vn/")

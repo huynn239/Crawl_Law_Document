@@ -54,6 +54,7 @@ def extract_document_items_from_search(html: str, base_url: str) -> List[Dict]:
     - category: phân nhóm chính theo path sau /van-ban/
     - slug: phần slug của văn bản (không gồm id)
     - doc_id: số id trong URL (ví dụ 674991)
+    - ngay_cap_nhat: ngày cập nhật (nếu có)
     """
     soup = BeautifulSoup(html, "lxml")
 
@@ -80,15 +81,39 @@ def extract_document_items_from_search(html: str, base_url: str) -> List[Dict]:
     if not result_containers:
         result_containers = [soup]
 
+    # Tìm các div.content-0, div.content-1
     for container in result_containers:
-        for a in container.find_all("a", href=True):
+        content_divs = container.find_all("div", class_=lambda x: x and x.startswith("content-"))
+        
+        for div in content_divs:
+            # Tìm link trong left-col
+            left_col = div.find("div", class_="left-col")
+            if not left_col:
+                continue
+            
+            a = left_col.find("a", href=re.compile(r"/van-ban/"))
+            if not a:
+                continue
+            
             href = a["href"].strip()
-            if "/van-ban/" in href:
-                item = parse_from_href(href)
-                text = a.get_text(strip=True)
-                if text:
-                    item["title"] = text
-                items.append(item)
+            item = parse_from_href(href)
+            text = a.get_text(strip=True)
+            if text:
+                item["title"] = text
+            
+            # Tìm ngày cập nhật trong right-col
+            right_col = div.find("div", class_="right-col")
+            if right_col:
+                p_tags = right_col.find_all("p")
+                for p in reversed(p_tags):
+                    p_text = p.get_text(strip=True)
+                    if "Cập nhật" in p_text:
+                        date_match = re.search(r"(\d{2}/\d{2}/\d{4})", p_text)
+                        if date_match:
+                            item["ngay_cap_nhat"] = date_match.group(1).replace("-", "/")
+                            break
+            
+            items.append(item)
 
     # Khử trùng theo (doc_id hoặc url), giữ thứ tự
     seen = set()

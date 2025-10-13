@@ -9,6 +9,7 @@ def compact_schema(data):
         compact_item = {
             "stt": item.get("stt"),
             "url": item.get("url"),
+            "ngay_cap_nhat": item.get("Ngay cap nhat") or item.get("ngay_cap_nhat"),
             "doc_info": {
                 "so_hieu": item.get("Số hiệu"),
                 "loai_van_ban": item.get("Loại văn bản"),

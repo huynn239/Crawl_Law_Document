@@ -2,9 +2,14 @@
 """Crawl dữ liệu từ file hyperlink"""
 import json
 import sys
+import os
 from pathlib import Path
+from dotenv import load_dotenv
 from tvpl_crawler.playwright_extract_v2 import extract_luoc_do_with_playwright
 from compact_schema import compact_schema
+from tvpl_crawler.db import TVPLDatabase
+
+load_dotenv()
 
 if sys.platform == 'win32':
     sys.stdout.reconfigure(encoding='utf-8')
@@ -27,7 +32,8 @@ results = []
 for item in links:
     stt = item["Stt"]
     url = item["Url"]
-    ten = item["Tên văn bản"]
+    ten = item["Ten van ban"]
+    ngay_cap_nhat = item.get("Ngay cap nhat")
     
     print(f"[{stt}/{len(links)}] Crawling: {ten[:80]}...")
     
@@ -37,13 +43,15 @@ for item in links:
             screenshots_dir=Path("data/screenshots"),
             cookies_path=Path("data/cookies.json"),
             headed=False,
-            timeout_ms=30000,
+            timeout_ms=60000,
             only_tab8=False,
             storage_state_path=Path("data/storage_state.json"),
             relogin_on_fail=True,
             download_tab8=False,
         )
         data["stt"] = stt
+        if ngay_cap_nhat:
+            data["Ngay cap nhat"] = ngay_cap_nhat
         results.append(data)
         
         total_rel = data.get("tab4_total_relations", 0)
@@ -56,6 +64,41 @@ for item in links:
 compact_results = compact_schema(results)
 with open(output_file, "w", encoding="utf-8") as f:
     json.dump(compact_results, f, ensure_ascii=False, indent=2)
+
+# Lưu vào database
+try:
+    db = TVPLDatabase(
+        host=os.getenv("DB_HOST", "localhost"),
+        port=int(os.getenv("DB_PORT", "5432")),
+        dbname=os.getenv("DB_NAME", "tvpl_crawl"),
+        user=os.getenv("DB_USER", "tvpl_user"),
+        password=os.getenv("DB_PASSWORD", "")
+    )
+    print("\nĐang lưu vào database...")
+    
+    # Bắt đầu session
+    session_id = db.start_crawl_session()
+    print(f"✓ Bắt đầu session #{session_id}")
+    
+    # Lưu từng văn bản
+    new_versions = 0
+    unchanged = 0
+    for item in compact_results:
+        try:
+            has_changed = db.save_document(item, session_id)
+            if has_changed:
+                new_versions += 1
+            else:
+                unchanged += 1
+        except Exception as e:
+            print(f"  Lỗi lưu doc_id {item.get('url', '')}: {e}")
+    
+    # Kết thúc session
+    db.complete_crawl_session(session_id, len(compact_results), new_versions, unchanged)
+    db.close()
+    print(f"✓ Hoàn tất: {new_versions} thay đổi, {unchanged} không đổi")
+except Exception as e:
+    print(f"✗ Lỗi kết nối database: {e}")
 
 print(f"\n{'='*60}")
 print(f"Đã crawl xong {len(results)}/{len(links)} văn bản")

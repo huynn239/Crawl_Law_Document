@@ -255,21 +255,15 @@ def cmd_links_from_search(
                 except Exception as e:
                     logger.error(f"Parse failed for {page_url}: {e}")
                     items = []
-                # Diagnostics: if no items found, dump HTML to inspect (possible consent/challenge page)
-                if not items:
-                    try:
-                        from .parser import parse_title
-                        title = parse_title(html) or "(no title)"
-                        logger.warning(f"No items found on page {page}. Title: {title}")
-                        dbg_dir = Path("data/debug")
-                        dbg_dir.mkdir(parents=True, exist_ok=True)
-                        dbg_file = dbg_dir / f"search_page_{page}.html"
-                        dbg_file.write_text(html, encoding="utf-8")
-                        logger.warning(f"Saved debug HTML to {dbg_file}")
-                        snippet = html[:400].replace("\n", " ")
-                        logger.debug(f"First 400 chars: {snippet}")
-                    except Exception as _e:
-                        logger.debug(f"Failed to dump debug HTML: {_e}")
+                # Debug: always save HTML to inspect structure
+                try:
+                    dbg_dir = Path("data/debug")
+                    dbg_dir.mkdir(parents=True, exist_ok=True)
+                    dbg_file = dbg_dir / f"search_page_{page}.html"
+                    dbg_file.write_text(html, encoding="utf-8")
+                    logger.info(f"Saved HTML to {dbg_file} for inspection")
+                except Exception as _e:
+                    logger.debug(f"Failed to dump HTML: {_e}")
                 # Canonicalize URL and assign to canonical_url
                 for it in items:
                     pu = urlparse(it["url"])
@@ -302,6 +296,7 @@ def cmd_links_from_search(
                             "Stt": idx,
                             "Ten van ban": it.get("title"),
                             "Url": it.get("canonical_url") or it.get("url"),
+                            "Ngay cap nhat": it.get("ngay_cap_nhat"),
                         }
                         for idx, it in enumerate(all_items, start=1)
                     ]
@@ -319,14 +314,14 @@ def cmd_links_from_search(
                         import csv
                         with out.open("w", encoding="utf-8", newline="") as f:
                             writer = csv.writer(f)
-                            # Column headers as required: Stt, Ten van ban, Url
-                            writer.writerow(["Stt", "Ten van ban", "Url"])
+                            # Column headers: Stt, Ten van ban, Url, Ngay cap nhat
+                            writer.writerow(["Stt", "Ten van ban", "Url", "Ngay cap nhat"])
                             if only_basic:
                                 for row in basic_items:
-                                    writer.writerow([row["Stt"], row["Ten van ban"], row["Url"]])
+                                    writer.writerow([row["Stt"], row["Ten van ban"], row["Url"], row.get("Ngay cap nhat", "")])
                             else:
                                 for idx, it in enumerate(all_items, start=1):
-                                    writer.writerow([idx, it.get("title", ""), it.get("canonical_url") or it.get("url")])
+                                    writer.writerow([idx, it.get("title", ""), it.get("canonical_url") or it.get("url"), it.get("ngay_cap_nhat", "")])
                         logger.info(f"Saved CSV to {out}")
                     else:  # jsonl
                         from .storage import JsonlWriter
@@ -337,6 +332,7 @@ def cmd_links_from_search(
                                     "Stt": row["Stt"],
                                     "Ten van ban": row["Ten van ban"],
                                     "Url": row["Url"],
+                                    "Ngay cap nhat": row.get("Ngay cap nhat"),
                                 })
                         else:
                             for idx, it in enumerate(all_items, start=1):

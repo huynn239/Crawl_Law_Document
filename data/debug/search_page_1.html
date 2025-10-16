@@ -10,8 +10,8 @@
     <link href="https://cdn.thuvienphapluat.vn/uploads/tvpl/Styles/jquery.treeview.css" rel="stylesheet" type="text/css" /><link type="text/css" href="https://cdn.thuvienphapluat.vn/uploads/tvpl/Styles/ui-lightness/jquery-ui-1.8.13.custom.css" rel="stylesheet" /><link href="https://cdn.thuvienphapluat.vn/uploads/tvpl/Styles/tom-select.css" rel="stylesheet" type="text/css" />
     <!-- Scripts -->
     <script type="text/javascript">
-        var MemberGA = 'thienhoang2024[Basic][4441348]';
-        var MemberCustomerID = '4441348_TB';
+        var MemberGA = 'Anonymous[146.70.250.13]';
+        var MemberCustomerID = '146.70.250.13';
     </script>
     <script type="text/javascript" language="javascript" src="https://cdn.thuvienphapluat.vn/uploads/tvpl/Scripts/GoogleEvent.js?v=1"></script>
     <script type="text/javascript">
@@ -152,7 +152,7 @@
 
             $ngonngu = $('#ddlNgonNgu').val();
 
-             var isHl="1";
+             var isHl="0";
              if(isHl=="1") {
                 $hieulucbegin = $('#hieuluc_start_day').val();
                 $hieulucend = $('#hieuluc_end_day').val();
@@ -169,7 +169,7 @@
         }
         $(document).ready(function () {
 
-            var isHl="1";
+            var isHl="0";
             if(isHl=="1")
             {
              $(".cohieuluc").show();
@@ -424,11 +424,11 @@
             $('#sortDropDownList').val('1');
             $('#searchArea #RadioGroup1_' + '0').attr("checked", "checked");
             $('#searchMath #RadioGroup1_' + 'True').attr("checked", "checked");
-            $('#projected_start_day').val('13/10/1945');
-            $('#projected_end_day').val('13/10/2025');
+            $('#projected_start_day').val('14/10/1945');
+            $('#projected_end_day').val('15/10/2025');
             
-            $('#hieuluc_start_day').val('13/10/1945');
-            $('#hieuluc_end_day').val('13/10/2035');
+            $('#hieuluc_start_day').val('15/10/1945');
+            $('#hieuluc_end_day').val('15/10/2035');
 
             $('#ddlNgonNgu').val('1');
             if ($.cookies.test()) {
@@ -452,7 +452,7 @@
     <script type="text/javascript" src="https://cdn.thuvienphapluat.vn/uploads/tvpl/Scripts/tom-select.complete.min.js"></script>
 </head>
 <body>
-    <form method="post" action="./tim-van-ban.aspx?keyword=&amp;match=True&amp;area=0" id="form1">
+    <form method="post" action="./tim-van-ban.aspx?keyword=&amp;match=True&amp;area=0&amp;page=1" id="form1">
 <div class="aspNetHidden">
 <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPBTBINHNJQUFBQUFBQUVBUHZQeU0vS1pXaHNZV0ZrYm1aaFlKQUNBQytwMDl3UUFBQUFkRkTIjhe20Xe+LiQey/9xlksmZM0=" />
 </div>
@@ -1045,11 +1045,11 @@
                                                                         </tr>
                                                                         <tr id="trStatus" class="info-blue autohide" style="display: none">
 	<td>
-                                                                                <b id="bLocStatus">Tình trạng:</b>
+                                                                                <b id="bLocStatus" onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();">T&#236;nh trạng (?):</b>
                                                                             </td>
 	<td colspan="4">
-                                                                                <select name="ddlStatus" id="ddlStatus" class="dropdown-large" style="width:285px;">
-		<option selected="selected" value="0">Tất cả</option>
+                                                                                <select name="ddlStatus" id="ddlStatus" disabled="disabled" class="aspNetDisabled dropdown-large" style="width:285px;">
+		<option value="0">Tất cả</option>
 		<option value="1">C&#242;n hiệu lực</option>
 		<option value="2">Hết hiệu lực</option>
 		<option value="3">Kh&#244;ng c&#242;n ph&#249; hợp</option>
@@ -1156,7 +1156,7 @@
                                                                         <p style="font-weight: bold; font-size: 11px;">
                                                                             Hệ thống tìm kiếm được các Văn Bản liên quan sau :
                                                                         </p>
-                                                                        <ul id="ulReport" class="sub-list-right" style="padding-top: 5px;"><li><a href='/page/tim-van-ban.aspx?keyword=&type=3&match=True&area=0' style='color: Blue;font-weight:bold;'><span style='color:Red;font-size:13px;'>130.922</span> CÔNG VĂN <span style='color:Black;font-weight:normal;font-size:12px;font-style:italic;'>(Xem & Tra cứu Công văn)</span></a></li>
+                                                                        <ul id="ulReport" class="sub-list-right" style="padding-top: 5px;"><li><a href='/page/tim-van-ban.aspx?keyword=&type=3&match=True&area=0' style='color: Blue;font-weight:bold;'><span style='color:Red;font-size:13px;'>130.936</span> CÔNG VĂN <span style='color:Black;font-weight:normal;font-size:12px;font-style:italic;'>(Xem & Tra cứu Công văn)</span></a></li>
                                    <li><a href='/page/tim-van-ban.aspx?keyword=&type=39&match=True&area=0' style='color: #8C0945;font-weight:bold;'><span style='color:Red;font-size:13px;'>18.497</span> TIÊU CHUẨN VIỆT NAM <span style='color:Black;font-weight:normal;font-size:12px;font-style:italic;'>(Xem & Tra cứu)</span></a></li></ul>
                                                                         <div style="padding: 10px; font-weight: bold">
                                                                             <img src="https://cdn.thuvienphapluat.vn/images/new.gif" height="8px" />
@@ -1236,10 +1236,10 @@
                                                             <strong>Kết quả</strong><span class="info-red"> <strong>
                                                                 <span id="lbCurent">1-20</span>
                                                             </strong></span><strong>trong</strong><span class="info-red"> <strong>
-                                                                <span id="lbTotal">371402</span></strong></span> <strong><span id="rsName">văn bản</span></strong>
+                                                                <span id="lbTotal">371592</span></strong></span> <strong><span id="rsName">văn bản</span></strong>
                                                         </p>
                                                     </div>
-                                                    <div id="divReport" style="float: left;display:none">Xem thêm <a href='/page/tim-van-ban.aspx?keyword=&type=3&match=True&area=0' style='color: Blue;font-weight:bold;'><span style='color:Red;font-size:13px;'>130.922</span> CÔNG VĂN </a> và <a href='/page/tim-van-ban.aspx?keyword=&type=39&match=True&area=0' style='color: #8C0945;font-weight:bold;'><span style='color:Red;font-size:13px;'>18.497</span> TIÊU CHUẨN VIỆT NAM </a></div>
+                                                    <div id="divReport" style="float: left;display:none">Xem thêm <a href='/page/tim-van-ban.aspx?keyword=&type=3&match=True&area=0' style='color: Blue;font-weight:bold;'><span style='color:Red;font-size:13px;'>130.936</span> CÔNG VĂN </a> và <a href='/page/tim-van-ban.aspx?keyword=&type=39&match=True&area=0' style='color: #8C0945;font-weight:bold;'><span style='color:Red;font-size:13px;'>18.497</span> TIÊU CHUẨN VIỆT NAM </a></div>
                                                     <div class="px5">
                                                     </div>
                                                     <div id="block-info-advan" style="width: 758px; margin-top: 2px;border: 0;border-top: #C8D4DB solid 1px;">
@@ -1248,7 +1248,7 @@
                                                                 LỌC KẾT QUẢ</p>
                                                             <p style="color: #D14836; font-weight: bold;">
                                                                 Lĩnh vực</p>
-                                                            <div id="divCategory"><ul id="tree"><li><a atr="0" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=0">Xem tất cả</a></li><li><a  atr="15" style="" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=15">Bộ máy hành chính</a> (<a style="color: #0E70C3;" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=15">142929</a>)</li><li><a  atr="19" style="" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=19">Tài chính nhà nước</a> (<a style="color: #0E70C3;" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=19">49190</a>)</li><li><a  atr="26" style="" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=26">Văn hóa - Xã hội</a> (<a style="color: #0E70C3;" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=26">45601</a>)</li><li><a  atr="23" style="" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=23">Tài nguyên - Môi trường</a> (<a style="color: #0E70C3;" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=23">30500</a>)</li><li><a  atr="12" style="" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=12">Bất động sản</a> (<a style="color: #0E70C3;" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=12">27407</a>)</li><li><a  atr="20" style="" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=20">Xây dựng - Đô thị</a> (<a style="color: #0E70C3;" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=20">25852</a>)</li><li><a  atr="3" style="" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=3">Thương mại</a> (<a style="color: #0E70C3;" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=3">25289</a>)</li><li><a  atr="24" style="" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=24">Thể thao - Y tế</a> (<a style="color: #0E70C3;" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=24">24132</a>)</li><li><a  atr="22" style="" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=22">Giáo dục</a> (<a style="color: #0E70C3;" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=22">19979</a>)</li><li><a  atr="6" style="" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=6">Thuế - Phí - Lệ Phí</a> (<a style="color: #0E70C3;" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=6">18509</a>)</li><li><a  atr="21" style="" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=21">Giao thông - Vận tải</a> (<a style="color: #0E70C3;" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=21">18060</a>)</li><li><a  atr="10" style="" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=10">Lao động - Tiền lương</a> (<a style="color: #0E70C3;" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=10">17027</a>)</li><li><a  atr="11" style="" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=11">Công nghệ thông tin</a> (<a style="color: #0E70C3;" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=11">15221</a>)</li><li><a  atr="2" style="" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=2">Đầu tư</a> (<a style="color: #0E70C3;" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=2">15155</a>)</li><li><a  atr="1" style="" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=1">Doanh nghiệp</a> (<a style="color: #0E70C3;" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=1">13858</a>)</li><li><a  atr="4" style="" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=4">Xuất nhập khẩu</a> (<a style="color: #0E70C3;" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=4">12302</a>)</li><li><a  atr="27" style="" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=27">Lĩnh vực khác</a> (<a style="color: #0E70C3;" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=27">9801</a>)</li><li><a  atr="25" style="" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=25">Quyền dân sự</a> (<a style="color: #0E70C3;" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=25">7143</a>)</li><li><a  atr="5" style="" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=5">Tiền tệ - Ngân hàng</a> (<a style="color: #0E70C3;" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=5">5465</a>)</li><li><a  atr="13" style="" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=13">Dịch vụ pháp lý</a> (<a style="color: #0E70C3;" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=13">3378</a>)</li><li><a  atr="8" style="" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=8">Bảo hiểm</a> (<a style="color: #0E70C3;" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=8">3169</a>)</li><li><a  atr="18" style="" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=18">Thủ tục Tố tụng</a> (<a style="color: #0E70C3;" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=18">2555</a>)</li><li><a  atr="16" style="" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=16">Vi phạm hành chính</a> (<a style="color: #0E70C3;" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=16">2384</a>)</li><li><a  atr="9" style="" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=9">Kế toán - Kiểm toán</a> (<a style="color: #0E70C3;" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=9">1900</a>)</li><li><a  atr="17" style="" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=17">Trách nhiệm hình sự</a> (<a style="color: #0E70C3;" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=17">1663</a>)</li><li><a  atr="14" style="" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=14">Sở hữu trí tuệ</a> (<a style="color: #0E70C3;" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=14">1122</a>)</li><li class="last"><a  atr="7" style="" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=7">Chứng khoán</a> (<a style="color: #0E70C3;" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=7">872</a>)</li></ul></div>
+                                                            <div id="divCategory"><ul id="tree"><li><a atr="0" href="https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&status=0&signer=0&sort=1&lan=1&scan=0&org=0&fields=0">Xem tất cả</a></li><li><a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();" atr="15" style="" href="#">Bộ máy hành chính</a> (<a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();"  style="color: #0E70C3;" href="#">143057</a>)</li><li><a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();" atr="19" style="" href="#">Tài chính nhà nước</a> (<a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();"  style="color: #0E70C3;" href="#">49200</a>)</li><li><a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();" atr="26" style="" href="#">Văn hóa - Xã hội</a> (<a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();"  style="color: #0E70C3;" href="#">45620</a>)</li><li><a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();" atr="23" style="" href="#">Tài nguyên - Môi trường</a> (<a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();"  style="color: #0E70C3;" href="#">30518</a>)</li><li><a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();" atr="12" style="" href="#">Bất động sản</a> (<a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();"  style="color: #0E70C3;" href="#">27416</a>)</li><li><a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();" atr="20" style="" href="#">Xây dựng - Đô thị</a> (<a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();"  style="color: #0E70C3;" href="#">25860</a>)</li><li><a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();" atr="3" style="" href="#">Thương mại</a> (<a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();"  style="color: #0E70C3;" href="#">25295</a>)</li><li><a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();" atr="24" style="" href="#">Thể thao - Y tế</a> (<a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();"  style="color: #0E70C3;" href="#">24146</a>)</li><li><a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();" atr="22" style="" href="#">Giáo dục</a> (<a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();"  style="color: #0E70C3;" href="#">19999</a>)</li><li><a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();" atr="6" style="" href="#">Thuế - Phí - Lệ Phí</a> (<a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();"  style="color: #0E70C3;" href="#">18513</a>)</li><li><a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();" atr="21" style="" href="#">Giao thông - Vận tải</a> (<a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();"  style="color: #0E70C3;" href="#">18069</a>)</li><li><a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();" atr="10" style="" href="#">Lao động - Tiền lương</a> (<a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();"  style="color: #0E70C3;" href="#">17032</a>)</li><li><a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();" atr="11" style="" href="#">Công nghệ thông tin</a> (<a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();"  style="color: #0E70C3;" href="#">15236</a>)</li><li><a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();" atr="2" style="" href="#">Đầu tư</a> (<a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();"  style="color: #0E70C3;" href="#">15161</a>)</li><li><a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();" atr="1" style="" href="#">Doanh nghiệp</a> (<a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();"  style="color: #0E70C3;" href="#">13864</a>)</li><li><a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();" atr="4" style="" href="#">Xuất nhập khẩu</a> (<a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();"  style="color: #0E70C3;" href="#">12304</a>)</li><li><a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();" atr="27" style="" href="#">Lĩnh vực khác</a> (<a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();"  style="color: #0E70C3;" href="#">9802</a>)</li><li><a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();" atr="25" style="" href="#">Quyền dân sự</a> (<a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();"  style="color: #0E70C3;" href="#">7147</a>)</li><li><a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();" atr="5" style="" href="#">Tiền tệ - Ngân hàng</a> (<a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();"  style="color: #0E70C3;" href="#">5466</a>)</li><li><a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();" atr="13" style="" href="#">Dịch vụ pháp lý</a> (<a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();"  style="color: #0E70C3;" href="#">3381</a>)</li><li><a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();" atr="8" style="" href="#">Bảo hiểm</a> (<a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();"  style="color: #0E70C3;" href="#">3170</a>)</li><li><a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();" atr="18" style="" href="#">Thủ tục Tố tụng</a> (<a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();"  style="color: #0E70C3;" href="#">2555</a>)</li><li><a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();" atr="16" style="" href="#">Vi phạm hành chính</a> (<a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();"  style="color: #0E70C3;" href="#">2384</a>)</li><li><a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();" atr="9" style="" href="#">Kế toán - Kiểm toán</a> (<a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();"  style="color: #0E70C3;" href="#">1900</a>)</li><li><a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();" atr="17" style="" href="#">Trách nhiệm hình sự</a> (<a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();"  style="color: #0E70C3;" href="#">1663</a>)</li><li><a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();" atr="14" style="" href="#">Sở hữu trí tuệ</a> (<a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();"  style="color: #0E70C3;" href="#">1123</a>)</li><li class="last"><a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();" atr="7" style="" href="#">Chứng khoán</a> (<a onmouseover="LS_Tip(28,0);" onmouseout="hideddrivetip();"  style="color: #0E70C3;" href="#">875</a>)</li></ul></div>
                                                             <div class='TVPL_VB' style='clear: both; margin-top: 30px; display: none'>
                                                                 <div id="">
                                                                     <div class="">
@@ -1310,19 +1310,19 @@
                 <div class="number">
                     1</div>
                 <div class="nq">
-                    <p class="nqTitle"  lawid='661849'>
-                        <a onclick="Doc_CT(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Xay-dung-Do-thi/Nghi-dinh-261-2025-ND-CP-sua-doi-Nghi-dinh-100-2024-ND-CP-huong-dan-Luat-Nha-o-661849.aspx">Nghị định 261/2025/NĐ-CP sửa đổi Nghị định 100/2024/NĐ-CP hướng dẫn Luật Nhà ở về phát triển và quản lý nhà ở xã hội và Nghị định 192/2025/NĐ-CP hướng dẫn Nghị quyết 201/2025/QH15 thí điểm về cơ chế, chính sách đặc thù phát triển nhà ở xã hội</a>
+                    <p class="nqTitle"  lawid='676614'>
+                        <a onclick="Doc_CT(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Giao-thong-Van-tai/Van-ban-hop-nhat-17-VBHN-BXD-2025-Nghi-dinh-dang-ky-quoc-tich-va-dang-ky-cac-quyen-doi-voi-tau-bay-676614.aspx">Văn bản hợp nhất 17/VBHN-BXD năm 2025 hợp nhất Nghị định quy định đăng ký quốc tịch và đăng ký các quyền đối với tàu bay do Bộ Xây dựng ban hành</a>
                     </p>
                     <p class="links-bot">
-                        <a onmouseover="LS_Tip_Type(1)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Tiếng Anh</a>
+                        <a onmouseover="LS_Tip_New(13,0,1)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Tiếng Anh</a>
                         |
-                        <a onclick="Doc_Scan(MemberGA)" onmouseover="LS_Tip_Type(2)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Xay-dung-Do-thi/Nghi-dinh-261-2025-ND-CP-sua-doi-Nghi-dinh-100-2024-ND-CP-huong-dan-Luat-Nha-o-661849.aspx?tab=2">Văn bản gốc</a>
+                        <a onclick="Doc_Scan(MemberGA)" onmouseover="LS_Tip_New(13,0,2)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Giao-thong-Van-tai/Van-ban-hop-nhat-17-VBHN-BXD-2025-Nghi-dinh-dang-ky-quoc-tich-va-dang-ky-cac-quyen-doi-voi-tau-bay-676614.aspx?tab=2">Văn bản gốc</a>
                         |
-                        <a onclick="Doc_Rel(MemberGA)" onmouseover="LS_Tip_Type(4)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Xay-dung-Do-thi/Nghi-dinh-261-2025-ND-CP-sua-doi-Nghi-dinh-100-2024-ND-CP-huong-dan-Luat-Nha-o-661849.aspx?tab=3">Lược đồ</a>
+                        <a onclick="Doc_Rel(MemberGA)" onmouseover="LS_Tip_New(13,0,4)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Giao-thong-Van-tai/Van-ban-hop-nhat-17-VBHN-BXD-2025-Nghi-dinh-dang-ky-quoc-tich-va-dang-ky-cac-quyen-doi-voi-tau-bay-676614.aspx?tab=3">Lược đồ</a>
                         |
-                        <a onclick="Doc_ST(MemberGA)" onmouseover="LS_Tip_Type(3)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Xay-dung-Do-thi/Nghi-dinh-261-2025-ND-CP-sua-doi-Nghi-dinh-100-2024-ND-CP-huong-dan-Luat-Nha-o-661849.aspx?tab=4">Liên quan hiệu lực</a>
+                        <a onclick="Doc_ST(MemberGA)" onmouseover="LS_Tip_New(13,0,3)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Giao-thong-Van-tai/Van-ban-hop-nhat-17-VBHN-BXD-2025-Nghi-dinh-dang-ky-quoc-tich-va-dang-ky-cac-quyen-doi-voi-tau-bay-676614.aspx?tab=4">Liên quan hiệu lực</a>
                         |
-                        <a onclick="Doc_DL(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Xay-dung-Do-thi/Nghi-dinh-261-2025-ND-CP-sua-doi-Nghi-dinh-100-2024-ND-CP-huong-dan-Luat-Nha-o-661849.aspx?tab=7">Tải về</a>
+                        <a onclick="Doc_DL(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Giao-thong-Van-tai/Van-ban-hop-nhat-17-VBHN-BXD-2025-Nghi-dinh-dang-ky-quoc-tich-va-dang-ky-cac-quyen-doi-voi-tau-bay-676614.aspx?tab=7">Tải về</a>
                         
                         
                     </p>
@@ -1333,12 +1333,12 @@
             <div class="right-col">
                 <p>
                     <span style="color: #000">Ban hành:</span>
-                    10/10/2025</p>
-                <p><span style="color:#000">Hiệu lực:</span> <span style="color:#8C0945">10/10/2025</span></p>
-                <p><span style="color:#000">Tình trạng:</span> <span class="text-red">Còn hiệu lực</span></p>
+                    13/10/2025</p>
+                <p><span style="color:#000">Hợp nhất:</span> <span style="color:#8C0945"><span id='span_a' onmouseover='LS_Tip_New(13,0,0)' onmouseout='hideddrivetip()'>Đã biết</span></span></p>
+                <p><span style="color:#000">Tình trạng:</span> <span class="text-red"><span id='span_a' onmouseover='LS_Tip_New(13,0,0)' onmouseout='hideddrivetip()'>Đã biết</span></span></p>
                 <p>
                     <span style="color: #000">Cập nhật:
-                        11/10/2025</span></p>
+                        13/10/2025</span></p>
             </div>
         </div>
     
@@ -1347,19 +1347,19 @@
                 <div class="number">
                     2</div>
                 <div class="nq">
-                    <p class="nqTitle"  lawid='650062'>
-                        <a onclick="Doc_CT(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Thuong-mai/Nghi-dinh-259-2025-ND-CP-kiem-soat-thuong-mai-chien-luoc-650062.aspx">Nghị định 259/2025/NĐ-CP về kiểm soát thương mại chiến lược</a>
+                    <p class="nqTitle"  lawid='676621'>
+                        <a onclick="Doc_CT(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Quyet-dinh-1420-QD-TTPVHCC-2025-huong-dan-thu-tuc-hanh-chinh-Mo-hinh-dich-vu-cong-luu-dong-Ha-Noi-676621.aspx">Quyết định 1420/QĐ-TTPVHCC năm 2025 phê duyệt Quy trình tạm thời tư vấn, hướng dẫn người dân, doanh nghiệp thực hiện thủ tục hành chính theo Mô hình dịch vụ công lưu động do Trung tâm Phục vụ hành chính công Thành phố Hà Nội ban hành</a>
                     </p>
                     <p class="links-bot">
-                        <a onmouseover="LS_Tip_Type(1)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Tiếng Anh</a>
+                        <a onmouseover="LS_Tip_New(13,0,1)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Tiếng Anh</a>
                         |
-                        <a onclick="Doc_Scan(MemberGA)" onmouseover="LS_Tip_Type(2)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Thuong-mai/Nghi-dinh-259-2025-ND-CP-kiem-soat-thuong-mai-chien-luoc-650062.aspx?tab=2">Văn bản gốc</a>
+                        <a onmouseover="LS_Tip_New(13,0,2)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Văn bản gốc</a>
                         |
-                        <a onclick="Doc_Rel(MemberGA)" onmouseover="LS_Tip_Type(4)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Thuong-mai/Nghi-dinh-259-2025-ND-CP-kiem-soat-thuong-mai-chien-luoc-650062.aspx?tab=3">Lược đồ</a>
+                        <a onclick="Doc_Rel(MemberGA)" onmouseover="LS_Tip_New(13,0,4)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Quyet-dinh-1420-QD-TTPVHCC-2025-huong-dan-thu-tuc-hanh-chinh-Mo-hinh-dich-vu-cong-luu-dong-Ha-Noi-676621.aspx?tab=3">Lược đồ</a>
                         |
-                        <a onmouseover="LS_Tip_Type(3)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Liên quan hiệu lực</a>
+                        <a onmouseover="LS_Tip_New(13,0,3)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Liên quan hiệu lực</a>
                         |
-                        <a onclick="Doc_DL(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Thuong-mai/Nghi-dinh-259-2025-ND-CP-kiem-soat-thuong-mai-chien-luoc-650062.aspx?tab=7">Tải về</a>
+                        <a onclick="Doc_DL(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Quyet-dinh-1420-QD-TTPVHCC-2025-huong-dan-thu-tuc-hanh-chinh-Mo-hinh-dich-vu-cong-luu-dong-Ha-Noi-676621.aspx?tab=7">Tải về</a>
                         
                         
                     </p>
@@ -1370,12 +1370,12 @@
             <div class="right-col">
                 <p>
                     <span style="color: #000">Ban hành:</span>
-                    10/10/2025</p>
-                <p><span style="color:#000">Hiệu lực:</span> <span style="color:#8C0945">10/10/2025</span></p>
-                <p><span style="color:#000">Tình trạng:</span> <span class="text-red">Còn hiệu lực</span></p>
+                    13/10/2025</p>
+                <p><span style="color:#000">Hiệu lực:</span> <span style="color:#8C0945"><span id='span_a' onmouseover='LS_Tip_New(13,0,0)' onmouseout='hideddrivetip()'>Đã biết</span></span></p>
+                <p><span style="color:#000">Tình trạng:</span> <span class="text-red"><span id='span_a' onmouseover='LS_Tip_New(13,0,0)' onmouseout='hideddrivetip()'>Đã biết</span></span></p>
                 <p>
                     <span style="color: #000">Cập nhật:
-                        13/10/2025</span></p>
+                        14/10/2025</span></p>
             </div>
         </div>
     
@@ -1384,17 +1384,239 @@
                 <div class="number">
                     3</div>
                 <div class="nq">
+                    <p class="nqTitle"  lawid='676773'>
+                        <a onclick="Doc_CT(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Giao-thong-Van-tai/Quyet-dinh-38-2025-QD-TTg-sua-doi-Quy-che-quan-ly-hoat-dong-Cang-quoc-te-Cam-Ranh-676773.aspx">Quyết định 38/2025/QĐ-TTg sửa đổi Quy chế quản lý hoạt động Cảng quốc tế Cam Ranh - Bộ Quốc phòng kèm theo Quyết định 25/2016/QĐ-TTg được sửa đổi tại Quyết định 29/2019/QĐ-TTg do Thủ tướng Chính phủ ban hành</a>
+                    </p>
+                    <p class="links-bot">
+                        <a onmouseover="LS_Tip_New(13,0,1)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Tiếng Anh</a>
+                        |
+                        <a onclick="Doc_Scan(MemberGA)" onmouseover="LS_Tip_New(13,0,2)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Giao-thong-Van-tai/Quyet-dinh-38-2025-QD-TTg-sua-doi-Quy-che-quan-ly-hoat-dong-Cang-quoc-te-Cam-Ranh-676773.aspx?tab=2">Văn bản gốc</a>
+                        |
+                        <a onclick="Doc_Rel(MemberGA)" onmouseover="LS_Tip_New(13,0,4)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Giao-thong-Van-tai/Quyet-dinh-38-2025-QD-TTg-sua-doi-Quy-che-quan-ly-hoat-dong-Cang-quoc-te-Cam-Ranh-676773.aspx?tab=3">Lược đồ</a>
+                        |
+                        <a onclick="Doc_ST(MemberGA)" onmouseover="LS_Tip_New(13,0,3)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Giao-thong-Van-tai/Quyet-dinh-38-2025-QD-TTg-sua-doi-Quy-che-quan-ly-hoat-dong-Cang-quoc-te-Cam-Ranh-676773.aspx?tab=4">Liên quan hiệu lực</a>
+                        |
+                        <a onclick="Doc_DL(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Giao-thong-Van-tai/Quyet-dinh-38-2025-QD-TTg-sua-doi-Quy-che-quan-ly-hoat-dong-Cang-quoc-te-Cam-Ranh-676773.aspx?tab=7">Tải về</a>
+                        
+                        
+                    </p>
+                    
+                </div>
+                </p>
+            </div>
+            <div class="right-col">
+                <p>
+                    <span style="color: #000">Ban hành:</span>
+                    13/10/2025</p>
+                <p><span style="color:#000">Hiệu lực:</span> <span style="color:#8C0945"><span id='span_a' onmouseover='LS_Tip_New(13,0,0)' onmouseout='hideddrivetip()'>Đã biết</span></span></p>
+                <p><span style="color:#000">Tình trạng:</span> <span class="text-red"><span id='span_a' onmouseover='LS_Tip_New(13,0,0)' onmouseout='hideddrivetip()'>Đã biết</span></span></p>
+                <p>
+                    <span style="color: #000">Cập nhật:
+                        14/10/2025</span></p>
+            </div>
+        </div>
+    
+        <div class='content-1'>
+            <div class="left-col">
+                <div class="number">
+                    4</div>
+                <div class="nq">
+                    <p class="nqTitle"  lawid='676756'>
+                        <a onclick="Doc_CT(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Cong-nghe-thong-tin/Thong-bao-552-TB-VPCP-2025-ket-luan-Phien-hop-lan-thu-tu-Ban-Chi-dao-phat-trien-khoa-hoc-676756.aspx">Thông báo 552/TB-VPCP năm 2025 kết luận Phiên họp lần thứ tư của Ban Chỉ đạo của Chính phủ về phát triển khoa học, công nghệ, đổi mới sáng tạo, chuyển đổi số và Đề án 06 do Văn phòng Chính phủ ban hành</a>
+                    </p>
+                    <p class="links-bot">
+                        <a onmouseover="LS_Tip_New(13,0,1)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Tiếng Anh</a>
+                        |
+                        <a onmouseover="LS_Tip_New(13,0,2)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Văn bản gốc</a>
+                        |
+                        <a onclick="Doc_Rel(MemberGA)" onmouseover="LS_Tip_New(13,0,4)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Cong-nghe-thong-tin/Thong-bao-552-TB-VPCP-2025-ket-luan-Phien-hop-lan-thu-tu-Ban-Chi-dao-phat-trien-khoa-hoc-676756.aspx?tab=3">Lược đồ</a>
+                        |
+                        <a onmouseover="LS_Tip_New(13,0,3)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Liên quan hiệu lực</a>
+                        |
+                        <a onclick="Doc_DL(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Cong-nghe-thong-tin/Thong-bao-552-TB-VPCP-2025-ket-luan-Phien-hop-lan-thu-tu-Ban-Chi-dao-phat-trien-khoa-hoc-676756.aspx?tab=7">Tải về</a>
+                        
+                        
+                    </p>
+                    
+                </div>
+                </p>
+            </div>
+            <div class="right-col">
+                <p>
+                    <span style="color: #000">Ban hành:</span>
+                    13/10/2025</p>
+                <p><span style="color:#000">Hiệu lực:</span> <span style="color:#8C0945"><span id='span_a' onmouseover='LS_Tip_New(13,0,0)' onmouseout='hideddrivetip()'>Đã biết</span></span></p>
+                <p><span style="color:#000">Tình trạng:</span> <span class="text-red"><span id='span_a' onmouseover='LS_Tip_New(13,0,0)' onmouseout='hideddrivetip()'>Đã biết</span></span></p>
+                <p>
+                    <span style="color: #000">Cập nhật:
+                        15/10/2025</span></p>
+            </div>
+        </div>
+    
+        <div class='content-0'>
+            <div class="left-col">
+                <div class="number">
+                    5</div>
+                <div class="nq">
+                    <p class="nqTitle"  lawid='676789'>
+                        <a onclick="Doc_CT(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Cong-nghe-thong-tin/Quyet-dinh-2244-QD-TTg-2025-Bo-tieu-chi-danh-gia-hieu-qua-chuyen-doi-so-doi-voi-phat-trien-kinh-te-xa-hoi-676789.aspx">Quyết định 2244/QĐ-TTg năm 2025 về Bộ tiêu chí đánh giá hiệu quả của khoa học, công nghệ, đổi mới sáng tạo và chuyển đổi số đối với phát triển kinh tế - xã hội do Thủ tướng Chính phủ ban hành</a>
+                    </p>
+                    <p class="links-bot">
+                        <a onmouseover="LS_Tip_New(13,0,1)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Tiếng Anh</a>
+                        |
+                        <a onclick="Doc_Scan(MemberGA)" onmouseover="LS_Tip_New(13,0,2)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Cong-nghe-thong-tin/Quyet-dinh-2244-QD-TTg-2025-Bo-tieu-chi-danh-gia-hieu-qua-chuyen-doi-so-doi-voi-phat-trien-kinh-te-xa-hoi-676789.aspx?tab=2">Văn bản gốc</a>
+                        |
+                        <a onclick="Doc_Rel(MemberGA)" onmouseover="LS_Tip_New(13,0,4)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Cong-nghe-thong-tin/Quyet-dinh-2244-QD-TTg-2025-Bo-tieu-chi-danh-gia-hieu-qua-chuyen-doi-so-doi-voi-phat-trien-kinh-te-xa-hoi-676789.aspx?tab=3">Lược đồ</a>
+                        |
+                        <a onmouseover="LS_Tip_New(13,0,3)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Liên quan hiệu lực</a>
+                        |
+                        <a onclick="Doc_DL(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Cong-nghe-thong-tin/Quyet-dinh-2244-QD-TTg-2025-Bo-tieu-chi-danh-gia-hieu-qua-chuyen-doi-so-doi-voi-phat-trien-kinh-te-xa-hoi-676789.aspx?tab=7">Tải về</a>
+                        
+                        
+                    </p>
+                    
+                </div>
+                </p>
+            </div>
+            <div class="right-col">
+                <p>
+                    <span style="color: #000">Ban hành:</span>
+                    13/10/2025</p>
+                <p><span style="color:#000">Hiệu lực:</span> <span style="color:#8C0945"><span id='span_a' onmouseover='LS_Tip_New(13,0,0)' onmouseout='hideddrivetip()'>Đã biết</span></span></p>
+                <p><span style="color:#000">Tình trạng:</span> <span class="text-red"><span id='span_a' onmouseover='LS_Tip_New(13,0,0)' onmouseout='hideddrivetip()'>Đã biết</span></span></p>
+                <p>
+                    <span style="color: #000">Cập nhật:
+                        15/10/2025</span></p>
+            </div>
+        </div>
+    
+        <div class='content-1'>
+            <div class="left-col">
+                <div class="number">
+                    6</div>
+                <div class="nq">
+                    <p class="nqTitle"  lawid='676623'>
+                        <a onclick="Doc_CT(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Quyet-dinh-2243-QD-TTg-2025-thanh-lap-Ban-quan-ly-cac-Khu-cong-nghiep-Tuyen-Quang-676623.aspx">Quyết định 2243/QĐ-TTg năm 2025 thành lập Ban quản lý các Khu công nghiệp và Khu kinh tế tỉnh Tuyên Quang do Thủ tướng Chính phủ ban hành</a>
+                    </p>
+                    <p class="links-bot">
+                        <a onmouseover="LS_Tip_New(13,0,1)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Tiếng Anh</a>
+                        |
+                        <a onmouseover="LS_Tip_New(13,0,2)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Văn bản gốc</a>
+                        |
+                        <a onclick="Doc_Rel(MemberGA)" onmouseover="LS_Tip_New(13,0,4)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Quyet-dinh-2243-QD-TTg-2025-thanh-lap-Ban-quan-ly-cac-Khu-cong-nghiep-Tuyen-Quang-676623.aspx?tab=3">Lược đồ</a>
+                        |
+                        <a onclick="Doc_ST(MemberGA)" onmouseover="LS_Tip_New(13,0,3)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Quyet-dinh-2243-QD-TTg-2025-thanh-lap-Ban-quan-ly-cac-Khu-cong-nghiep-Tuyen-Quang-676623.aspx?tab=4">Liên quan hiệu lực</a>
+                        |
+                        <a onclick="Doc_DL(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Quyet-dinh-2243-QD-TTg-2025-thanh-lap-Ban-quan-ly-cac-Khu-cong-nghiep-Tuyen-Quang-676623.aspx?tab=7">Tải về</a>
+                        
+                        
+                    </p>
+                    
+                </div>
+                </p>
+            </div>
+            <div class="right-col">
+                <p>
+                    <span style="color: #000">Ban hành:</span>
+                    13/10/2025</p>
+                <p><span style="color:#000">Hiệu lực:</span> <span style="color:#8C0945"><span id='span_a' onmouseover='LS_Tip_New(13,0,0)' onmouseout='hideddrivetip()'>Đã biết</span></span></p>
+                <p><span style="color:#000">Tình trạng:</span> <span class="text-red"><span id='span_a' onmouseover='LS_Tip_New(13,0,0)' onmouseout='hideddrivetip()'>Đã biết</span></span></p>
+                <p>
+                    <span style="color: #000">Cập nhật:
+                        14/10/2025</span></p>
+            </div>
+        </div>
+    
+        <div class='content-0'>
+            <div class="left-col">
+                <div class="number">
+                    7</div>
+                <div class="nq">
+                    <p class="nqTitle"  lawid='676627'>
+                        <a onclick="Doc_CT(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Giao-duc/Cong-dien-196-CD-TTg-2025-khac-phuc-thiet-hai-do-bao-so-11-gay-ra-doi-voi-nganh-giao-duc-676627.aspx">Công điện 196/CĐ-TTg năm 2025 đánh giá và khắc phục thiệt hại do bão số 11 gây ra đối với ngành giáo dục do Thủ tướng Chính phủ điện</a>
+                    </p>
+                    <p class="links-bot">
+                        <a onmouseover="LS_Tip_New(13,0,1)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Tiếng Anh</a>
+                        |
+                        <a onmouseover="LS_Tip_New(13,0,2)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Văn bản gốc</a>
+                        |
+                        <a onclick="Doc_Rel(MemberGA)" onmouseover="LS_Tip_New(13,0,4)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Giao-duc/Cong-dien-196-CD-TTg-2025-khac-phuc-thiet-hai-do-bao-so-11-gay-ra-doi-voi-nganh-giao-duc-676627.aspx?tab=3">Lược đồ</a>
+                        |
+                        <a onmouseover="LS_Tip_New(13,0,3)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Liên quan hiệu lực</a>
+                        |
+                        <a onclick="Doc_DL(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Giao-duc/Cong-dien-196-CD-TTg-2025-khac-phuc-thiet-hai-do-bao-so-11-gay-ra-doi-voi-nganh-giao-duc-676627.aspx?tab=7">Tải về</a>
+                        
+                        
+                    </p>
+                    
+                </div>
+                </p>
+            </div>
+            <div class="right-col">
+                <p>
+                    <span style="color: #000">Ban hành:</span>
+                    12/10/2025</p>
+                <p><span style="color:#000">Hiệu lực:</span> <span style="color:#8C0945"><span id='span_a' onmouseover='LS_Tip_New(13,0,0)' onmouseout='hideddrivetip()'>Đã biết</span></span></p>
+                <p><span style="color:#000">Tình trạng:</span> <span class="text-red"><span id='span_a' onmouseover='LS_Tip_New(13,0,0)' onmouseout='hideddrivetip()'>Đã biết</span></span></p>
+                <p>
+                    <span style="color: #000">Cập nhật:
+                        14/10/2025</span></p>
+            </div>
+        </div>
+    
+        <div class='content-1'>
+            <div class="left-col">
+                <div class="number">
+                    8</div>
+                <div class="nq">
+                    <p class="nqTitle"  lawid='676625'>
+                        <a onclick="Doc_CT(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Nghi-quyet-323-NQ-CP-2025-du-thao-Nghi-quyet-quy-dinh-so-luong-Pho-Chu-tich-Hoi-dong-nhan-dan-tinh-676625.aspx">Nghị quyết 323/NQ-CP năm 2025 về dự thảo Nghị quyết của Ủy ban Thường vụ Quốc hội quy định số lượng Phó Chủ tịch Hội đồng nhân dân, Phó Trưởng ban của Hội đồng nhân dân cấp tỉnh, cấp xã và việc bố trí đại biểu Hội đồng nhân dân cấp tỉnh, cấp xã hoạt động chuyên trách do Chính phủ ban hành</a>
+                    </p>
+                    <p class="links-bot">
+                        <a onmouseover="LS_Tip_New(13,0,1)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Tiếng Anh</a>
+                        |
+                        <a onmouseover="LS_Tip_New(13,0,2)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Văn bản gốc</a>
+                        |
+                        <a onclick="Doc_Rel(MemberGA)" onmouseover="LS_Tip_New(13,0,4)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Nghi-quyet-323-NQ-CP-2025-du-thao-Nghi-quyet-quy-dinh-so-luong-Pho-Chu-tich-Hoi-dong-nhan-dan-tinh-676625.aspx?tab=3">Lược đồ</a>
+                        |
+                        <a onmouseover="LS_Tip_New(13,0,3)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Liên quan hiệu lực</a>
+                        |
+                        <a onclick="Doc_DL(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Nghi-quyet-323-NQ-CP-2025-du-thao-Nghi-quyet-quy-dinh-so-luong-Pho-Chu-tich-Hoi-dong-nhan-dan-tinh-676625.aspx?tab=7">Tải về</a>
+                        
+                        
+                    </p>
+                    
+                </div>
+                </p>
+            </div>
+            <div class="right-col">
+                <p>
+                    <span style="color: #000">Ban hành:</span>
+                    12/10/2025</p>
+                <p><span style="color:#000">Hiệu lực:</span> <span style="color:#8C0945"><span id='span_a' onmouseover='LS_Tip_New(13,0,0)' onmouseout='hideddrivetip()'>Đã biết</span></span></p>
+                <p><span style="color:#000">Tình trạng:</span> <span class="text-red"><span id='span_a' onmouseover='LS_Tip_New(13,0,0)' onmouseout='hideddrivetip()'>Đã biết</span></span></p>
+                <p>
+                    <span style="color: #000">Cập nhật:
+                        14/10/2025</span></p>
+            </div>
+        </div>
+    
+        <div class='content-0'>
+            <div class="left-col">
+                <div class="number">
+                    9</div>
+                <div class="nq">
                     <p class="nqTitle"  lawid='676566'>
                         <a onclick="Doc_CT(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Dau-tu/Cong-dien-194-CD-TTg-2025-khan-truong-bao-cao-ket-qua-hoat-dong-dau-tu-cua-9-thang-dau-nam-676566.aspx">Công điện 194/CĐ-TTg về khẩn trương rà soát, báo cáo kết quả hoạt động đầu tư của 9 tháng đầu năm 2025 do Thủ tướng Chính phủ điện</a>
                     </p>
                     <p class="links-bot">
-                        <a onmouseover="LS_Tip_Type(1)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Tiếng Anh</a>
+                        <a onmouseover="LS_Tip_New(13,0,1)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Tiếng Anh</a>
                         |
-                        <a onclick="Doc_Scan(MemberGA)" onmouseover="LS_Tip_Type(2)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Dau-tu/Cong-dien-194-CD-TTg-2025-khan-truong-bao-cao-ket-qua-hoat-dong-dau-tu-cua-9-thang-dau-nam-676566.aspx?tab=2">Văn bản gốc</a>
+                        <a onclick="Doc_Scan(MemberGA)" onmouseover="LS_Tip_New(13,0,2)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Dau-tu/Cong-dien-194-CD-TTg-2025-khan-truong-bao-cao-ket-qua-hoat-dong-dau-tu-cua-9-thang-dau-nam-676566.aspx?tab=2">Văn bản gốc</a>
                         |
-                        <a onclick="Doc_Rel(MemberGA)" onmouseover="LS_Tip_Type(4)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Dau-tu/Cong-dien-194-CD-TTg-2025-khan-truong-bao-cao-ket-qua-hoat-dong-dau-tu-cua-9-thang-dau-nam-676566.aspx?tab=3">Lược đồ</a>
+                        <a onclick="Doc_Rel(MemberGA)" onmouseover="LS_Tip_New(13,0,4)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Dau-tu/Cong-dien-194-CD-TTg-2025-khan-truong-bao-cao-ket-qua-hoat-dong-dau-tu-cua-9-thang-dau-nam-676566.aspx?tab=3">Lược đồ</a>
                         |
-                        <a onmouseover="LS_Tip_Type(3)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Liên quan hiệu lực</a>
+                        <a onmouseover="LS_Tip_New(13,0,3)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Liên quan hiệu lực</a>
                         |
                         <a onclick="Doc_DL(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Dau-tu/Cong-dien-194-CD-TTg-2025-khan-truong-bao-cao-ket-qua-hoat-dong-dau-tu-cua-9-thang-dau-nam-676566.aspx?tab=7">Tải về</a>
                         
@@ -1408,8 +1630,8 @@
                 <p>
                     <span style="color: #000">Ban hành:</span>
                     10/10/2025</p>
-                <p><span style="color:#000">Hiệu lực:</span> <span style="color:#8C0945">10/10/2025</span></p>
-                <p><span style="color:#000">Tình trạng:</span> <span class="text-red">Còn hiệu lực</span></p>
+                <p><span style="color:#000">Hiệu lực:</span> <span style="color:#8C0945"><span id='span_a' onmouseover='LS_Tip_New(13,0,0)' onmouseout='hideddrivetip()'>Đã biết</span></span></p>
+                <p><span style="color:#000">Tình trạng:</span> <span class="text-red"><span id='span_a' onmouseover='LS_Tip_New(13,0,0)' onmouseout='hideddrivetip()'>Đã biết</span></span></p>
                 <p>
                     <span style="color: #000">Cập nhật:
                         13/10/2025</span></p>
@@ -1419,19 +1641,19 @@
         <div class='content-1'>
             <div class="left-col">
                 <div class="number">
-                    4</div>
+                    10</div>
                 <div class="nq">
                     <p class="nqTitle"  lawid='676489'>
                         <a onclick="Doc_CT(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Quyet-dinh-239-QD-VPB5-2025-nhiem-vu-co-cau-to-chuc-cac-Phong-Dai-dien-Van-phong-thuoc-Bo-Y-te-676489.aspx">Quyết định 239/QĐ-VPB5 năm 2025 quy định chức năng, nhiệm vụ, quyền hạn và cơ cấu tổ chức của các Phòng, Đại diện Văn phòng thuộc Văn phòng Bộ Y tế</a>
                     </p>
                     <p class="links-bot">
-                        <a onmouseover="LS_Tip_Type(1)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Tiếng Anh</a>
+                        <a onmouseover="LS_Tip_New(13,0,1)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Tiếng Anh</a>
                         |
-                        <a onclick="Doc_Scan(MemberGA)" onmouseover="LS_Tip_Type(2)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Quyet-dinh-239-QD-VPB5-2025-nhiem-vu-co-cau-to-chuc-cac-Phong-Dai-dien-Van-phong-thuoc-Bo-Y-te-676489.aspx?tab=2">Văn bản gốc</a>
+                        <a onclick="Doc_Scan(MemberGA)" onmouseover="LS_Tip_New(13,0,2)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Quyet-dinh-239-QD-VPB5-2025-nhiem-vu-co-cau-to-chuc-cac-Phong-Dai-dien-Van-phong-thuoc-Bo-Y-te-676489.aspx?tab=2">Văn bản gốc</a>
                         |
-                        <a onclick="Doc_Rel(MemberGA)" onmouseover="LS_Tip_Type(4)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Quyet-dinh-239-QD-VPB5-2025-nhiem-vu-co-cau-to-chuc-cac-Phong-Dai-dien-Van-phong-thuoc-Bo-Y-te-676489.aspx?tab=3">Lược đồ</a>
+                        <a onclick="Doc_Rel(MemberGA)" onmouseover="LS_Tip_New(13,0,4)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Quyet-dinh-239-QD-VPB5-2025-nhiem-vu-co-cau-to-chuc-cac-Phong-Dai-dien-Van-phong-thuoc-Bo-Y-te-676489.aspx?tab=3">Lược đồ</a>
                         |
-                        <a onclick="Doc_ST(MemberGA)" onmouseover="LS_Tip_Type(3)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Quyet-dinh-239-QD-VPB5-2025-nhiem-vu-co-cau-to-chuc-cac-Phong-Dai-dien-Van-phong-thuoc-Bo-Y-te-676489.aspx?tab=4">Liên quan hiệu lực</a>
+                        <a onclick="Doc_ST(MemberGA)" onmouseover="LS_Tip_New(13,0,3)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Quyet-dinh-239-QD-VPB5-2025-nhiem-vu-co-cau-to-chuc-cac-Phong-Dai-dien-Van-phong-thuoc-Bo-Y-te-676489.aspx?tab=4">Liên quan hiệu lực</a>
                         |
                         <a onclick="Doc_DL(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Quyet-dinh-239-QD-VPB5-2025-nhiem-vu-co-cau-to-chuc-cac-Phong-Dai-dien-Van-phong-thuoc-Bo-Y-te-676489.aspx?tab=7">Tải về</a>
                         
@@ -1445,8 +1667,8 @@
                 <p>
                     <span style="color: #000">Ban hành:</span>
                     10/10/2025</p>
-                <p><span style="color:#000">Hiệu lực:</span> <span style="color:#8C0945">10/10/2025</span></p>
-                <p><span style="color:#000">Tình trạng:</span> <span class="text-red">Còn hiệu lực</span></p>
+                <p><span style="color:#000">Hiệu lực:</span> <span style="color:#8C0945"><span id='span_a' onmouseover='LS_Tip_New(13,0,0)' onmouseout='hideddrivetip()'>Đã biết</span></span></p>
+                <p><span style="color:#000">Tình trạng:</span> <span class="text-red"><span id='span_a' onmouseover='LS_Tip_New(13,0,0)' onmouseout='hideddrivetip()'>Đã biết</span></span></p>
                 <p>
                     <span style="color: #000">Cập nhật:
                         13/10/2025</span></p>
@@ -1456,19 +1678,93 @@
         <div class='content-0'>
             <div class="left-col">
                 <div class="number">
-                    5</div>
+                    11</div>
+                <div class="nq">
+                    <p class="nqTitle"  lawid='676631'>
+                        <a onclick="Doc_CT(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Quyet-dinh-1746-QD-BXD-2025-cong-bo-thu-tuc-hanh-chinh-sua-doi-linh-vuc-hang-khong-676631.aspx">Quyết định 1746/QĐ-BXD năm 2025 công bố thủ tục hành chính được sửa đổi, bổ sung trong lĩnh vực Hàng không thuộc phạm vi quản lý của Bộ Xây dựng</a>
+                    </p>
+                    <p class="links-bot">
+                        <a onmouseover="LS_Tip_New(13,0,1)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Tiếng Anh</a>
+                        |
+                        <a onmouseover="LS_Tip_New(13,0,2)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Văn bản gốc</a>
+                        |
+                        <a onclick="Doc_Rel(MemberGA)" onmouseover="LS_Tip_New(13,0,4)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Quyet-dinh-1746-QD-BXD-2025-cong-bo-thu-tuc-hanh-chinh-sua-doi-linh-vuc-hang-khong-676631.aspx?tab=3">Lược đồ</a>
+                        |
+                        <a onclick="Doc_ST(MemberGA)" onmouseover="LS_Tip_New(13,0,3)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Quyet-dinh-1746-QD-BXD-2025-cong-bo-thu-tuc-hanh-chinh-sua-doi-linh-vuc-hang-khong-676631.aspx?tab=4">Liên quan hiệu lực</a>
+                        |
+                        <a onclick="Doc_DL(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Quyet-dinh-1746-QD-BXD-2025-cong-bo-thu-tuc-hanh-chinh-sua-doi-linh-vuc-hang-khong-676631.aspx?tab=7">Tải về</a>
+                        
+                        
+                    </p>
+                    
+                </div>
+                </p>
+            </div>
+            <div class="right-col">
+                <p>
+                    <span style="color: #000">Ban hành:</span>
+                    10/10/2025</p>
+                <p><span style="color:#000">Hiệu lực:</span> <span style="color:#8C0945"><span id='span_a' onmouseover='LS_Tip_New(13,0,0)' onmouseout='hideddrivetip()'>Đã biết</span></span></p>
+                <p><span style="color:#000">Tình trạng:</span> <span class="text-red"><span id='span_a' onmouseover='LS_Tip_New(13,0,0)' onmouseout='hideddrivetip()'>Đã biết</span></span></p>
+                <p>
+                    <span style="color: #000">Cập nhật:
+                        14/10/2025</span></p>
+            </div>
+        </div>
+    
+        <div class='content-1'>
+            <div class="left-col">
+                <div class="number">
+                    12</div>
+                <div class="nq">
+                    <p class="nqTitle"  lawid='676624'>
+                        <a onclick="Doc_CT(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Doanh-nghiep/Quyet-dinh-3457-QD-BTC-2025-cong-bo-thu-tuc-hanh-chinh-thanh-lap-va-hoat-dong-to-hop-tac-676624.aspx">Quyết định 3457/QĐ-BTC năm 2025 công bố thủ tục hành chính mới trong lĩnh vực thành lập và hoạt động của tổ hợp tác, hợp tác xã và liên hiệp hợp tác xã thuộc phạm vi chức năng quản lý của Bộ Tài chính</a>
+                    </p>
+                    <p class="links-bot">
+                        <a onmouseover="LS_Tip_New(13,0,1)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Tiếng Anh</a>
+                        |
+                        <a onclick="Doc_Scan(MemberGA)" onmouseover="LS_Tip_New(13,0,2)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Doanh-nghiep/Quyet-dinh-3457-QD-BTC-2025-cong-bo-thu-tuc-hanh-chinh-thanh-lap-va-hoat-dong-to-hop-tac-676624.aspx?tab=2">Văn bản gốc</a>
+                        |
+                        <a onclick="Doc_Rel(MemberGA)" onmouseover="LS_Tip_New(13,0,4)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Doanh-nghiep/Quyet-dinh-3457-QD-BTC-2025-cong-bo-thu-tuc-hanh-chinh-thanh-lap-va-hoat-dong-to-hop-tac-676624.aspx?tab=3">Lược đồ</a>
+                        |
+                        <a onmouseover="LS_Tip_New(13,0,3)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Liên quan hiệu lực</a>
+                        |
+                        <a onclick="Doc_DL(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Doanh-nghiep/Quyet-dinh-3457-QD-BTC-2025-cong-bo-thu-tuc-hanh-chinh-thanh-lap-va-hoat-dong-to-hop-tac-676624.aspx?tab=7">Tải về</a>
+                        
+                        
+                    </p>
+                    
+                </div>
+                </p>
+            </div>
+            <div class="right-col">
+                <p>
+                    <span style="color: #000">Ban hành:</span>
+                    10/10/2025</p>
+                <p><span style="color:#000">Hiệu lực:</span> <span style="color:#8C0945"><span id='span_a' onmouseover='LS_Tip_New(13,0,0)' onmouseout='hideddrivetip()'>Đã biết</span></span></p>
+                <p><span style="color:#000">Tình trạng:</span> <span class="text-red"><span id='span_a' onmouseover='LS_Tip_New(13,0,0)' onmouseout='hideddrivetip()'>Đã biết</span></span></p>
+                <p>
+                    <span style="color: #000">Cập nhật:
+                        14/10/2025</span></p>
+            </div>
+        </div>
+    
+        <div class='content-0'>
+            <div class="left-col">
+                <div class="number">
+                    13</div>
                 <div class="nq">
                     <p class="nqTitle"  lawid='676486'>
                         <a onclick="Doc_CT(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Xuat-nhap-khau/Nghi-dinh-260-2025-ND-CP-sua-doi-muc-thue-xuat-khau-mat-hang-thuoc-nhom-71-13-Nghi-dinh-26-2023-ND-CP-676486.aspx">Nghị định 260/2025/NĐ-CP sửa đổi mức thuế suất thuế xuất khẩu đối với mặt hàng thuộc nhóm 71.13, 71.14 và 71.15 tại Biểu thuế xuất khẩu theo Danh mục mặt hàng chịu thuế kèm theo Nghị định 26/2023/NĐ-CP về Biểu thuế xuất khẩu, Biểu thuế nhập khẩu ưu đãi, Danh mục hàng hóa và mức thuế tuyệt đối, thuế hỗn hợp, thuế nhập khẩu ngoài hạn ngạch thuế quan</a>
                     </p>
                     <p class="links-bot">
-                        <a onmouseover="LS_Tip_Type(1)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Tiếng Anh</a>
+                        <a onmouseover="LS_Tip_New(13,0,1)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Tiếng Anh</a>
                         |
-                        <a onclick="Doc_Scan(MemberGA)" onmouseover="LS_Tip_Type(2)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Xuat-nhap-khau/Nghi-dinh-260-2025-ND-CP-sua-doi-muc-thue-xuat-khau-mat-hang-thuoc-nhom-71-13-Nghi-dinh-26-2023-ND-CP-676486.aspx?tab=2">Văn bản gốc</a>
+                        <a onclick="Doc_Scan(MemberGA)" onmouseover="LS_Tip_New(13,0,2)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Xuat-nhap-khau/Nghi-dinh-260-2025-ND-CP-sua-doi-muc-thue-xuat-khau-mat-hang-thuoc-nhom-71-13-Nghi-dinh-26-2023-ND-CP-676486.aspx?tab=2">Văn bản gốc</a>
                         |
-                        <a onclick="Doc_Rel(MemberGA)" onmouseover="LS_Tip_Type(4)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Xuat-nhap-khau/Nghi-dinh-260-2025-ND-CP-sua-doi-muc-thue-xuat-khau-mat-hang-thuoc-nhom-71-13-Nghi-dinh-26-2023-ND-CP-676486.aspx?tab=3">Lược đồ</a>
+                        <a onclick="Doc_Rel(MemberGA)" onmouseover="LS_Tip_New(13,0,4)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Xuat-nhap-khau/Nghi-dinh-260-2025-ND-CP-sua-doi-muc-thue-xuat-khau-mat-hang-thuoc-nhom-71-13-Nghi-dinh-26-2023-ND-CP-676486.aspx?tab=3">Lược đồ</a>
                         |
-                        <a onclick="Doc_ST(MemberGA)" onmouseover="LS_Tip_Type(3)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Xuat-nhap-khau/Nghi-dinh-260-2025-ND-CP-sua-doi-muc-thue-xuat-khau-mat-hang-thuoc-nhom-71-13-Nghi-dinh-26-2023-ND-CP-676486.aspx?tab=4">Liên quan hiệu lực</a>
+                        <a onclick="Doc_ST(MemberGA)" onmouseover="LS_Tip_New(13,0,3)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Xuat-nhap-khau/Nghi-dinh-260-2025-ND-CP-sua-doi-muc-thue-xuat-khau-mat-hang-thuoc-nhom-71-13-Nghi-dinh-26-2023-ND-CP-676486.aspx?tab=4">Liên quan hiệu lực</a>
                         |
                         <a onclick="Doc_DL(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Xuat-nhap-khau/Nghi-dinh-260-2025-ND-CP-sua-doi-muc-thue-xuat-khau-mat-hang-thuoc-nhom-71-13-Nghi-dinh-26-2023-ND-CP-676486.aspx?tab=7">Tải về</a>
                         
@@ -1482,8 +1778,8 @@
                 <p>
                     <span style="color: #000">Ban hành:</span>
                     10/10/2025</p>
-                <p><span style="color:#000">Hiệu lực:</span> <span style="color:#8C0945">10/10/2025</span></p>
-                <p><span style="color:#000">Tình trạng:</span> <span class="text-red">Còn hiệu lực</span></p>
+                <p><span style="color:#000">Hiệu lực:</span> <span style="color:#8C0945"><span id='span_a' onmouseover='LS_Tip_New(13,0,0)' onmouseout='hideddrivetip()'>Đã biết</span></span></p>
+                <p><span style="color:#000">Tình trạng:</span> <span class="text-red"><span id='span_a' onmouseover='LS_Tip_New(13,0,0)' onmouseout='hideddrivetip()'>Đã biết</span></span></p>
                 <p>
                     <span style="color: #000">Cập nhật:
                         13/10/2025</span></p>
@@ -1493,21 +1789,21 @@
         <div class='content-1'>
             <div class="left-col">
                 <div class="number">
-                    6</div>
+                    14</div>
                 <div class="nq">
-                    <p class="nqTitle"  lawid='638692'>
-                        <a onclick="Doc_CT(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Xay-dung-Do-thi/Nghi-dinh-258-2025-ND-CP-quan-ly-cay-xanh-cong-vien-do-thi-638692.aspx">Nghị định 258/2025/NĐ-CP về quản lý công viên, cây xanh, mặt nước</a>
+                    <p class="nqTitle"  lawid='661849'>
+                        <a onclick="Doc_CT(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Xay-dung-Do-thi/Nghi-dinh-261-2025-ND-CP-sua-doi-Nghi-dinh-100-2024-ND-CP-huong-dan-Luat-Nha-o-661849.aspx">Nghị định 261/2025/NĐ-CP sửa đổi Nghị định 100/2024/NĐ-CP hướng dẫn Luật Nhà ở về phát triển và quản lý nhà ở xã hội và Nghị định 192/2025/NĐ-CP hướng dẫn Nghị quyết 201/2025/QH15 thí điểm về cơ chế, chính sách đặc thù phát triển nhà ở xã hội</a>
                     </p>
                     <p class="links-bot">
-                        <a onmouseover="LS_Tip_Type(1)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Tiếng Anh</a>
+                        <a onmouseover="LS_Tip_New(13,0,1)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Tiếng Anh</a>
                         |
-                        <a onclick="Doc_Scan(MemberGA)" onmouseover="LS_Tip_Type(2)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Xay-dung-Do-thi/Nghi-dinh-258-2025-ND-CP-quan-ly-cay-xanh-cong-vien-do-thi-638692.aspx?tab=2">Văn bản gốc</a>
+                        <a onclick="Doc_Scan(MemberGA)" onmouseover="LS_Tip_New(13,0,2)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Xay-dung-Do-thi/Nghi-dinh-261-2025-ND-CP-sua-doi-Nghi-dinh-100-2024-ND-CP-huong-dan-Luat-Nha-o-661849.aspx?tab=2">Văn bản gốc</a>
                         |
-                        <a onclick="Doc_Rel(MemberGA)" onmouseover="LS_Tip_Type(4)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Xay-dung-Do-thi/Nghi-dinh-258-2025-ND-CP-quan-ly-cay-xanh-cong-vien-do-thi-638692.aspx?tab=3">Lược đồ</a>
+                        <a onclick="Doc_Rel(MemberGA)" onmouseover="LS_Tip_New(13,0,4)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Xay-dung-Do-thi/Nghi-dinh-261-2025-ND-CP-sua-doi-Nghi-dinh-100-2024-ND-CP-huong-dan-Luat-Nha-o-661849.aspx?tab=3">Lược đồ</a>
                         |
-                        <a onclick="Doc_ST(MemberGA)" onmouseover="LS_Tip_Type(3)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Xay-dung-Do-thi/Nghi-dinh-258-2025-ND-CP-quan-ly-cay-xanh-cong-vien-do-thi-638692.aspx?tab=4">Liên quan hiệu lực</a>
+                        <a onclick="Doc_ST(MemberGA)" onmouseover="LS_Tip_New(13,0,3)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Xay-dung-Do-thi/Nghi-dinh-261-2025-ND-CP-sua-doi-Nghi-dinh-100-2024-ND-CP-huong-dan-Luat-Nha-o-661849.aspx?tab=4">Liên quan hiệu lực</a>
                         |
-                        <a onclick="Doc_DL(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Xay-dung-Do-thi/Nghi-dinh-258-2025-ND-CP-quan-ly-cay-xanh-cong-vien-do-thi-638692.aspx?tab=7">Tải về</a>
+                        <a onclick="Doc_DL(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Xay-dung-Do-thi/Nghi-dinh-261-2025-ND-CP-sua-doi-Nghi-dinh-100-2024-ND-CP-huong-dan-Luat-Nha-o-661849.aspx?tab=7">Tải về</a>
                         
                         
                     </p>
@@ -1518,31 +1814,68 @@
             <div class="right-col">
                 <p>
                     <span style="color: #000">Ban hành:</span>
-                    09/10/2025</p>
-                <p><span style="color:#000">Hiệu lực:</span> <span style="color:#8C0945">09/10/2025</span></p>
-                <p><span style="color:#000">Tình trạng:</span> <span class="text-red">Còn hiệu lực</span></p>
+                    10/10/2025</p>
+                <p><span style="color:#000">Hiệu lực:</span> <span style="color:#8C0945"><span id='span_a' onmouseover='LS_Tip_New(13,0,0)' onmouseout='hideddrivetip()'>Đã biết</span></span></p>
+                <p><span style="color:#000">Tình trạng:</span> <span class="text-red"><span id='span_a' onmouseover='LS_Tip_New(13,0,0)' onmouseout='hideddrivetip()'>Đã biết</span></span></p>
                 <p>
                     <span style="color: #000">Cập nhật:
-                        10/10/2025</span></p>
+                        11/10/2025</span></p>
             </div>
         </div>
     
         <div class='content-0'>
             <div class="left-col">
                 <div class="number">
-                    7</div>
+                    15</div>
+                <div class="nq">
+                    <p class="nqTitle"  lawid='650062'>
+                        <a onclick="Doc_CT(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Thuong-mai/Nghi-dinh-259-2025-ND-CP-kiem-soat-thuong-mai-chien-luoc-650062.aspx">Nghị định 259/2025/NĐ-CP về kiểm soát thương mại chiến lược</a>
+                    </p>
+                    <p class="links-bot">
+                        <a onmouseover="LS_Tip_New(13,0,1)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Tiếng Anh</a>
+                        |
+                        <a onclick="Doc_Scan(MemberGA)" onmouseover="LS_Tip_New(13,0,2)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Thuong-mai/Nghi-dinh-259-2025-ND-CP-kiem-soat-thuong-mai-chien-luoc-650062.aspx?tab=2">Văn bản gốc</a>
+                        |
+                        <a onclick="Doc_Rel(MemberGA)" onmouseover="LS_Tip_New(13,0,4)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Thuong-mai/Nghi-dinh-259-2025-ND-CP-kiem-soat-thuong-mai-chien-luoc-650062.aspx?tab=3">Lược đồ</a>
+                        |
+                        <a onmouseover="LS_Tip_New(13,0,3)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Liên quan hiệu lực</a>
+                        |
+                        <a onclick="Doc_DL(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Thuong-mai/Nghi-dinh-259-2025-ND-CP-kiem-soat-thuong-mai-chien-luoc-650062.aspx?tab=7">Tải về</a>
+                        
+                        
+                    </p>
+                    
+                </div>
+                </p>
+            </div>
+            <div class="right-col">
+                <p>
+                    <span style="color: #000">Ban hành:</span>
+                    10/10/2025</p>
+                <p><span style="color:#000">Hiệu lực:</span> <span style="color:#8C0945"><span id='span_a' onmouseover='LS_Tip_New(13,0,0)' onmouseout='hideddrivetip()'>Đã biết</span></span></p>
+                <p><span style="color:#000">Tình trạng:</span> <span class="text-red"><span id='span_a' onmouseover='LS_Tip_New(13,0,0)' onmouseout='hideddrivetip()'>Đã biết</span></span></p>
+                <p>
+                    <span style="color: #000">Cập nhật:
+                        13/10/2025</span></p>
+            </div>
+        </div>
+    
+        <div class='content-1'>
+            <div class="left-col">
+                <div class="number">
+                    16</div>
                 <div class="nq">
                     <p class="nqTitle"  lawid='676167'>
                         <a onclick="Doc_CT(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Thuong-mai/Quyet-dinh-2229-QD-TTg-2025-Chien-luoc-phat-trien-dich-vu-logistics-Viet-Nam-2025-2035-676167.aspx">Quyết định 2229/QĐ-TTg năm 2025 phê duyệt Chiến lược phát triển dịch vụ logistics Việt Nam thời kỳ 2025-2035, tầm nhìn đến 2050 do Thủ tướng Chính phủ ban hành</a>
                     </p>
                     <p class="links-bot">
-                        <a onmouseover="LS_Tip_Type(1)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Tiếng Anh</a>
+                        <a onmouseover="LS_Tip_New(13,0,1)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Tiếng Anh</a>
                         |
-                        <a onclick="Doc_Scan(MemberGA)" onmouseover="LS_Tip_Type(2)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Thuong-mai/Quyet-dinh-2229-QD-TTg-2025-Chien-luoc-phat-trien-dich-vu-logistics-Viet-Nam-2025-2035-676167.aspx?tab=2">Văn bản gốc</a>
+                        <a onclick="Doc_Scan(MemberGA)" onmouseover="LS_Tip_New(13,0,2)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Thuong-mai/Quyet-dinh-2229-QD-TTg-2025-Chien-luoc-phat-trien-dich-vu-logistics-Viet-Nam-2025-2035-676167.aspx?tab=2">Văn bản gốc</a>
                         |
-                        <a onclick="Doc_Rel(MemberGA)" onmouseover="LS_Tip_Type(4)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Thuong-mai/Quyet-dinh-2229-QD-TTg-2025-Chien-luoc-phat-trien-dich-vu-logistics-Viet-Nam-2025-2035-676167.aspx?tab=3">Lược đồ</a>
+                        <a onclick="Doc_Rel(MemberGA)" onmouseover="LS_Tip_New(13,0,4)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Thuong-mai/Quyet-dinh-2229-QD-TTg-2025-Chien-luoc-phat-trien-dich-vu-logistics-Viet-Nam-2025-2035-676167.aspx?tab=3">Lược đồ</a>
                         |
-                        <a onmouseover="LS_Tip_Type(3)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Liên quan hiệu lực</a>
+                        <a onmouseover="LS_Tip_New(13,0,3)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Liên quan hiệu lực</a>
                         |
                         <a onclick="Doc_DL(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Thuong-mai/Quyet-dinh-2229-QD-TTg-2025-Chien-luoc-phat-trien-dich-vu-logistics-Viet-Nam-2025-2035-676167.aspx?tab=7">Tải về</a>
                         
@@ -1556,30 +1889,30 @@
                 <p>
                     <span style="color: #000">Ban hành:</span>
                     09/10/2025</p>
-                <p><span style="color:#000">Hiệu lực:</span> <span style="color:#8C0945">09/10/2025</span></p>
-                <p><span style="color:#000">Tình trạng:</span> <span class="text-red">Còn hiệu lực</span></p>
+                <p><span style="color:#000">Hiệu lực:</span> <span style="color:#8C0945"><span id='span_a' onmouseover='LS_Tip_New(13,0,0)' onmouseout='hideddrivetip()'>Đã biết</span></span></p>
+                <p><span style="color:#000">Tình trạng:</span> <span class="text-red"><span id='span_a' onmouseover='LS_Tip_New(13,0,0)' onmouseout='hideddrivetip()'>Đã biết</span></span></p>
                 <p>
                     <span style="color: #000">Cập nhật:
                         10/10/2025</span></p>
             </div>
         </div>
     
-        <div class='content-1'>
+        <div class='content-0'>
             <div class="left-col">
                 <div class="number">
-                    8</div>
+                    17</div>
                 <div class="nq">
                     <p class="nqTitle"  lawid='676166'>
                         <a onclick="Doc_CT(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Lao-dong-Tien-luong/Quyet-dinh-2230-QD-TTg-2025-De-an-dao-tao-phat-trien-nguon-nhan-luc-duong-sat-Viet-Nam-676166.aspx">Quyết định 2230/QĐ-TTg năm 2025 phê duyệt Đề án đào tạo, phát triển nguồn nhân lực đường sắt Việt Nam đến năm 2035, định hướng đến năm 2045 do Thủ tướng Chính phủ ban hành</a>
                     </p>
                     <p class="links-bot">
-                        <a onmouseover="LS_Tip_Type(1)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Tiếng Anh</a>
+                        <a onmouseover="LS_Tip_New(13,0,1)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Tiếng Anh</a>
                         |
-                        <a onclick="Doc_Scan(MemberGA)" onmouseover="LS_Tip_Type(2)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Lao-dong-Tien-luong/Quyet-dinh-2230-QD-TTg-2025-De-an-dao-tao-phat-trien-nguon-nhan-luc-duong-sat-Viet-Nam-676166.aspx?tab=2">Văn bản gốc</a>
+                        <a onclick="Doc_Scan(MemberGA)" onmouseover="LS_Tip_New(13,0,2)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Lao-dong-Tien-luong/Quyet-dinh-2230-QD-TTg-2025-De-an-dao-tao-phat-trien-nguon-nhan-luc-duong-sat-Viet-Nam-676166.aspx?tab=2">Văn bản gốc</a>
                         |
-                        <a onclick="Doc_Rel(MemberGA)" onmouseover="LS_Tip_Type(4)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Lao-dong-Tien-luong/Quyet-dinh-2230-QD-TTg-2025-De-an-dao-tao-phat-trien-nguon-nhan-luc-duong-sat-Viet-Nam-676166.aspx?tab=3">Lược đồ</a>
+                        <a onclick="Doc_Rel(MemberGA)" onmouseover="LS_Tip_New(13,0,4)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Lao-dong-Tien-luong/Quyet-dinh-2230-QD-TTg-2025-De-an-dao-tao-phat-trien-nguon-nhan-luc-duong-sat-Viet-Nam-676166.aspx?tab=3">Lược đồ</a>
                         |
-                        <a onmouseover="LS_Tip_Type(3)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Liên quan hiệu lực</a>
+                        <a onmouseover="LS_Tip_New(13,0,3)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Liên quan hiệu lực</a>
                         |
                         <a onclick="Doc_DL(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Lao-dong-Tien-luong/Quyet-dinh-2230-QD-TTg-2025-De-an-dao-tao-phat-trien-nguon-nhan-luc-duong-sat-Viet-Nam-676166.aspx?tab=7">Tải về</a>
                         
@@ -1593,30 +1926,30 @@
                 <p>
                     <span style="color: #000">Ban hành:</span>
                     09/10/2025</p>
-                <p><span style="color:#000">Hiệu lực:</span> <span style="color:#8C0945">09/10/2025</span></p>
-                <p><span style="color:#000">Tình trạng:</span> <span class="text-red">Còn hiệu lực</span></p>
+                <p><span style="color:#000">Hiệu lực:</span> <span style="color:#8C0945"><span id='span_a' onmouseover='LS_Tip_New(13,0,0)' onmouseout='hideddrivetip()'>Đã biết</span></span></p>
+                <p><span style="color:#000">Tình trạng:</span> <span class="text-red"><span id='span_a' onmouseover='LS_Tip_New(13,0,0)' onmouseout='hideddrivetip()'>Đã biết</span></span></p>
                 <p>
                     <span style="color: #000">Cập nhật:
                         10/10/2025</span></p>
             </div>
         </div>
     
-        <div class='content-0'>
+        <div class='content-1'>
             <div class="left-col">
                 <div class="number">
-                    9</div>
+                    18</div>
                 <div class="nq">
                     <p class="nqTitle"  lawid='676318'>
                         <a onclick="Doc_CT(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Giao-thong-Van-tai/Nghi-quyet-318-NQ-CP-2025-ke-hoach-trien-khai-Nghi-quyet-188-2025-QH15-676318.aspx">Nghị quyết 318/NQ-CP năm 2025 về Kế hoạch triển khai Nghị quyết 188/2025/QH15 thí điểm cơ chế, chính sách đặc thù, đặc biệt để phát triển hệ thống mạng lưới đường sắt đô thị tại thành phố Hà Nội, Thành phố Hồ Chí Minh do Chính phủ ban hành</a>
                     </p>
                     <p class="links-bot">
-                        <a onmouseover="LS_Tip_Type(1)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Tiếng Anh</a>
+                        <a onmouseover="LS_Tip_New(13,0,1)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Tiếng Anh</a>
                         |
-                        <a onclick="Doc_Scan(MemberGA)" onmouseover="LS_Tip_Type(2)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Giao-thong-Van-tai/Nghi-quyet-318-NQ-CP-2025-ke-hoach-trien-khai-Nghi-quyet-188-2025-QH15-676318.aspx?tab=2">Văn bản gốc</a>
+                        <a onclick="Doc_Scan(MemberGA)" onmouseover="LS_Tip_New(13,0,2)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Giao-thong-Van-tai/Nghi-quyet-318-NQ-CP-2025-ke-hoach-trien-khai-Nghi-quyet-188-2025-QH15-676318.aspx?tab=2">Văn bản gốc</a>
                         |
-                        <a onclick="Doc_Rel(MemberGA)" onmouseover="LS_Tip_Type(4)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Giao-thong-Van-tai/Nghi-quyet-318-NQ-CP-2025-ke-hoach-trien-khai-Nghi-quyet-188-2025-QH15-676318.aspx?tab=3">Lược đồ</a>
+                        <a onclick="Doc_Rel(MemberGA)" onmouseover="LS_Tip_New(13,0,4)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Giao-thong-Van-tai/Nghi-quyet-318-NQ-CP-2025-ke-hoach-trien-khai-Nghi-quyet-188-2025-QH15-676318.aspx?tab=3">Lược đồ</a>
                         |
-                        <a onmouseover="LS_Tip_Type(3)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Liên quan hiệu lực</a>
+                        <a onmouseover="LS_Tip_New(13,0,3)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Liên quan hiệu lực</a>
                         |
                         <a onclick="Doc_DL(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Giao-thong-Van-tai/Nghi-quyet-318-NQ-CP-2025-ke-hoach-trien-khai-Nghi-quyet-188-2025-QH15-676318.aspx?tab=7">Tải về</a>
                         
@@ -1630,30 +1963,30 @@
                 <p>
                     <span style="color: #000">Ban hành:</span>
                     09/10/2025</p>
-                <p><span style="color:#000">Hiệu lực:</span> <span style="color:#8C0945">09/10/2025</span></p>
-                <p><span style="color:#000">Tình trạng:</span> <span class="text-red">Còn hiệu lực</span></p>
+                <p><span style="color:#000">Hiệu lực:</span> <span style="color:#8C0945"><span id='span_a' onmouseover='LS_Tip_New(13,0,0)' onmouseout='hideddrivetip()'>Đã biết</span></span></p>
+                <p><span style="color:#000">Tình trạng:</span> <span class="text-red"><span id='span_a' onmouseover='LS_Tip_New(13,0,0)' onmouseout='hideddrivetip()'>Đã biết</span></span></p>
                 <p>
                     <span style="color: #000">Cập nhật:
                         11/10/2025</span></p>
             </div>
         </div>
     
-        <div class='content-1'>
+        <div class='content-0'>
             <div class="left-col">
                 <div class="number">
-                    10</div>
+                    19</div>
                 <div class="nq">
                     <p class="nqTitle"  lawid='676350'>
                         <a onclick="Doc_CT(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Quyet-dinh-64-2025-QD-UBND-bai-bo-Quyet-dinh-21-2025-QD-UBND-Ha-Noi-676350.aspx">Quyết định 64/2025/QĐ-UBND bãi bỏ toàn bộ Quyết định 21/2025/QĐ-UBND do Thành phố Hà Nội ban hành</a>
                     </p>
                     <p class="links-bot">
-                        <a onmouseover="LS_Tip_Type(1)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Tiếng Anh</a>
+                        <a onmouseover="LS_Tip_New(13,0,1)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Tiếng Anh</a>
                         |
-                        <a onmouseover="LS_Tip_Type(2)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Văn bản gốc</a>
+                        <a onmouseover="LS_Tip_New(13,0,2)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Văn bản gốc</a>
                         |
-                        <a onclick="Doc_Rel(MemberGA)" onmouseover="LS_Tip_Type(4)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Quyet-dinh-64-2025-QD-UBND-bai-bo-Quyet-dinh-21-2025-QD-UBND-Ha-Noi-676350.aspx?tab=3">Lược đồ</a>
+                        <a onclick="Doc_Rel(MemberGA)" onmouseover="LS_Tip_New(13,0,4)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Quyet-dinh-64-2025-QD-UBND-bai-bo-Quyet-dinh-21-2025-QD-UBND-Ha-Noi-676350.aspx?tab=3">Lược đồ</a>
                         |
-                        <a onclick="Doc_ST(MemberGA)" onmouseover="LS_Tip_Type(3)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Quyet-dinh-64-2025-QD-UBND-bai-bo-Quyet-dinh-21-2025-QD-UBND-Ha-Noi-676350.aspx?tab=4">Liên quan hiệu lực</a>
+                        <a onclick="Doc_ST(MemberGA)" onmouseover="LS_Tip_New(13,0,3)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Quyet-dinh-64-2025-QD-UBND-bai-bo-Quyet-dinh-21-2025-QD-UBND-Ha-Noi-676350.aspx?tab=4">Liên quan hiệu lực</a>
                         |
                         <a onclick="Doc_DL(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Quyet-dinh-64-2025-QD-UBND-bai-bo-Quyet-dinh-21-2025-QD-UBND-Ha-Noi-676350.aspx?tab=7">Tải về</a>
                         
@@ -1667,30 +2000,30 @@
                 <p>
                     <span style="color: #000">Ban hành:</span>
                     09/10/2025</p>
-                <p><span style="color:#000">Hiệu lực:</span> <span style="color:#8C0945">09/10/2025</span></p>
-                <p><span style="color:#000">Tình trạng:</span> <span class="text-red">Còn hiệu lực</span></p>
+                <p><span style="color:#000">Hiệu lực:</span> <span style="color:#8C0945"><span id='span_a' onmouseover='LS_Tip_New(13,0,0)' onmouseout='hideddrivetip()'>Đã biết</span></span></p>
+                <p><span style="color:#000">Tình trạng:</span> <span class="text-red"><span id='span_a' onmouseover='LS_Tip_New(13,0,0)' onmouseout='hideddrivetip()'>Đã biết</span></span></p>
                 <p>
                     <span style="color: #000">Cập nhật:
                         11/10/2025</span></p>
             </div>
         </div>
     
-        <div class='content-0'>
+        <div class='content-1'>
             <div class="left-col">
                 <div class="number">
-                    11</div>
+                    20</div>
                 <div class="nq">
                     <p class="nqTitle"  lawid='676263'>
                         <a onclick="Doc_CT(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Dau-tu/Cong-dien-193-CD-TTg-2025-de-xuat-giai-phap-ban-hanh-co-che-thao-go-kho-khan-tren-He-thong-751-676263.aspx">Công điện 193/CĐ-TTg năm 2025 khẩn trương hoàn thành việc rà soát toàn diện, cập nhật thông tin, danh mục đầy đủ và đề xuất giải pháp, thẩm quyền ban hành cơ chế chính sách tháo gỡ khó khăn, vướng mắc cho các dự án tồn đọng kéo dài trên Hệ thống 751 do Thủ tướng Chính phủ điện</a>
                     </p>
                     <p class="links-bot">
-                        <a onmouseover="LS_Tip_Type(1)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Tiếng Anh</a>
+                        <a onmouseover="LS_Tip_New(13,0,1)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Tiếng Anh</a>
                         |
-                        <a onclick="Doc_Scan(MemberGA)" onmouseover="LS_Tip_Type(2)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Dau-tu/Cong-dien-193-CD-TTg-2025-de-xuat-giai-phap-ban-hanh-co-che-thao-go-kho-khan-tren-He-thong-751-676263.aspx?tab=2">Văn bản gốc</a>
+                        <a onclick="Doc_Scan(MemberGA)" onmouseover="LS_Tip_New(13,0,2)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Dau-tu/Cong-dien-193-CD-TTg-2025-de-xuat-giai-phap-ban-hanh-co-che-thao-go-kho-khan-tren-He-thong-751-676263.aspx?tab=2">Văn bản gốc</a>
                         |
-                        <a onclick="Doc_Rel(MemberGA)" onmouseover="LS_Tip_Type(4)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Dau-tu/Cong-dien-193-CD-TTg-2025-de-xuat-giai-phap-ban-hanh-co-che-thao-go-kho-khan-tren-He-thong-751-676263.aspx?tab=3">Lược đồ</a>
+                        <a onclick="Doc_Rel(MemberGA)" onmouseover="LS_Tip_New(13,0,4)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Dau-tu/Cong-dien-193-CD-TTg-2025-de-xuat-giai-phap-ban-hanh-co-che-thao-go-kho-khan-tren-He-thong-751-676263.aspx?tab=3">Lược đồ</a>
                         |
-                        <a onmouseover="LS_Tip_Type(3)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Liên quan hiệu lực</a>
+                        <a onmouseover="LS_Tip_New(13,0,3)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Liên quan hiệu lực</a>
                         |
                         <a onclick="Doc_DL(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Dau-tu/Cong-dien-193-CD-TTg-2025-de-xuat-giai-phap-ban-hanh-co-che-thao-go-kho-khan-tren-He-thong-751-676263.aspx?tab=7">Tải về</a>
                         
@@ -1704,341 +2037,8 @@
                 <p>
                     <span style="color: #000">Ban hành:</span>
                     09/10/2025</p>
-                <p><span style="color:#000">Hiệu lực:</span> <span style="color:#8C0945">09/10/2025</span></p>
-                <p><span style="color:#000">Tình trạng:</span> <span class="text-red">Còn hiệu lực</span></p>
-                <p>
-                    <span style="color: #000">Cập nhật:
-                        10/10/2025</span></p>
-            </div>
-        </div>
-    
-        <div class='content-1'>
-            <div class="left-col">
-                <div class="number">
-                    12</div>
-                <div class="nq">
-                    <p class="nqTitle"  lawid='676317'>
-                        <a onclick="Doc_CT(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Tien-te-Ngan-hang/Thong-tu-34-2025-TT-NHNN-huong-dan-Nghi-dinh-24-2012-ND-CP-quan-ly-kinh-doanh-vang-676317.aspx">Thông tư 34/2025/TT-NHNN hướng dẫn Nghị định 24/2012/NĐ-CP về quản lý hoạt động kinh doanh vàng được sửa đổi bởi Nghị định 232/2025/NĐ-CP do Thống đốc Ngân hàng Nhà nước Việt Nam ban hành</a>
-                    </p>
-                    <p class="links-bot">
-                        <a onmouseover="LS_Tip_Type(1)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Tiếng Anh</a>
-                        |
-                        <a onclick="Doc_Scan(MemberGA)" onmouseover="LS_Tip_Type(2)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Tien-te-Ngan-hang/Thong-tu-34-2025-TT-NHNN-huong-dan-Nghi-dinh-24-2012-ND-CP-quan-ly-kinh-doanh-vang-676317.aspx?tab=2">Văn bản gốc</a>
-                        |
-                        <a onclick="Doc_Rel(MemberGA)" onmouseover="LS_Tip_Type(4)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Tien-te-Ngan-hang/Thong-tu-34-2025-TT-NHNN-huong-dan-Nghi-dinh-24-2012-ND-CP-quan-ly-kinh-doanh-vang-676317.aspx?tab=3">Lược đồ</a>
-                        |
-                        <a onclick="Doc_ST(MemberGA)" onmouseover="LS_Tip_Type(3)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Tien-te-Ngan-hang/Thong-tu-34-2025-TT-NHNN-huong-dan-Nghi-dinh-24-2012-ND-CP-quan-ly-kinh-doanh-vang-676317.aspx?tab=4">Liên quan hiệu lực</a>
-                        |
-                        <a onclick="Doc_DL(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Tien-te-Ngan-hang/Thong-tu-34-2025-TT-NHNN-huong-dan-Nghi-dinh-24-2012-ND-CP-quan-ly-kinh-doanh-vang-676317.aspx?tab=7">Tải về</a>
-                        
-                        
-                    </p>
-                    
-                </div>
-                </p>
-            </div>
-            <div class="right-col">
-                <p>
-                    <span style="color: #000">Ban hành:</span>
-                    09/10/2025</p>
-                <p><span style="color:#000">Hiệu lực:</span> <span style="color:#8C0945">10/10/2025</span></p>
-                <p><span style="color:#000">Tình trạng:</span> <span class="text-red">Còn hiệu lực</span></p>
-                <p>
-                    <span style="color: #000">Cập nhật:
-                        11/10/2025</span></p>
-            </div>
-        </div>
-    
-        <div class='content-0'>
-            <div class="left-col">
-                <div class="number">
-                    13</div>
-                <div class="nq">
-                    <p class="nqTitle"  lawid='676487'>
-                        <a onclick="Doc_CT(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Quyet-dinh-3115-QD-BKHCN-2025-cong-bo-thu-tuc-hanh-chinh-linh-vuc-hoat-dong-khoa-hoc-va-cong-nghe-676487.aspx">Quyết định 3115/QĐ-BKHCN năm 2025 công bố thủ tục hành chính được sửa đổi, bổ sung lĩnh vực Hoạt động khoa học và công nghệ thuộc phạm vi chức năng quản lý của Bộ Khoa học và Công nghệ</a>
-                    </p>
-                    <p class="links-bot">
-                        <a onmouseover="LS_Tip_Type(1)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Tiếng Anh</a>
-                        |
-                        <a onclick="Doc_Scan(MemberGA)" onmouseover="LS_Tip_Type(2)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Quyet-dinh-3115-QD-BKHCN-2025-cong-bo-thu-tuc-hanh-chinh-linh-vuc-hoat-dong-khoa-hoc-va-cong-nghe-676487.aspx?tab=2">Văn bản gốc</a>
-                        |
-                        <a onclick="Doc_Rel(MemberGA)" onmouseover="LS_Tip_Type(4)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Quyet-dinh-3115-QD-BKHCN-2025-cong-bo-thu-tuc-hanh-chinh-linh-vuc-hoat-dong-khoa-hoc-va-cong-nghe-676487.aspx?tab=3">Lược đồ</a>
-                        |
-                        <a onmouseover="LS_Tip_Type(3)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Liên quan hiệu lực</a>
-                        |
-                        <a onclick="Doc_DL(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Quyet-dinh-3115-QD-BKHCN-2025-cong-bo-thu-tuc-hanh-chinh-linh-vuc-hoat-dong-khoa-hoc-va-cong-nghe-676487.aspx?tab=7">Tải về</a>
-                        
-                        
-                    </p>
-                    
-                </div>
-                </p>
-            </div>
-            <div class="right-col">
-                <p>
-                    <span style="color: #000">Ban hành:</span>
-                    09/10/2025</p>
-                <p><span style="color:#000">Hiệu lực:</span> <span style="color:#8C0945">10/09/2025</span></p>
-                <p><span style="color:#000">Tình trạng:</span> <span class="text-red">Còn hiệu lực</span></p>
-                <p>
-                    <span style="color: #000">Cập nhật:
-                        13/10/2025</span></p>
-            </div>
-        </div>
-    
-        <div class='content-1'>
-            <div class="left-col">
-                <div class="number">
-                    14</div>
-                <div class="nq">
-                    <p class="nqTitle"  lawid='676168'>
-                        <a onclick="Doc_CT(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Nghi-quyet-73-NQ-TW-2025-Hoi-nghi-lan-thu-13-Ban-Chap-hanh-Trung-uong-Dang-khoa-XIII-676168.aspx">Nghị quyết 73-NQ/TW năm 2025 về Hội nghị lần thứ 13 Ban Chấp hành Trung ương Đảng khóa XIII</a>
-                    </p>
-                    <p class="links-bot">
-                        <a onmouseover="LS_Tip_Type(1)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Tiếng Anh</a>
-                        |
-                        <a onclick="Doc_Scan(MemberGA)" onmouseover="LS_Tip_Type(2)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Nghi-quyet-73-NQ-TW-2025-Hoi-nghi-lan-thu-13-Ban-Chap-hanh-Trung-uong-Dang-khoa-XIII-676168.aspx?tab=2">Văn bản gốc</a>
-                        |
-                        <a onclick="Doc_Rel(MemberGA)" onmouseover="LS_Tip_Type(4)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Nghi-quyet-73-NQ-TW-2025-Hoi-nghi-lan-thu-13-Ban-Chap-hanh-Trung-uong-Dang-khoa-XIII-676168.aspx?tab=3">Lược đồ</a>
-                        |
-                        <a onmouseover="LS_Tip_Type(3)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Liên quan hiệu lực</a>
-                        |
-                        <a onclick="Doc_DL(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Nghi-quyet-73-NQ-TW-2025-Hoi-nghi-lan-thu-13-Ban-Chap-hanh-Trung-uong-Dang-khoa-XIII-676168.aspx?tab=7">Tải về</a>
-                        
-                        
-                    </p>
-                    
-                </div>
-                </p>
-            </div>
-            <div class="right-col">
-                <p>
-                    <span style="color: #000">Ban hành:</span>
-                    08/10/2025</p>
-                <p><span style="color:#000">Hiệu lực:</span> <span style="color:#8C0945">08/10/2025</span></p>
-                <p><span style="color:#000">Tình trạng:</span> <span class="text-red">Còn hiệu lực</span></p>
-                <p>
-                    <span style="color: #000">Cập nhật:
-                        10/10/2025</span></p>
-            </div>
-        </div>
-    
-        <div class='content-0'>
-            <div class="left-col">
-                <div class="number">
-                    15</div>
-                <div class="nq">
-                    <p class="nqTitle"  lawid='675940'>
-                        <a onclick="Doc_CT(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Doanh-nghiep/Quyet-dinh-1301-QD-UBND-2025-thu-tuc-hanh-chinh-Ho-tro-doanh-nghiep-nho-va-vua-So-Tai-chinh-Hung-Yen-675940.aspx">Quyết định 1301/QĐ-UBND năm 2025 phê duyệt Quy trình nội bộ giải quyết thủ tục hành chính lĩnh vực Hỗ trợ doanh nghiệp nhỏ và vừa thuộc phạm vi chức năng quản lý nhà nước của Sở Tài chính tỉnh Hưng Yên</a>
-                    </p>
-                    <p class="links-bot">
-                        <a onmouseover="LS_Tip_Type(1)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Tiếng Anh</a>
-                        |
-                        <a onmouseover="LS_Tip_Type(2)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Văn bản gốc</a>
-                        |
-                        <a onclick="Doc_Rel(MemberGA)" onmouseover="LS_Tip_Type(4)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Doanh-nghiep/Quyet-dinh-1301-QD-UBND-2025-thu-tuc-hanh-chinh-Ho-tro-doanh-nghiep-nho-va-vua-So-Tai-chinh-Hung-Yen-675940.aspx?tab=3">Lược đồ</a>
-                        |
-                        <a onmouseover="LS_Tip_Type(3)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Liên quan hiệu lực</a>
-                        |
-                        <a onclick="Doc_DL(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Doanh-nghiep/Quyet-dinh-1301-QD-UBND-2025-thu-tuc-hanh-chinh-Ho-tro-doanh-nghiep-nho-va-vua-So-Tai-chinh-Hung-Yen-675940.aspx?tab=7">Tải về</a>
-                        
-                        
-                    </p>
-                    
-                </div>
-                </p>
-            </div>
-            <div class="right-col">
-                <p>
-                    <span style="color: #000">Ban hành:</span>
-                    08/10/2025</p>
-                <p><span style="color:#000">Hiệu lực:</span> <span style="color:#8C0945">08/10/2025</span></p>
-                <p><span style="color:#000">Tình trạng:</span> <span class="text-red">Còn hiệu lực</span></p>
-                <p>
-                    <span style="color: #000">Cập nhật:
-                        10/10/2025</span></p>
-            </div>
-        </div>
-    
-        <div class='content-1'>
-            <div class="left-col">
-                <div class="number">
-                    16</div>
-                <div class="nq">
-                    <p class="nqTitle"  lawid='676170'>
-                        <a onclick="Doc_CT(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Quy-che-08-QC-UBKTTW-2025-cong-tac-dia-ban-cua-Co-quan-Uy-ban-Kiem-tra-Trung-uong-676170.aspx">Quy chế 08-QC/UBKTTW năm 2025 về công tác địa bàn của Cơ quan Ủy ban Kiểm tra Trung ương</a>
-                    </p>
-                    <p class="links-bot">
-                        <a onmouseover="LS_Tip_Type(1)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Tiếng Anh</a>
-                        |
-                        <a onclick="Doc_Scan(MemberGA)" onmouseover="LS_Tip_Type(2)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Quy-che-08-QC-UBKTTW-2025-cong-tac-dia-ban-cua-Co-quan-Uy-ban-Kiem-tra-Trung-uong-676170.aspx?tab=2">Văn bản gốc</a>
-                        |
-                        <a onclick="Doc_Rel(MemberGA)" onmouseover="LS_Tip_Type(4)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Quy-che-08-QC-UBKTTW-2025-cong-tac-dia-ban-cua-Co-quan-Uy-ban-Kiem-tra-Trung-uong-676170.aspx?tab=3">Lược đồ</a>
-                        |
-                        <a onclick="Doc_ST(MemberGA)" onmouseover="LS_Tip_Type(3)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Quy-che-08-QC-UBKTTW-2025-cong-tac-dia-ban-cua-Co-quan-Uy-ban-Kiem-tra-Trung-uong-676170.aspx?tab=4">Liên quan hiệu lực</a>
-                        |
-                        <a onclick="Doc_DL(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Quy-che-08-QC-UBKTTW-2025-cong-tac-dia-ban-cua-Co-quan-Uy-ban-Kiem-tra-Trung-uong-676170.aspx?tab=7">Tải về</a>
-                        
-                        
-                    </p>
-                    
-                </div>
-                </p>
-            </div>
-            <div class="right-col">
-                <p>
-                    <span style="color: #000">Ban hành:</span>
-                    08/10/2025</p>
-                <p><span style="color:#000">Hiệu lực:</span> <span style="color:#8C0945">08/10/2025</span></p>
-                <p><span style="color:#000">Tình trạng:</span> <span class="text-red">Còn hiệu lực</span></p>
-                <p>
-                    <span style="color: #000">Cập nhật:
-                        10/10/2025</span></p>
-            </div>
-        </div>
-    
-        <div class='content-0'>
-            <div class="left-col">
-                <div class="number">
-                    17</div>
-                <div class="nq">
-                    <p class="nqTitle"  lawid='676372'>
-                        <a onclick="Doc_CT(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Linh-vuc-khac/Quyet-dinh-3084-QD-BKHCN-2025-cong-bo-Tieu-chuan-quoc-gia-ve-Cong-trinh-phong-chong-sat-lo-bo-song-676372.aspx">Quyết định 3084/QĐ-BKHCN năm 2025 công bố Tiêu chuẩn quốc gia về Công trình phòng, chống sạt lở bờ sông, bờ biển do Bộ trưởng Bộ Khoa học và Công nghệ ban hành</a>
-                    </p>
-                    <p class="links-bot">
-                        <a onmouseover="LS_Tip_Type(1)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Tiếng Anh</a>
-                        |
-                        <a onmouseover="LS_Tip_Type(2)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Văn bản gốc</a>
-                        |
-                        <a onclick="Doc_Rel(MemberGA)" onmouseover="LS_Tip_Type(4)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Linh-vuc-khac/Quyet-dinh-3084-QD-BKHCN-2025-cong-bo-Tieu-chuan-quoc-gia-ve-Cong-trinh-phong-chong-sat-lo-bo-song-676372.aspx?tab=3">Lược đồ</a>
-                        |
-                        <a onmouseover="LS_Tip_Type(3)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Liên quan hiệu lực</a>
-                        |
-                        <a onclick="Doc_DL(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Linh-vuc-khac/Quyet-dinh-3084-QD-BKHCN-2025-cong-bo-Tieu-chuan-quoc-gia-ve-Cong-trinh-phong-chong-sat-lo-bo-song-676372.aspx?tab=7">Tải về</a>
-                        
-                        
-                    </p>
-                    
-                </div>
-                </p>
-            </div>
-            <div class="right-col">
-                <p>
-                    <span style="color: #000">Ban hành:</span>
-                    08/10/2025</p>
-                <p><span style="color:#000">Hiệu lực:</span> <span style="color:#8C0945">08/10/2025</span></p>
-                <p><span style="color:#000">Tình trạng:</span> <span class="text-red">Còn hiệu lực</span></p>
-                <p>
-                    <span style="color: #000">Cập nhật:
-                        11/10/2025</span></p>
-            </div>
-        </div>
-    
-        <div class='content-1'>
-            <div class="left-col">
-                <div class="number">
-                    18</div>
-                <div class="nq">
-                    <p class="nqTitle"  lawid='675998'>
-                        <a onclick="Doc_CT(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Quyet-dinh-3187-QD-UBND-2025-cong-bo-thu-tuc-hanh-chinh-Nguoi-co-cong-So-Noi-vu-Hue-675998.aspx">Quyết định 3187/QĐ-UBND năm 2025 công bố Danh mục thủ tục hành chính mới lĩnh vực Người có công thuộc phạm vi chức năng quản lý của Sở Nội vụ thành phố Huế</a>
-                    </p>
-                    <p class="links-bot">
-                        <a onmouseover="LS_Tip_Type(1)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Tiếng Anh</a>
-                        |
-                        <a onmouseover="LS_Tip_Type(2)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Văn bản gốc</a>
-                        |
-                        <a onclick="Doc_Rel(MemberGA)" onmouseover="LS_Tip_Type(4)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Quyet-dinh-3187-QD-UBND-2025-cong-bo-thu-tuc-hanh-chinh-Nguoi-co-cong-So-Noi-vu-Hue-675998.aspx?tab=3">Lược đồ</a>
-                        |
-                        <a onmouseover="LS_Tip_Type(3)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Liên quan hiệu lực</a>
-                        |
-                        <a onclick="Doc_DL(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Quyet-dinh-3187-QD-UBND-2025-cong-bo-thu-tuc-hanh-chinh-Nguoi-co-cong-So-Noi-vu-Hue-675998.aspx?tab=7">Tải về</a>
-                        
-                        
-                    </p>
-                    
-                </div>
-                </p>
-            </div>
-            <div class="right-col">
-                <p>
-                    <span style="color: #000">Ban hành:</span>
-                    08/10/2025</p>
-                <p><span style="color:#000">Hiệu lực:</span> <span style="color:#8C0945">08/10/2025</span></p>
-                <p><span style="color:#000">Tình trạng:</span> <span class="text-red">Còn hiệu lực</span></p>
-                <p>
-                    <span style="color: #000">Cập nhật:
-                        11/10/2025</span></p>
-            </div>
-        </div>
-    
-        <div class='content-0'>
-            <div class="left-col">
-                <div class="number">
-                    19</div>
-                <div class="nq">
-                    <p class="nqTitle"  lawid='676155'>
-                        <a onclick="Doc_CT(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Doanh-nghiep/Cong-dien-191-CD-TTg-2025-giai-phap-thuc-day-san-xuat-hieu-qua-doi-voi-doanh-nghiep-nha-nuoc-676155.aspx">Công điện 191/CĐ-TTg năm 2025 về các giải pháp thúc đẩy sản xuất kinh doanh hiệu quả đối với doanh nghiệp nhà nước do Thủ tướng Chính phủ điện</a>
-                    </p>
-                    <p class="links-bot">
-                        <a onmouseover="LS_Tip_Type(1)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Tiếng Anh</a>
-                        |
-                        <a onclick="Doc_Scan(MemberGA)" onmouseover="LS_Tip_Type(2)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Doanh-nghiep/Cong-dien-191-CD-TTg-2025-giai-phap-thuc-day-san-xuat-hieu-qua-doi-voi-doanh-nghiep-nha-nuoc-676155.aspx?tab=2">Văn bản gốc</a>
-                        |
-                        <a onclick="Doc_Rel(MemberGA)" onmouseover="LS_Tip_Type(4)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Doanh-nghiep/Cong-dien-191-CD-TTg-2025-giai-phap-thuc-day-san-xuat-hieu-qua-doi-voi-doanh-nghiep-nha-nuoc-676155.aspx?tab=3">Lược đồ</a>
-                        |
-                        <a onmouseover="LS_Tip_Type(3)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Liên quan hiệu lực</a>
-                        |
-                        <a onclick="Doc_DL(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Doanh-nghiep/Cong-dien-191-CD-TTg-2025-giai-phap-thuc-day-san-xuat-hieu-qua-doi-voi-doanh-nghiep-nha-nuoc-676155.aspx?tab=7">Tải về</a>
-                        
-                        
-                    </p>
-                    
-                </div>
-                </p>
-            </div>
-            <div class="right-col">
-                <p>
-                    <span style="color: #000">Ban hành:</span>
-                    08/10/2025</p>
-                <p><span style="color:#000">Hiệu lực:</span> <span style="color:#8C0945">08/10/2025</span></p>
-                <p><span style="color:#000">Tình trạng:</span> <span class="text-red">Còn hiệu lực</span></p>
-                <p>
-                    <span style="color: #000">Cập nhật:
-                        09/10/2025</span></p>
-            </div>
-        </div>
-    
-        <div class='content-1'>
-            <div class="left-col">
-                <div class="number">
-                    20</div>
-                <div class="nq">
-                    <p class="nqTitle"  lawid='676204'>
-                        <a onclick="Doc_CT(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Thong-tu-18-2025-TT-BNV-Che-do-bao-cao-thong-ke-nganh-Noi-vu-676204.aspx">Thông tư 18/2025/TT-BNV quy định Chế độ báo cáo thống kê ngành Nội vụ do Bộ trưởng Bộ Nội vụ ban hành</a>
-                    </p>
-                    <p class="links-bot">
-                        <a onmouseover="LS_Tip_Type(1)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Tiếng Anh</a>
-                        |
-                        <a onclick="Doc_Scan(MemberGA)" onmouseover="LS_Tip_Type(2)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Thong-tu-18-2025-TT-BNV-Che-do-bao-cao-thong-ke-nganh-Noi-vu-676204.aspx?tab=2">Văn bản gốc</a>
-                        |
-                        <a onclick="Doc_Rel(MemberGA)" onmouseover="LS_Tip_Type(4)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Thong-tu-18-2025-TT-BNV-Che-do-bao-cao-thong-ke-nganh-Noi-vu-676204.aspx?tab=3">Lược đồ</a>
-                        |
-                        <a onclick="Doc_ST(MemberGA)" onmouseover="LS_Tip_Type(3)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Thong-tu-18-2025-TT-BNV-Che-do-bao-cao-thong-ke-nganh-Noi-vu-676204.aspx?tab=4">Liên quan hiệu lực</a>
-                        |
-                        <a onclick="Doc_DL(MemberGA)" href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Thong-tu-18-2025-TT-BNV-Che-do-bao-cao-thong-ke-nganh-Noi-vu-676204.aspx?tab=7">Tải về</a>
-                        
-                        
-                    </p>
-                    
-                </div>
-                </p>
-            </div>
-            <div class="right-col">
-                <p>
-                    <span style="color: #000">Ban hành:</span>
-                    08/10/2025</p>
-                <p><span style="color:#000">Hiệu lực:</span> <span style="color:#8C0945">01/12/2025</span></p>
-                <p><span style="color:#000">Tình trạng:</span> <span class="text-red">Chưa có hiệu lực</span></p>
+                <p><span style="color:#000">Hiệu lực:</span> <span style="color:#8C0945"><span id='span_a' onmouseover='LS_Tip_New(13,0,0)' onmouseout='hideddrivetip()'>Đã biết</span></span></p>
+                <p><span style="color:#000">Tình trạng:</span> <span class="text-red"><span id='span_a' onmouseover='LS_Tip_New(13,0,0)' onmouseout='hideddrivetip()'>Đã biết</span></span></p>
                 <p>
                     <span style="color: #000">Cập nhật:
                         10/10/2025</span></p>
@@ -2116,159 +2116,402 @@
                                                             &nbsp;</p>
                                                         
 <div class="divacc">
-    
-    
+    <div id="Support_loginPanel">
+	
         <div class="box-middle">
             <p class="top-mid-login">
             </p>
             <p class="title">
-                <span>Tài khoản : <b><font color="#000000">
-                    thienhoang2024</font></b></span></p>
-            <div id="Support_divAccount" class="middle divLogin" style="background-image:url(https://cdn.thuvienphapluat.vn/images/basic3.png);background-position:right -18px;background-repeat:no-repeat;">
-                <div class="icon_support none" style="padding: 3px 0px; padding-top: 5px">
-                    <img src="https://cdn.thuvienphapluat.vn/images/icon_account_info.png" alt="" width="13"
-                        height="14" align="right" class="icon" style="display: none" />
-                    +
-                    <a id="Support_HyperLink1" class="notifymessage" href="/page/profile.aspx">Trang cá nhân</a>
-                </div>
-                
-                
-                    <div class="icon_support none" style="padding: 3px 0px;">
-                        <img src="https://cdn.thuvienphapluat.vn/images/icon-right-sub03.gif" alt="" width="13"
-                            height="15" align="right" class="icon" style="display: none" />
-                        +
-                        <a id="Support_HyperLink3" href="RegCustOrder.aspx?action=giahan">Gia hạn tài khoản</a>
-                    </div>
-                
-                
-                
-                
-                    <div class="icon_support none" style="padding: 3px 0px;">
-                        <img src="https://cdn.thuvienphapluat.vn/images/icon-right-sub03.gif" alt="" width="13"
-                            height="15" align="right" class="icon" style="display: none" />
-                        + <a onmouseover="LS_Tip(111,0)" onmouseout="hideddrivetip();" href="https://thuvienphapluat.vn/phap-luat-doanh-nghiep/"
-                            target="_blank" rel="nofollow"><span style="font-weight: bold; font-size: 9px; font-family: Times New Roman;
-                                color: #f37731">PHÁP LUẬT DOANH NGHIỆP </span></a>
-                    </div>
-                
-                
-                
-                    <div class="icon_support none" style="padding: 3px 0px;">
-                        <img src="https://cdn.thuvienphapluat.vn/images/icon-right-sub03.gif" alt="" width="13"
-                            height="15" align="right" class="icon" style="display: none" />
-                        + <a onmouseover="LS_Tip(141,0)" onmouseout="hideddrivetip();" href="/vphc/home.aspx">
-                            <b style='color: #f37731; font-size: 9px; font-family: Times New Roman;'>TIỆN ÍCH NÂNG
-                                CAO</b></a>
-                    </div>
-                
-                <div class="icon_support none" style="padding: 3px 0px; display: none">
-                    <img src="https://cdn.thuvienphapluat.vn/images/icon-right-sub01.gif" alt="" width="13"
-                        height="15" align="right" class="icon" style="display: none" />
-                    +
-                    <a id="Support_favouriteHyperLink" href="vanbancuatoi.aspx?type=0&amp;bdate=01/01/0001&amp;edate=01/01/0001&amp;sort=2">Văn bản của tôi</a>
-                    <span class="info-red">(<span id="Support_lbTotalVB" class="TotalVanBAnCuaToi">0</span>)</span>
-                </div>
-                <div class="icon_support none" style="padding: 3px 0px; margin-bottom: 0px; display: none">
-                    <img src="https://cdn.thuvienphapluat.vn/images/icon-right-sub02.gif" alt="" width="13"
-                        height="15" align="right" class="icon" style="display: none" />
-                    + <a href="#" id="lkChangePassWord">Đổi mật khẩu</a>
-                </div>
-                <div class="icon_support none" style="padding: 3px 0px; margin-bottom: 0px; padding-bottom: 0;">
-                    <img src="https://cdn.thuvienphapluat.vn/images/icon-right-sub02.gif" alt="" width="13"
-                        height="15" align="right" class="icon" style="display: none" />
-                    +
-                    <a id="Support_HyperLink4" href="../logout.aspx">Thoát</a>
-                </div>
+                <span>Đăng nhập</span></p>
+            <div class="middle divLogin">
+                <table border="0" cellpadding="0" cellspacing="0" style="padding-left: 5px;">
+                    <tr>
+                        <td>
+                            <input id="usernameTextBox" class="txt-account-Home" type="text" placeholder="Tên đăng nhập hoặc Email" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="height: 1px;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="passwordTextBox" class="txt-password-Home" type="password" placeholder="Mật khẩu" />
+                            <img id="loginButtonIMG" src="https://cdn.thuvienphapluat.vn/Images/common/loader.gif"
+                                width="20" style="display: none" />
+                            <input id="loginButton" type="button" value="Đăng nhập" class='btn-account-Home'
+                                onclick='CheckFullLogin()' />
+                        </td>
+                    </tr>
+ <tr style='display:none'>
+                                        
+                                        <td>
+                                        <input id="CheckboxLN" type="checkbox" />
+                                                <span>Dùng tài khoản <b><span class='font-weight-bold' style='font-size: larger; font-family: Times New Roman, Times, serif; '><span style='color: black'>L</span><span style='color: #0595df;'>aw</span><span style='color: black'>N</span><span style='color: #0595df;'>et</span></span></b>  </span>
+                                        </td>
+                                        </tr>
+                    <tr>
+                        <td style="padding-top: 4px;">
+                            <a href="#" id="lkFogetPassWord" style="font-size: 11px;">Quên mật khẩu?</a>&nbsp;&nbsp;
+                            <b style="font-size: 11px;">
+                                <a id="Support_registerHyperLink" onmouseover="LS_Tip(318,0)" onmouseout="hideddrivetip();" href="/page/dangky.aspx?step=2&amp;type=free">Đăng ký mới</a></b>
+                            <center class="lgOpenID" style="padding-top: 8px; padding-bottom: 4px;">
+                                <div style="float:left; width:50%">
+                                    <span id="btGoogleHd" style="display:none" title="Đăng nhập bằng Google" class="g-signin2" data-onsuccess="onSignIn2">Google</span>
+                                    <img id="img_lg_gg" style='width:100%; border-radius: 3px;' src='https://cdn.thuvienphapluat.vn/images/login/Google-Login.png' />
+                                </div>
+                                <div style="float: right">
+                                    <span title="Đăng nhập bằng FaceBook">
+                                        <div class="abcRioButtonFB">
+                                            <a title='Đăng nhập bằng FaceBook' href="#" onclick="return fb_login2();">
+                                                <img style="width:100%; border-radius:3px" src="https://cdn.thuvienphapluat.vn/images/login/Facebook-Login.png" alt='Đăng nhập bằng FaceBook' /></a></div>
+                                    </span>
+                                </div>
+                            </center>
+                        </td>
+                    </tr>
+                </table>
             </div>
-            <p class="bottom-mid pttcn" style="">
+            <p class="bottom-mid">
             </p>
         </div>
         <script type="text/javascript">
+
+
             $(document).ready(function () {
-                $(".divacc a").each(function myfunction() {
-                    $(this).attr("rel", "nofollow");
-                });
-
-                var op = false;
-                $('.httcn').hide();
-                //            $(this).css("backgroundImage", "url(https://cdn.thuvienphapluat.vn/images/bottom-mid2.gif)");
-                //            op = true;
-
-                $(".pttcn").click(function () {
-                    if (!op) {
-                        $('.httcn').show();
-                        $(this).css("backgroundImage", "url(https://cdn.thuvienphapluat.vn/images/bottom-mid2.gif)");
-                        op = true;
-                    }
-                    else {
-                        $('.httcn').hide();
-                        $(this).css("backgroundImage", "url(https://cdn.thuvienphapluat.vn/images/bottom-mid1.gif)");
-                        op = false;
-                    }
-                });
 
 
 
-                //            var ctpu = '<div class="ctpup"><p>Thực hiện theo quy định mới nhất tại <a href="https://thuvienphapluat.vn/van-ban/Cong-nghe-thong-tin/Nghi-dinh-13-2023-ND-CP-bao-ve-du-lieu-ca-nhan-465185.aspx" target="_blank" rel="noopener">Nghị định 13/2023/NĐ-CP</a> về Bảo vệ dữ liệu cá nhân, đồng thời giúp Quý khách hàng nắm rõ các quyền lợi của mình.</p> <p>Trong thời gian tới, <span style="color: #ff0000; font-family:auto"><strong>THƯ VIỆN PHÁP LUẬT</strong></span> sẽ hiển thị hộp thoại về việc cập nhật quy chế Bảo vệ dữ liệu cá nhân trên website để Quý khách hàng xác nhận.</p> <p>Rất mong Quý khách hàng thông cảm nếu gây ra bất kỳ sự bất tiện nào trong quá trình trải nghiệm website.</p> <p>Trân trọng cảm ơn sự hợp tác của Quý khách hàng.</p> <p style="text-align: right;"><span style="color: #ff0000; font-family:auto"><strong>THƯ VIỆN PHÁP LUẬT</strong></span></p></div>';
-
-
-
-
-
-
-                //            if ($.cookies.test()) {
-
-                //                var d = new Date();
-                //                var tomorrow = new Date();
-                //                tomorrow.setDate(d.getDate() + 1000);
-
-                //                if ($.cookies.get("thongbaopopupnho") == "1") {
-
-                //                }
-                //                else {
-
-                //                    console.log("aaa");
-
-                //                    var params = "";
-                //                    $.ajax({ 'url': '/page/ajaxcontroler.aspx',
-                //                        'data': params + '&action=CheckShowPopupDuLieuCaNhanNho',
-                //                        'type': 'POST',
-                //                        success: function (response) {
-
-                //                            console.log(response);
-
-                //                            if (response == "0") {
-
-                //                                guiders.createGuider({
-                //                                    attachTo: ".notifymessage",
-                //                                    buttons: [{ name: "Close", classString: "primary-button"}],
-                //                                    description: ctpu,
-                //                                    id: "Guiders_ThongBao",
-                //                                    width: 280,
-                //                                    position: 6,
-                //                                    title: "<br><span style='color: #000;'>THÔNG BÁO</span>"
-                //                                });
-                //                                guiders.show('Guiders_ThongBao');
-
-
-                //                            }
-                //                        },
-                //                        error: function (response) {
-
-                //                        }
-
-                //                    });
-
-                //                }
-
-                //                $.cookies.set("thongbaopopupnho", "1", { expiresAt: tomorrow });
-                //            }
+                registerplay();
 
             });
 
-        
+            var play = 0;
+            function registerplay() {
+
+                if (play == 0) {
+                    $('#register2').hide();
+                    $('#register1').show();
+
+                    play = 1;
+                }
+                else {
+                    $('#register1').hide();
+                    $('#register2').show();
+                    play = 0;
+                }
+                setTimeout('registerplay()', 1500);
+
+            }
         </script>
-        
+        <script type="text/javascript" src="https://cdn.thuvienphapluat.vn/uploads/tvpl/Scripts/OpenID.js?v=20230824"></script>
+        <script type="text/javascript">
+            $(function () {
+                InitialiseFacebook(475809266260664);
+
+                var chkReadyState = setInterval(function () {
+                    if (document.readyState == "complete") {
+                        // clear the interval
+                        clearInterval(chkReadyState);
+                        // finally your page is loaded.
+                        $(".lgOpenID .abcRioButton").html("<img style='width:100%; border-radius: 3px;' src='https://cdn.thuvienphapluat.vn/images/login/Google-Login.png' />");
+                        $("#btGoogleHd").show();
+                        $("#img_lg_gg").hide();
+
+                    }
+                }, 100);
+            });
+        </script>
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <meta name="google-signin-client_id" content="405387995063-hu5l0dklpd3lhcmj8mlpav6gckg2v92v.apps.googleusercontent.com" />
+        <style>
+            .abcRioButtonFB
+            {
+                width: 192px !important;
+                border: none !important;
+                box-shadow: none !important;
+            }
+            .abcRioButtonFB:hover
+            {
+                opacity: 0.8 !important;
+            }
+            .abcRioButton
+            {
+                width: 192px !important;
+                border: none !important;
+                box-shadow: none !important;
+            }
+            .abcRioButton:hover
+            {
+                opacity: 0.8 !important;
+            }
+            .g-signin2
+            {
+                background: red;
+            }
+            .g-signin2 .abcRioButtonContents
+            {
+                color: red !important;
+            }
+            
+            
+            .lgOpenID .abcRioButtonFB
+            {
+                width: 80px !important;
+                border: none !important;
+                box-shadow: none !important;
+            }
+            .abcRioButtonFB:hover
+            {
+                opacity: 0.8 !important;
+            }
+            .lgOpenID .abcRioButton
+            {
+                width: 80px !important;
+                border: none !important;
+                box-shadow: none !important;
+            }
+            .abcRioButton:hover
+            {
+                opacity: 0.8 !important;
+            }
+            .g-signin2
+            {
+                background: red;
+            }
+            .g-signin2 .abcRioButtonContents
+            {
+                color: red !important;
+            }
+            
+            .lgOpenID .abcRioButtonLightBlue
+            {
+                width: 100%!important;
+                height: unset!important;
+            }
+        </style>
+        <div id="TB_window" style="width: 750px; height: 500px; display: none; background: #fff!important;">
+            <span style="position: absolute; top: 3px; right: 3px; cursor: pointer" id="TB_closeWindowButton">
+                <img src="https://cdn.thuvienphapluat.vn/images/close-icon.png" width='14' height='14' />
+            </span>
+            <div class="child1" style="width: 750px; height: 550px;">
+                <table border="0" cellpadding="5" cellspacing="5" width="100%">
+                    <tbody>
+                        <tr valign="top">
+                            <td style="border-right: 1px solid gray; width: 50%">
+                                <div style="text-align: center; font-size: 13pt; color: Red; font-weight: bold; margin-bottom: 15px;">
+                                    ĐĂNG KÝ THÀNH VIÊN MIỄN PHÍ ĐỂ</div>
+                                <ul style="margin: 0; padding: 0">
+                                    <li style="list-style-type: none">
+                                        <img src="https://cdn.thuvienphapluat.vn/images/anh/1-01.png" style="padding-right: 10px;
+                                            float: left">
+                                    </li>
+                                    <li style="list-style-type: none; padding-top: 18px;">Khai thác hơn
+                                        515.000
+                                        văn bản Pháp Luật</li>
+                                    <li style="list-style-type: none; clear: both"></li>
+                                    <li style="list-style-type: none">
+                                        <img src="https://cdn.thuvienphapluat.vn/images/anh/2-01.png" style="padding-right: 10px;
+                                            float: left">
+                                    </li>
+                                    <li style="list-style-type: none; padding-top: 18px;">Nhận Email văn bản mới hàng tuần</li>
+                                    <li style="list-style-type: none; clear: both"></li>
+                                    <li style="list-style-type: none">
+                                        <img src="https://cdn.thuvienphapluat.vn/images/anh/3-01.png" style="padding-right: 10px;
+                                            float: left">
+                                    </li>
+                                    <li style="list-style-type: none; padding-top: 18px;">Được hỗ trợ tra cứu trực tuyến</li>
+                                    <li style="list-style-type: none; clear: both"></li>
+                                    <li style="list-style-type: none">
+                                        <img src="https://cdn.thuvienphapluat.vn/images/anh/4-01.png" style="padding-right: 10px;
+                                            float: left">
+                                    </li>
+                                    <li style="list-style-type: none; padding-top: 18px;">Tra cứu Mẫu hợp đồng, Bảng giá
+                                        đất</li>
+                                    <li style="list-style-type: none; clear: both"></li>
+                                    <li style="list-style-type: none">
+                                        <img src="https://cdn.thuvienphapluat.vn/images/anh/5-01.png" style="padding-right: 10px;
+                                            float: left">
+                                    </li>
+                                    <li style="list-style-type: none; padding-top: 18px;">... và nhiều <a style="color: Blue"
+                                        href="/page/goidichvulawsoft.aspx" target="_blank">Tiện ích quan trọng khác</a></li>
+                                    <li style="list-style-type: none; clear: both"></li>
+                                </ul>
+                                <table border="0" cellpadding="0" cellspacing="2" style="width: 100%; padding-top: 10px;
+                                    border-top: 1px solid gray; margin-top: 5px;">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <a href="ymsgr:sendIM?tvpl.dichvu" style="font-size: 11px;">
+                                                    <img style="padding-right: 8px; float: left; margin-bottom: 5px;" border="0" src="https://cdn.thuvienphapluat.vn/Images/onlineyh.gif">Hỗ
+                                                    trợ Dịch Vụ</a>
+                                            </td>
+                                            <td>
+                                                <b>
+                                                    <img width="12" style="padding-right: 8px; float: left; margin-bottom: 5px;" border="0"
+                                                        src="https://cdn.thuvienphapluat.vn/Images/icon/tell-icon.png"></b> <span style="color: #1c63c4;
+                                                            font-size: 11px; font-weight: bold;">(028) 3930 3279</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="Skype:hotro.tvpl?chat" style="font-size: 11px;">
+                                                    <img width="12" style="padding-right: 8px; float: left; margin-bottom: 5px;" border="0"
+                                                        src="https://cdn.thuvienphapluat.vn/Images/icon-skype.png">Hỗ trợ trực tuyến</a>
+                                            </td>
+                                            <td>
+                                                <b>
+                                                    <img width="12" style="padding-right: 8px; float: left; margin-bottom: 5px;" border="0"
+                                                        src="https://cdn.thuvienphapluat.vn/Images/icon/phone-icon.png"></b> <span style="color: red;
+                                                            font-size: 11px; font-weight: bold;">0906 22 99 66</span>
+                                                <br>
+                                                <span style="color: red; font-size: 11px; font-weight: bold;">0838 22 99 66</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td>
+                                <table border="0" cellpadding="5" cellspacing="2" class="">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <input class="r_AppType" type="hidden" value="" />
+                                                Họ và tên:
+                                            </td>
+                                            <td>
+                                                <select class="r_Add">
+                                                    <option selected="selected" value="1">Ông</option>
+                                                    <option value="2">Bà</option>
+                                                    <option value="3">Anh</option>
+                                                    <option value="4">Chị</option>
+                                                </select>
+                                                <input class="r_txtNameUser" type="text" style="width: 132px;" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Tên Thành Viên:
+                                            </td>
+                                            <td>
+                                                <input id="r_txtUser" type="text" class="r_txtText1 r_txtUser">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Mật khẩu:
+                                            </td>
+                                            <td>
+                                                <input id="r_txtPass" type="password" class="r_txtText1 r_txtPass">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                E-mail:
+                                            </td>
+                                            <td>
+                                                <input id="r_txtEmail" type="text" class="r_txtText1 r_txtEmail">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td valign="top">
+                                                ĐT di động:
+                                            </td>
+                                            <td>
+                                                <input id="r_txtPhone" type="text" class="r_txtText1 r_txtPhone">
+                                                <span class="ipPhone" style="display: none; color: red; font-size: 12px; font-weight: bold;
+                                                    width: 190px; padding-top: 5px; display: block;">Vui lòng nhập thêm số điện thoại
+                                                    để chúng tôi hỗ trợ bạn tốt hơn</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <input id="rt_chkAgree" type="checkbox" checked="checked" class="rt_chkAgree">
+                                                <span>Tôi đã đọc và đồng ý với <a href="/page/viewcontentleft.aspx?key=20" target="_blank">
+                                                    <b>Thỏa Ước Dịch Vụ</b></a> và <a href="/page/viewcontentleft.aspx?key=93" target="_blank">
+                                                        <b>Quy chế bảo vệ dữ liệu cá nhân</b></a> của <strong style="color: Red; font-family: Times New Roman;
+                                                            font-size: 13px">THƯ VIỆN PHÁP LUẬT</strong></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            
+                                            <td colspan="2" align="center" style = "display:none">
+                                                
+
+                                                <script src="https://www.google.com/recaptcha/api.js"></script>
+                                                <div class="g-recaptcha" data-sitekey="6LdFASgpAAAAAMLn5fbxbRZ9EtG6txk9oSP9KcgP"></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                            </td>
+                                            <td>
+                                                <img id="loaddingRegiter" src="https://cdn.thuvienphapluat.vn/Images/common/loader.gif"
+                                                    width="20" style="display: none">
+                                                <input type="button" value="Đăng ký" class="button-search btnRegiter">
+                                            </td>
+                                        </tr>
+                                        <tr class="trLogin">
+                                            <td colspan="2" style="border-top: 1px solid gray;">
+                                                <b>Bạn đã là thành viên thì đăng nhập để sử dụng tiện ích</b>
+                                            </td>
+                                        </tr>
+                                        <tr class="trLogin">
+                                            <td>
+                                                Tên Thành Viên:
+                                            </td>
+                                            <td>
+                                                <input id="l_txtUser" type="text" class="r_txtText1 l_txtUser">
+                                            </td>
+                                        </tr>
+                                        <tr class="trLogin">
+                                            <td>
+                                                Mật khẩu:
+                                            </td>
+                                            <td style="padding-bottom: 5px;">
+                                                <input id="l_txtPass" type="password" class="r_txtText1 l_txtPass" style="width: 80px!important">
+                                                <img id="loaddingLogin" src="https://cdn.thuvienphapluat.vn/Images/common/loader.gif"
+                                                    width="20" style="display: none">
+                                                <input type="button" style="width: 85px;" value="Đăng nhập" class="button-search btnLogin">
+                                            </td>
+                                        </tr>
+                                        <tr  style='display:none'>
+                                        <td></td>
+                                        <td>
+                                        <input id="chkLawwNet" type="checkbox" />
+                                                <span>Đăng nhập bằng tài khoản <b><span class='font-weight-bold' style='font-size: larger; font-family: Times New Roman, Times, serif; '><span style='color: black'>L</span><span style='color: #0595df;'>aw</span><span style='color: black'>N</span><span style='color: #0595df;'>et</span></span></b>  </span>
+                                        </td>
+                                        </tr>
+                                        <tr class="lgOp">
+                                            <td colspan="2" align="center">
+                                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                    <tr>
+                                                        <td colspan='2' align=center style="padding-top: 10px; padding-right: 10px">
+                                                            <span title="Đăng nhập bằng Google" class="g-signin2" data-onsuccess="onSignIn">Đăng
+                                                                nhập bằng Google </span>
+                                                        </td>
+                                                        <td style="padding-top: 10px;">
+                                                            <span title="Đăng nhập bằng FaceBook">
+                                                                <div style="height: 36px; width: 120px;" class="abcRioButtonFB">
+                                                                    <a title='Đăng nhập bằng FaceBook' href="#" onclick="return fb_login();">
+                                                                        <img src="https://cdn.thuvienphapluat.vn/images/login-face.png" alt='Đăng nhập bằng FaceBook' /></a></div>
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    
+</div>
+    
 </div>
 <style>
     #FavoriteFolderfrom ul
@@ -2421,10 +2664,10 @@
                 TRA CỨU NHANH</p>
     <ul class="sub-list-right">
         <li style="display:none"></li>
-        <li><a id="TraCuuNhanh_availableTimeHyperLink" rel="nofollow" href="searchfast.aspx?effect=-3&amp;fields=0&amp;type=0&amp;bdate=13/10/1945&amp;edate=13/10/2025&amp;lan=1&amp;sort=0&amp;fasttype=0">Thời điểm Áp dụng</a></li>
-        <li><a id="TraCuuNhanh_effectStatusHyperLink" rel="nofollow" href="searchfast.aspx?effect=1&amp;fields=0&amp;type=0&amp;bdate=13/10/1945&amp;edate=13/10/2025&amp;lan=1&amp;sort=0&amp;fasttype=1">Tình trạng Hiệu lực</a></li>
-        <li><a id="TraCuuNhanh_fieldHyperLink" rel="nofollow" href="searchfast.aspx?fields=&amp;keyword=&amp;match=True&amp;lan=1&amp;fasttype=2">Lĩnh vực, Ngành</a></li>
-        <li class="no-line"><a id="TraCuuNhanh_createDateHyperLink" rel="nofollow" href="searchfast.aspx?effect=-1&amp;fields=0&amp;type=0&amp;year=2025&amp;month=10&amp;lan=1&amp;sort=0&amp;fasttype=3">Thời gian Ban hành</a></li>
+        <li><a id="TraCuuNhanh_availableTimeHyperLink" rel="nofollow" onmouseover="LS_Tip(28,0)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Thời điểm Áp dụng</a></li>
+        <li><a id="TraCuuNhanh_effectStatusHyperLink" rel="nofollow" onmouseover="LS_Tip(28,0)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Tình trạng Hiệu lực</a></li>
+        <li><a id="TraCuuNhanh_fieldHyperLink" rel="nofollow" onmouseover="LS_Tip(28,0)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Lĩnh vực, Ngành</a></li>
+        <li class="no-line"><a id="TraCuuNhanh_createDateHyperLink" rel="nofollow" onmouseover="LS_Tip(28,0)" onmouseout="hideddrivetip();" style="color:#AFAFAF;">Thời gian Ban hành</a></li>
     </ul>
         </div>
     </div>
@@ -2587,7 +2830,7 @@
                         <b>E-mail:</b>
                     </td>
                     <td>
-                        <b>i</b>n<b>f</b><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b8d7f8ecd0cdeed1ddd6e8d0d9c8f4cdd9cc96ced6">[email&#160;protected]</a>
+                        <b>i</b>n<b>f</b><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="701f302418052619151e201811003c0511045e061e">[email&#160;protected]</a>
                     </td>
                 </tr>
 
@@ -2688,7 +2931,7 @@
                         <a rel="nofollow" href='http://online.gov.vn/Home/WebDetails/66239'><img alt='' title='' src='https://cdn.thuvienphapluat.vn/images/banner/logoSaleNoti.png'/></a>
                       
                         <span style="color: #434242">IP:
-                           45.87.213.230</span>
+                           146.70.250.13</span>
                     </td>
                 </tr>
             </table>
@@ -3127,33 +3370,17 @@
     <img src="https://cdn.thuvienphapluat.vn/images/icon_gototop.png" /></div>
  
             
-                    <script type="text/javascript" language="javascript">
+                     <script type="text/javascript" language="javascript">
 
-                        $(document).ready(function () {
+//                            $(document).ready(function () {
 
-                            $("#LoginXemHuongDan").hide();
-                            $("#BatDauHuongDan").show();
+//                                $(".belltvpl").hide();
 
-                            $("#tour1-start-wel").show();
-                            $("#tour1-start-wel-lg").hide();
-
-
-                            $("#LoginXemHuongDanTour2").hide();
-                            $("#btnBatDauTour2").show();
-
-                            $("#tour2-start-wel").show();
-                            $("#tour2-start-wel-lg").hide();
-
-
-                            
-                          
-
-
-                        });
-
-                    </script>
+//                            });
+             
+                        </script>
             
-                
+              
 
 
 
@@ -3162,11 +3389,11 @@
 <script type="application/javascript">
 
 
-    var isCoPhi = 'True';
+    var isCoPhi = 'False';
 
-    var fullname = 'Nguyễn Khắc Thanh';
-    var email = 'thanhnk@thienhoang.com.vn';
-    var usename = 'thienhoang2024';
+    var fullname = '';
+    var email = '';
+    var usename = '';
 
     $(document).ready(function () {
 
@@ -3582,8 +3809,8 @@ có 1 người khác bị Đăng xuất.
             if (data == "1") {
                 $.get('/OneToOneCallSample/callclient.htm', function (data) {
                     $("body").append(data);
-                    $(".CalltxtPhone").val('0964856293');
-                    $(".CalltxtEmail").val('thanhnk@thienhoang.com.vn');
+                    $(".CalltxtPhone").val('');
+                    $(".CalltxtEmail").val('');
 
                     if ($(".CalltxtPhone").val() == "") {
                         $(".CalltxtPhone").val($.cookies.get("callp"));
@@ -3810,6 +4037,17 @@ có 1 người khác bị Đăng xuất.
  
  
  
+    <script src="https://s.eclick.vn/delivery/eclick.js"></script>
+    <script src="https://jsc.mgid.com/site/974546.js" async></script>
+   <ins class="982a9496" data-key="60c5a4ec277e0b632a69aedaba99a707"></ins>   <script async src="https://aj1559.online/ba298f04.js"></script>
+
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3148332895233844" crossorigin="anonymous"></script>
+   <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js" crossorigin="anonymous"></script>
+ 
+    
+        <script src="https://cdn.thuvienphapluat.vn/uploads/tvpl/Scripts/TVPLViewAdsGamByUrl.js" type="text/javascript"></script>
+   
    
      <style type="text/css">
         ins.adsbygoogle[data-ad-status="unfilled"] {
@@ -3890,11 +4128,11 @@ có 1 người khác bị Đăng xuất.
             $crisp.push(["do", "chat:show"]);
             $crisp.push(["do", "chat:open"]);
             if (fullname != "" && email != "") {
-                $crisp.push(["set", "user:nickname", ["(2)Nguyễn Khắc Thanh"]]);
-                $crisp.push(["set", "user:email", ["thanhnk@thienhoang.com.vn"]]);
+                $crisp.push(["set", "user:nickname", ["(3)"]]);
+                $crisp.push(["set", "user:email", [""]]);
             }
             else if (usename != "") {
-                $crisp.push(["set", "user:email", ["thienhoang2024"]]);
+                $crisp.push(["set", "user:email", [""]]);
             }
             $("#ChatIcon, #ChatIcon2").hide();
         });
@@ -3912,11 +4150,11 @@ có 1 người khác bị Đăng xuất.
                 $crisp.push(["do", "chat:show"]);
                 $crisp.push(["do", "chat:open"]);
                 if (fullname != "" && email != "") {
-                    $crisp.push(["set", "user:nickname", ["(2)Nguyễn Khắc Thanh"]]);
-                    $crisp.push(["set", "user:email", ["thanhnk@thienhoang.com.vn"]]);
+                    $crisp.push(["set", "user:nickname", ["(3)"]]);
+                    $crisp.push(["set", "user:email", [""]]);
                 }
                 else if (usename != "") {
-                    $crisp.push(["set", "user:email", ["thienhoang2024"]]);
+                    $crisp.push(["set", "user:email", [""]]);
                 }
                 $crisp.push(["set", "message:text", ["Xin chào, tôi không thể đăng ký được"]]);
                 $("#ChatIcon, #ChatIcon2").hide();
@@ -3929,11 +4167,11 @@ có 1 người khác bị Đăng xuất.
                 $crisp.push(["do", "chat:show"]);
                 $crisp.push(["do", "chat:open"]);
                 if (fullname != "" && email != "") {
-                    $crisp.push(["set", "user:nickname", ["(2)Nguyễn Khắc Thanh"]]);
-                    $crisp.push(["set", "user:email", ["thanhnk@thienhoang.com.vn"]]);
+                    $crisp.push(["set", "user:nickname", ["(3)"]]);
+                    $crisp.push(["set", "user:email", [""]]);
                 }
                 else if (usename != "") {
-                    $crisp.push(["set", "user:email", ["thienhoang2024"]]);
+                    $crisp.push(["set", "user:email", [""]]);
                 }
                 $crisp.push(["set", "message:text", ["Xin chào, tôi không thể tìm thấy văn bản mình cần"]]);
                 $("#ChatIcon, #ChatIcon2").hide();
@@ -3973,7 +4211,7 @@ có 1 người khác bị Đăng xuất.
                         Họ & Tên:</p>
                 </td>
                 <td width="550px">
-                    <input name="fbName" type="text" maxlength="100" id="fbName" class="txt-info" value="Nguyễn Khắc Thanh">
+                    <input name="fbName" type="text" maxlength="100" id="fbName" class="txt-info" value="">
                 </td>
             </tr>
             <tr>
@@ -3982,7 +4220,7 @@ có 1 người khác bị Đăng xuất.
                         Email:</p>
                 </td>
                 <td>
-                    <input name="fbEmail" type="text" maxlength="100" id="fbEmail" class="txt-info" value="thanhnk@thienhoang.com.vn">
+                    <input name="fbEmail" type="text" maxlength="100" id="fbEmail" class="txt-info" value="">
                 </td>
             </tr>
             <tr>
@@ -3991,7 +4229,7 @@ có 1 người khác bị Đăng xuất.
                         Điện thoại:</p>
                 </td>
                 <td>
-                    <input name="fbPhone" type="text" maxlength="20" id="fbPhone" class="txt-info" value="-">
+                    <input name="fbPhone" type="text" maxlength="20" id="fbPhone" class="txt-info" value="">
                 </td>
             </tr>
             <tr>
@@ -4019,7 +4257,7 @@ có 1 người khác bị Đăng xuất.
             Tên truy cập hoặc Email:</p>
         
         <input name="cpUserName" type="text" maxlength="50" id="cpUserName" class="txt-info"
-            value="thienhoang2024">
+            value="">
         
         <div class="clr px10">
         </div>
@@ -4065,7 +4303,7 @@ có 1 người khác bị Đăng xuất.
                 </td>
                 <td width="550px">
                     <input name="fbName_vb" type="text" maxlength="100" id="fbName_vb" class="txt-info"
-                        value="Nguyễn Khắc Thanh">
+                        value="">
                 </td>
             </tr>
             <tr>
@@ -4075,7 +4313,7 @@ có 1 người khác bị Đăng xuất.
                 </td>
                 <td>
                     <input name="fbEmail_vb" type="text" maxlength="100" id="fbEmail_vb" class="txt-info"
-                        value="thanhnk@thienhoang.com.vn">
+                        value="">
                 </td>
             </tr>
             <tr>
@@ -4085,7 +4323,7 @@ có 1 người khác bị Đăng xuất.
                 </td>
                 <td>
                     <input name="fbPhone_vb" type="text" maxlength="20" id="fbPhone_vb" class="txt-info"
-                        value="-">
+                        value="">
                 </td>
             </tr>
             <tr>
@@ -4108,12 +4346,12 @@ có 1 người khác bị Đăng xuất.
             dưới để Thư Viện Pháp Luật hỗ trợ bạn
         </div>
         <div class="clr px10">
-            <input id="cpCusID" name="cpCusID" value="4441348" type="hidden" />
+            <input id="cpCusID" name="cpCusID" value="0" type="hidden" />
         </div>
         <p class="name">
             Email:</p>
         <input name="fbEmailYC" type="text" maxlength="100" id="fbEmailYC" class="txt-info"
-            value="thanhnk@thienhoang.com.vn" />
+            value="" />
         <br />
         <br />
         <p class="name">

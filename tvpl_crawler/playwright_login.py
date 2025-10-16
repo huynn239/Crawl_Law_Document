@@ -109,6 +109,25 @@ def login_with_playwright(
                 for sel in submit_candidates:
                     try:
                         scope.click(sel, timeout=1500)
+                        # Xử lý popup cảnh báo đăng nhập trùng
+                        try:
+                            page.wait_for_timeout(3000)
+                            btn_count = page.evaluate("""() => {
+                                return document.querySelectorAll('div.ui-dialog-buttonpane button').length;
+                            }""")
+                            
+                            if btn_count > 0:
+                                page.keyboard.press("Enter")
+                                page.wait_for_timeout(500)
+                                page.evaluate("""() => {
+                                    const btn = document.querySelector('div.ui-dialog-buttonpane button');
+                                    if (btn) {
+                                        btn.dispatchEvent(new MouseEvent('click', {bubbles: true, cancelable: true}));
+                                    }
+                                }""")
+                                page.wait_for_timeout(500)
+                        except Exception:
+                            pass
                         return True
                     except Exception:
                         continue

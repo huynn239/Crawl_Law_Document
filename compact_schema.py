@@ -6,22 +6,22 @@ def compact_schema(data):
     result = []
     
     for item in data:
+        # Nếu có error, giữ nguyên
+        if item.get("error"):
+            result.append(item)
+            continue
+            
+        # Extract doc_info fields (all fields except known structure fields)
+        exclude_keys = {"stt", "url", "ngay_cap_nhat", "Ngay cap nhat", "tab4_relations", "tab4_summary", 
+                       "tab4_total_relations", "tab8_links", "_screenshot_before", "_screenshot_tab4", 
+                       "_screenshot_tab8", "error"}
+        doc_info = {k: v for k, v in item.items() if k not in exclude_keys}
+        
         compact_item = {
             "stt": item.get("stt"),
             "url": item.get("url"),
             "ngay_cap_nhat": item.get("Ngay cap nhat") or item.get("ngay_cap_nhat"),
-            "doc_info": {
-                "so_hieu": item.get("Số hiệu"),
-                "loai_van_ban": item.get("Loại văn bản"),
-                "linh_vuc": item.get("Lĩnh vực, ngành"),
-                "noi_ban_hanh": item.get("Nơi ban hành"),
-                "nguoi_ky": item.get("Người ký"),
-                "ngay_ban_hanh": item.get("Ngày ban hành"),
-                "ngay_hieu_luc": item.get("Ngày hiệu lực"),
-                "ngay_dang": item.get("Ngày đăng"),
-                "so_cong_bao": item.get("Số công báo"),
-                "tinh_trang": item.get("Tình trạng")
-            },
+            "doc_info": doc_info,
             "screenshots": {
                 "before": item.get("_screenshot_before"),
                 "tab4": item.get("_screenshot_tab4"),

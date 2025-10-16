@@ -6,6 +6,7 @@ import tempfile
 import json
 import os
 from loguru import logger
+from tvpl_crawler.db import TVPLDatabase
 
 # Reuse existing CLI-layer functions to avoid duplicating logic
 from tvpl_crawler.main import (
@@ -203,7 +204,25 @@ class Tab4Request(BaseModel):
     relogin_on_fail: bool = True
     timeout_ms: int = 20000
     screenshots: bool = True
+    save_to_db: bool = False
 
+
+def _relogin_sync():
+    """Sync relogin helper"""
+    from playwright.sync_api import sync_playwright
+    logger.info("Session expired. Relogin...")
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=True)
+        context = browser.new_context()
+        page = context.new_page()
+        page.goto("https://thuvienphapluat.vn/")
+        page.fill("#usernameTextBox", os.getenv("TVPL_USERNAME", ""))
+        page.fill("#passwordTextBox", os.getenv("TVPL_PASSWORD", ""))
+        page.click("#loginButton")
+        page.wait_for_timeout(3000)
+        context.storage_state(path="data/storage_state.json")
+        browser.close()
+    logger.info("Relogin success")
 
 @app.post("/tab4-details")
 def tab4_details(req: Tab4Request):
@@ -215,24 +234,71 @@ def tab4_details(req: Tab4Request):
         shots_dir = Path("data/screenshots")
         if req.screenshots:
             shots_dir.mkdir(parents=True, exist_ok=True)
+        
+        # Database setup
+        db = None
+        session_id = None
+        if req.save_to_db:
+            db = TVPLDatabase(
+                host=os.getenv("DB_HOST", "localhost"),
+                port=int(os.getenv("DB_PORT", "5432")),
+                dbname=os.getenv("DB_NAME", "tvpl_crawl"),
+                user=os.getenv("DB_USER", "tvpl_user"),
+                password=os.getenv("DB_PASSWORD", "")
+            )
+            session_id = db.start_crawl_session()
+            logger.info(f"Started DB session #{session_id}")
+        
         for idx, u in enumerate(req.links, start=1):
-            try:
-                data = extract_luoc_do_with_playwright(
-                    url=u,
-                    screenshots_dir=shots_dir,
-                    cookies_path=Path(req.cookies) if req.cookies else None,
-                    headed=req.headed,
-                    timeout_ms=req.timeout_ms,
-                    only_tab8=False,
-                    relogin_on_fail=req.relogin_on_fail,
-                    download_tab8=False,
-                    downloads_dir=Path("data/downloads"),
-                )
-                data["stt"] = idx
-                results.append(data)
-            except Exception as e:
-                logger.warning(f"Tab4 parse failed for {u}: {e}")
-        return compact_schema(results)
+            max_retries = 2
+            for attempt in range(max_retries):
+                try:
+                    data = extract_luoc_do_with_playwright(
+                        url=u,
+                        screenshots_dir=shots_dir,
+                        cookies_path=Path(req.cookies) if req.cookies else None,
+                        headed=req.headed,
+                        timeout_ms=req.timeout_ms,
+                        only_tab8=False,
+                        relogin_on_fail=False,
+                        download_tab8=False,
+                        downloads_dir=Path("data/downloads"),
+                    )
+                    data["stt"] = idx
+                    results.append(data)
+                    break
+                except Exception as e:
+                    error_msg = str(e)
+                    if ("Not logged in" in error_msg or "has been closed" in error_msg) and attempt < max_retries - 1:
+                        _relogin_sync()
+                        continue
+                    logger.warning(f"Tab4 parse failed for {u}: {e}")
+                    results.append({"stt": idx, "url": u, "error": str(e), "doc_info": {}})
+                    break
+        
+        compact_results = compact_schema(results)
+        
+        # Save to database
+        if db:
+            new_versions = 0
+            unchanged = 0
+            for item in compact_results:
+                if item.get("error"):
+                    continue
+                try:
+                    has_changed = db.save_document(item, session_id)
+                    if has_changed:
+                        new_versions += 1
+                    else:
+                        unchanged += 1
+                except Exception as e:
+                    logger.error(f"DB save failed for {item.get('url')}: {e}")
+            
+            db.complete_crawl_session(session_id, len(compact_results), new_versions, unchanged)
+            db.close()
+            logger.info(f"DB session #{session_id}: {new_versions} new, {unchanged} unchanged")
+        
+        return compact_results
     except Exception as e:
         logger.exception("/tab4-details failed")
         raise HTTPException(status_code=400, detail=str(e))

@@ -52,7 +52,7 @@ def _load_cookies_for_playwright(context, cookies_path: Optional[Path]):
 
 def extract_luoc_do_with_playwright(
     url: str,
-    screenshots_dir: Path,
+    screenshots_dir: Optional[Path],
     cookies_path: Optional[Path] = None,
     headed: bool = False,
     timeout_ms: int = 20000,
@@ -62,7 +62,8 @@ def extract_luoc_do_with_playwright(
     download_tab8: bool = False,
     downloads_dir: Path = Path("data/downloads"),
 ) -> Dict:
-    screenshots_dir.mkdir(parents=True, exist_ok=True)
+    if screenshots_dir:
+        screenshots_dir.mkdir(parents=True, exist_ok=True)
     base_name = _sanitize_name(url)
     # Initialize data early to avoid UnboundLocalError on failures
     data: Dict = {"url": url}
@@ -186,11 +187,12 @@ def extract_luoc_do_with_playwright(
             data["doc_title"] = _extract_title()
         except Exception:
             data["doc_title"] = None
-        shot1 = screenshots_dir / f"{base_name}_01_before.png"
-        try:
-            page.screenshot(path=str(shot1), full_page=True)
-        except Exception:
-            pass
+        shot1 = screenshots_dir / f"{base_name}_01_before.png" if screenshots_dir else None
+        if shot1:
+            try:
+                page.screenshot(path=str(shot1), full_page=True)
+            except Exception:
+                pass
 
         # Verify login status; if not logged in and relogin_on_fail, perform login then recreate context with storage_state
         def _is_logged_in() -> bool:
@@ -241,7 +243,7 @@ def extract_luoc_do_with_playwright(
                     logger.error(f"Relogin flow failed: {e}")
 
         # If only_tab8=False, process tab4 as before
-        shot2 = screenshots_dir / f"{base_name}_02_tab4.png"
+        shot2 = screenshots_dir / f"{base_name}_02_tab4.png" if screenshots_dir else None
         if not only_tab8:
             # Click Lược đồ tab: prefer #aLuocDo then anchor[href="#tab4"], then text.
             # Use multiple strategies including JS click.
@@ -278,14 +280,14 @@ def extract_luoc_do_with_playwright(
                 page.wait_for_timeout(500)
             except PWTimeoutError:
                 logger.warning("#tab4 not visible after timeout")
-            try:
-                # Scroll #tab4 into view then screenshot viewport
-                el = page.query_selector("#tab4")
-                if el:
-                    el.scroll_into_view_if_needed()
-                page.screenshot(path=str(shot2), full_page=True)
-            except Exception:
-                pass
+            if shot2:
+                try:
+                    el = page.query_selector("#tab4")
+                    if el:
+                        el.scroll_into_view_if_needed()
+                    page.screenshot(path=str(shot2), full_page=True)
+                except Exception:
+                    pass
 
         # Prepare data
         data: Dict[str, str] = {}
@@ -399,14 +401,15 @@ def extract_luoc_do_with_playwright(
             logger.warning(f"Failed to parse #tab4: {e}")
 
         # Add screenshots info
-        data["_screenshot_before"] = str(shot1)
-        if not only_tab8:
+        if shot1:
+            data["_screenshot_before"] = str(shot1)
+        if shot2 and not only_tab8:
             data["_screenshot_tab4"] = str(shot2)
         data["url"] = url
 
         # === TAB8: Tải về - thu thập hyperlink ===
         try:
-            shot3 = screenshots_dir / f"{base_name}_03_tab8.png"
+            shot3 = screenshots_dir / f"{base_name}_03_tab8.png" if screenshots_dir else None
             clicked8 = False
             for sel in ["#aTabTaiVe", "a[href='#tab8']", "a:has-text('Tải về')"]:
                 try:
@@ -512,7 +515,8 @@ def extract_luoc_do_with_playwright(
                             links.append(item)
                 except Exception as e:
                     logger.warning(f"Failed to collect links in #tab8: {e}")
-                data["_screenshot_tab8"] = str(shot3)
+                if shot3:
+                    data["_screenshot_tab8"] = str(shot3)
                 data["tab8_links"] = links
 
                 # Optional: trigger real download for Vietnamese document

@@ -11,25 +11,57 @@ Crawler cơ bản cho thuvienphapluat.vn bằng Python.
 
 ## Yêu cầu
 - Python 3.10+
+- PostgreSQL 13+ (cho database)
 - Windows PowerShell (mặc định có sẵn)
+- Docker (tuỳ chọn - cho API mode)
 
-## Cài đặt môi trường
+## Quick Start
+
+### 1. Cài đặt môi trường
 ```powershell
 # Tạo môi trường ảo
 python -m venv .venv
 
-# Cài đặt dependencies mà không cần activate (khuyến nghị cho script tự động)
+# Cài đặt dependencies
 .\.venv\Scripts\python -m pip install --upgrade pip
 .\.venv\Scripts\python -m pip install -r requirements.txt
+
+# Cài Playwright browsers
+.\.venv\Scripts\playwright install chromium
 ```
 
-## Cấu hình
+### 2. Cấu hình
 Tạo file `.env` (tham khảo `.env.example`):
-```
+```env
+# Crawler config
 BASE_URL=https://thuvienphapluat.vn
 REQUEST_TIMEOUT=20
 RATE_LIMIT_PER_SEC=1.0
+
+# Database config
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=tvpl_crawl
+DB_USER=postgres
+DB_PASSWORD=your_password
+
+# Login credentials (cho API refresh-cookies)
+TVPL_USERNAME=your_username
+TVPL_PASSWORD=your_password
 ```
+
+### 3. Setup Database
+```powershell
+# Tự động tạo database và chạy migrations
+.\.venv\Scripts\python setup_database.py
+```
+
+Script sẽ tự động:
+- Tạo database `tvpl_crawl` (nếu chưa có)
+- Chạy `init_db.sql` (tạo tables)
+- Chạy `migrate_schema.sql` (thêm session tracking)
+- Chạy `fix_db_schema.sql` (thêm FK, indexes, constraints)
+- Chạy `create_views.sql` (tạo 8 views tiện ích)
 
 ## CLI Commands
 
@@ -52,13 +84,17 @@ RATE_LIMIT_PER_SEC=1.0
 - `--cookies-out`: Đường dẫn lưu file cookies
 - `--headed`: Hiển thị browser (bỏ đi để chạy headless)
 
+
+# Xóa session cũ
+del data\storage_state.json
+
 ### 2. links-basic - Crawl danh sách hyperlink
 ```powershell
 $env:LOGURU_LEVEL="INFO"
 .\.venv\Scripts\python -m tvpl_crawler links-basic `
   -u "https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&match=True&area=0" `
   -o data\links_2025-01-15.json `
-  -m 5 `
+  -m 7 `
   --page-param page `
   --cookies data\cookies.json
 ```
@@ -72,19 +108,33 @@ $env:LOGURU_LEVEL="INFO"
 
 **Kết quả:** File `data\links_2025-01-15.json` chứa `[{"Stt": 1, "Tên văn bản": "...", "Url": "..."}]`
 
-### 3. crawl_data.py - Crawl dữ liệu từ hyperlink
+### 3. crawl_data_fast.py - Crawl dữ liệu nhanh với chống CAPTCHA
 ```powershell
-python crawl_data.py data\links_2025-01-15.json
-```
+# Chế độ mặc định: Login mới mỗi batch (chống CAPTCHA tốt)
+.\.venv\Scripts\python crawl_data_fast.py data\links_2025-10-14.json
 
-Hoặc chỉ định tên file output:
-```powershell
-python crawl_data.py data\links_2025-01-15.json data\result_2025-01-15.json
+# Dùng session có sẵn (nhanh hơn, ít login)
+.\.venv\Scripts\python crawl_data_fast.py data\links_2025-10-14.json data\result.json 2 30000 --reuse-session
+
+# Debug mode (hiển thị browser)
+.\.venv\Scripts\python crawl_data_fast.py data\links_2025-10-14.json data\result.json 2 30000 --headed
 ```
 
 **Tham số:**
 - `input_file`: File chứa danh sách hyperlink (bắt buộc)
 - `output_file`: File output (tuỳ chọn, mặc định: `{input}_Result.json`)
+- `concurrency`: Số request đồng thời (mặc định: 2)
+- `timeout_ms`: Timeout mỗi trang (mặc định: 30000ms)
+- `--reuse-session`: Dùng session có sẵn từ login-playwright
+- `--headed`: Hiển thị browser (debug)
+
+**Tính năng chống CAPTCHA:**
+- ✅ Login mới mỗi 15 văn bản (batch) với session riêng
+- ✅ Xoay vòng User-Agent ngẫu nhiên
+- ✅ Thay đổi viewport (kích thước màn hình)
+- ✅ Random delay 10-20s giữa các batch
+- ✅ Tự động xử lý popup GDPR consent
+- ✅ Retry khi timeout hoặc session hết hạn
 
 **Kết quả:** File JSON với schema thu gọn (doc_info, tab4, tab8, screenshots)
 
@@ -137,7 +187,11 @@ $env:LOGURU_LEVEL="INFO"
 
 ### Bước 3: Crawl dữ liệu
 ```powershell
-python crawl_data.py data\links_2025-01-15.json
+# Khuyến nghị: Dùng crawl_data_fast.py với chống CAPTCHA
+.\.venv\Scripts\python crawl_data_fast.py data\links_2025-01-15.json
+
+# Hoặc dùng session có sẵn (nếu crawl ít văn bản)
+.\.venv\Scripts\python crawl_data_fast.py data\links_2025-01-15.json --reuse-session
 ```
 
 
@@ -174,21 +228,80 @@ Dữ liệu crawl được trả về theo cấu trúc thu gọn:
 }
 ```
 
+## Database
+
+### Schema
+Dự án sử dụng PostgreSQL với 4 bảng chính:
+
+**1. crawl_sessions** - Theo dõi các phiên crawl
+```sql
+session_id (PK), start_time, end_time, total_docs, status, notes
+```
+
+**2. documents_finals** - Văn bản hiện tại (latest version)
+```sql
+doc_id (PK), url, so_hieu, loai_van_ban, noi_ban_hanh, nguoi_ky,
+ngay_ban_hanh, ngay_hieu_luc, tinh_trang, linh_vuc,
+update_date, content_hash, last_crawled, session_id (FK)
+```
+
+**3. document_versions** - Lịch sử thay đổi văn bản
+```sql
+version_id (PK), doc_id (FK), version_hash, update_date,
+so_hieu, loai_van_ban, ..., created_at, session_id (FK)
+```
+
+**4. document_relations** - Quan hệ giữa các văn bản
+```sql
+relation_id (PK), doc_id (FK), relation_type, related_doc_id,
+related_doc_title, related_doc_number, session_id (FK)
+```
+
+### Views
+Dự án có 8 views tiện ích (xem `VIEWS_USAGE.md`):
+- `v_sessions` - Tổng quan sessions
+- `v_session_documents` - Văn bản theo session
+- `v_document_history` - Lịch sử thay đổi
+- `v_document_relations_summary` - Tổng hợp quan hệ
+- `v_recent_changes` - Thay đổi gần đây
+- `v_most_changed_documents` - Văn bản thay đổi nhiều
+- `v_stats_by_type` - Thống kê theo loại
+- `v_relations_detailed` - Chi tiết quan hệ
+
+### Queries
+Xem `SQL_QUERIES_CHEATSHEET.md` cho các query thường dùng:
+- Tìm văn bản theo tiêu chí
+- So sánh versions
+- Thống kê sessions
+- Phân tích quan hệ văn bản
+- Maintenance queries
+
 ## Cấu trúc dự án
 ```
 thuvienphapluat-crawler/
-├─ tvpl_crawler/
+├─ tvpl_crawler/          # Core crawler package
 │  ├─ __init__.py
 │  ├─ main.py
 │  ├─ config.py
 │  ├─ http.py
 │  ├─ parser.py
-│  └─ storage.py
-├─ crawl_data.py          # Script crawl dữ liệu từ file hyperlink
-├─ compact_schema.py      # Helper để thu gọn schema
+│  ├─ storage.py
+│  └─ db.py              # Database operations
+├─ api/                   # FastAPI service
+│  └─ main.py
+├─ sql/                   # Database migrations
+│  ├─ init_db.sql
+│  ├─ migrate_schema.sql
+│  ├─ fix_db_schema.sql
+│  └─ create_views.sql
+├─ crawl_data_fast.py     # Main crawl script
+├─ setup_database.py      # Auto database setup
+├─ compact_schema.py      # Schema helper
 ├─ requirements.txt
 ├─ .env.example
-├─ .gitignore
+├─ Dockerfile.api         # Docker for API mode
+├─ SQL_QUERIES_CHEATSHEET.md
+├─ VIEWS_USAGE.md
 └─ README.md
 ```
 
@@ -198,18 +311,52 @@ Chạy crawler như HTTP API service để tích hợp với n8n workflow. API t
 
 ### 1. Khởi chạy API
 
-#### Cách 1: Docker
+#### Cách 1: Docker Stack (Khuyến nghị - Full stack: PostgreSQL + pgAdmin + API + n8n)
+```bash
+# Tạo file .env với credentials
+echo "TVPL_USERNAME=your_username" > .env
+echo "TVPL_PASSWORD=your_password" >> .env
+
+# Khởi động full stack
+docker-compose -f tvpl-stack.yml up -d
+
+# Xem logs
+docker-compose -f tvpl-stack.yml logs -f tvpl-api
+
+# Dừng services
+docker-compose -f tvpl-stack.yml down
+```
+
+**Services được khởi động:**
+- **PostgreSQL** (port 5432): Database `tvpl_db`
+- **pgAdmin** (port 8082): GUI quản lý database
+- **TVPL API** (port 8000): Crawler API với auto DB setup
+- **n8n** (port 5678): Workflow automation
+
+**Tự động setup:**
+- API container tự động chạy `setup_database.py` khi khởi động
+- Tạo tables, indexes, foreign keys, views
+- Mount `data/` để chia sẻ cookies, screenshots, downloads
+- Hot-reload code khi development
+
+#### Cách 2: Docker standalone (chỉ API, cần PostgreSQL riêng)
 ```bash
 # Build image
 docker build -f Dockerfile.api -t tvpl-crawler-api:latest .
 
-# Run container
-docker run --rm -p 8000:8000 -v "${PWD}/data:/app/data" --name tvpl-crawler-api tvpl-crawler-api:latest
+# Run container (cần set DB_HOST trỏ đến PostgreSQL)
+docker run --rm -p 8000:8000 \
+  -e DB_HOST=host.docker.internal \
+  -e DB_NAME=tvpl_crawl \
+  -e DB_USER=postgres \
+  -e DB_PASSWORD=your_password \
+  -v "${PWD}/data:/app/data" \
+  --name tvpl-crawler-api tvpl-crawler-api:latest
 ```
 
-#### Cách 2: Local
+#### Cách 3: Local (development)
 ```powershell
-uvicorn api.main:app --host 0.0.0.0 --port 8000
+uvicorn api.main:app --host 0.0.0.0 --port 8000 --reload
 ```
 
 ### 2. Danh sách API Endpoints
@@ -273,9 +420,20 @@ Crawl dữ liệu đầy đủ từ danh sách URL (doc_info + tab4 + tab8)
   "headed": false,
   "relogin_on_fail": true,
   "timeout_ms": 20000,
-  "screenshots": true
+  "screenshots": true,
+  "save_to_db": true
 }
 ```
+
+**Tham số:**
+- `links`: Danh sách URL cần crawl
+- `cookies`: Đường dẫn file cookies
+- `headed`: Hiển thị browser (debug)
+- `relogin_on_fail`: Tự động login lại khi session hết hạn
+- `timeout_ms`: Timeout mỗi trang
+- `screenshots`: Chụp ảnh màn hình
+- `save_to_db`: **Lưu vào PostgreSQL** (mặc định: false)
+
 Response: Mảng JSON với schema thu gọn (xem phần Schema JSON output)
 
 #### POST `/tab8-download`
@@ -356,7 +514,9 @@ Copy URL công khai (ví dụ: `https://abcd-xx.ngrok-free.app`) để dùng tro
   "cookies": "data/cookies.json",
   "headed": false,
   "relogin_on_fail": true,
-  "timeout_ms": 20000
+  "timeout_ms": 20000,
+  "screenshots": true,
+  "save_to_db": true
 }
 ```
 
@@ -372,10 +532,21 @@ Copy URL công khai (ví dụ: `https://abcd-xx.ngrok-free.app`) để dùng tro
 - Sử dụng vào mục đích hợp pháp và tuân thủ bản quyền.
 
 ## Lưu ý
-- Thư mục `data/` được mount vào container để chia sẻ cookies và file tải về
-- API tự động retry và relogin khi session hết hạn
-- Screenshots lưu tại `data/screenshots/`
-- File tải về lưu tại `data/downloads/`
+- **Docker Stack (tvpl-stack.yml)**: Full stack với PostgreSQL + pgAdmin + API + n8n
+  - API tự động chạy `setup_database.py` khi khởi động
+  - pgAdmin: http://localhost:8082 (email: huynn239@gmail.com)
+  - n8n: http://localhost:5678
+  - API: http://localhost:8000/docs
+- **Database**: Khi `save_to_db=true`, API tự động:
+  - Tạo crawl session mới
+  - Lưu documents vào `documents_finals`
+  - Tạo version history trong `document_versions`
+  - Lưu relations vào `document_relations`
+  - Phát hiện thay đổi bằng hash + update_date
+- **Thư mục `data/`**: Mount vào container để chia sẻ cookies, screenshots, downloads
+- **Auto retry**: API tự động retry và relogin khi session hết hạn
+- **Screenshots**: Lưu tại `data/screenshots/`
+- **Downloads**: Lưu tại `data/downloads/`
 
 ## Mở rộng tiếp theo
 - Thêm queue và worker (e.g. asyncio, aiohttp) cho crawl nhiều trang

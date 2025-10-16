@@ -1,0 +1,34 @@
+﻿
+  debug_tnpl_full.html:135:	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" 
+value="6825B138">
+  debug_tnpl_full.html:136:	<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="">
+  debug_tnpl_full.html:137:	<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="">
+  debug_tnpl_full.html:138:</div>
+  debug_tnpl_full.html:139:    <!--Container -->
+> debug_tnpl_full.html:140:    <table width="960" border="0" align="center" id="tblcontainer" cellspacing="0" 
+cellpadding="0">
+  debug_tnpl_full.html:141:        <tbody><tr>
+  debug_tnpl_full.html:142:            <td>
+  debug_tnpl_full.html:143:                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+  debug_tnpl_full.html:144:                    <tbody><tr>
+  debug_tnpl_full.html:145:                        <td style="height: 90px; vertical-align: top;">
+  debug_tnpl_full.html:146:                            <!--Header content -->
+  debug_tnpl_full.html:147:                            
+  debug_tnpl_full.html:148:
+  debug_tnpl_full.html:149:
+  debug_tnpl_full.html:150:          <link 
+href="https://cdn.thuvienphapluat.vn/uploads/tvpl/Styles/TVNDWidget.css?v=20152" rel="stylesheet" type="text/css">
+  debug_tnpl_full.html:151:        <script 
+src="https://cdn.thuvienphapluat.vn/uploads/tvpl/Scripts/TVNDWidget.js?v=3210" type="text/javascript"></script>
+  debug_tnpl_full.html:152:
+  debug_tnpl_full.html:153:
+  debug_tnpl_full.html:154:<script defer="" crossorigin="anonymous" async="" 
+src="https://connect.facebook.net/en_US/sdk.js"></script>
+  debug_tnpl_full.html:155:<script type="text/javascript">
+  debug_tnpl_full.html:156:    window.fbAsyncInit = function () {
+  debug_tnpl_full.html:157:        FB.init({
+  debug_tnpl_full.html:158:            appId: '425268816607545', // Thay YOUR_APP_ID bằng App ID của bạn
+  debug_tnpl_full.html:159:            autoLogAppEvents: true,
+  debug_tnpl_full.html:160:            xfbml: true,
+
+

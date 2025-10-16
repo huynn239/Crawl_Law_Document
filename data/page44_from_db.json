@@ -1,0 +1,122 @@
+[
+  {
+    "term_id": 861,
+    "term_name": "Tàu chở hàng lỏng",
+    "definition": "Là tàu được dùng để chở xô hàng lỏng trong không gian chở hàng.",
+    "url": "https://thuvienphapluat.vn/tnpl/14237/Tau-cho-hang-long?tab=0"
+  },
+  {
+    "term_id": 862,
+    "term_name": "Tàu chở hàng rời",
+    "definition": "Là tàu hàng chuyên dùng để chở xô hàng rời rắn.",
+    "url": "https://thuvienphapluat.vn/tnpl/14236/Tau-cho-hang-roi?tab=0"
+  },
+  {
+    "term_id": 863,
+    "term_name": "Tàu chở hàng khô",
+    "definition": "Là tàu hàng dùng để chở hàng tổng hợp đóng bao, kiện và nếu thân tàu được gia cường đặc biệt thì tàu có thể được dùng để chở những loại hàng nặng, hàng rời nặng khác theo sơ đồ phân bố tải trọng đã được quy định.",
+    "url": "https://thuvienphapluat.vn/tnpl/14235/Tau-cho-hang-kho?tab=0"
+  },
+  {
+    "term_id": 864,
+    "term_name": "Tàu hàng",
+    "definition": "Là tàu không phải tàu khách.",
+    "url": "https://thuvienphapluat.vn/tnpl/14234/Tau-hang?tab=0"
+  },
+  {
+    "term_id": 865,
+    "term_name": "Dữ liệu địa chỉ (trong cấu trúc thông điệp dữ liệu trao đổi với Cơ sở dữ liệu tổng hợp quốc gia)",
+    "definition": "Bao gồm các thành phần địa chỉ, định danh địa điểm của các đối tượng định danh địa điểm.",
+    "url": "https://thuvienphapluat.vn/tnpl/14233/Du-lieu-dia-chi-trong-cau-truc-thong-diep-du-lieu-trao-doi-voi-Co-so-du-lieu-tong-hop-quoc-gia?tab=0"
+  },
+  {
+    "term_id": 866,
+    "term_name": "Dữ liệu nền địa lý (trong cấu trúc thông điệp dữ liệu trao đổi với Cơ sở dữ liệu tổng hợp quốc gia)",
+    "definition": "Bao gồm các dữ liệu không gian và địa lý như vị trí, đặc điểm địa lý, và các yếu tố môi trường, địa hình.",
+    "url": "https://thuvienphapluat.vn/tnpl/14232/Du-lieu-nen-dia-ly-trong-cau-truc-thong-diep-du-lieu-trao-doi-voi-Co-so-du-lieu-tong-hop-quoc-gia?tab=0"
+  },
+  {
+    "term_id": 867,
+    "term_name": "Dữ liệu tài sản (trong cấu trúc thông điệp dữ liệu trao đổi với Cơ sở dữ liệu tổng hợp quốc gia)",
+    "definition": "Bao gồm dữ liệu về bất động sản, động sản, tài sản vô hình và tài sản khác.",
+    "url": "https://thuvienphapluat.vn/tnpl/14230/Du-lieu-tai-san-trong-cau-truc-thong-diep-du-lieu-trao-doi-voi-Co-so-du-lieu-tong-hop-quoc-gia?tab=0"
+  },
+  {
+    "term_id": 868,
+    "term_name": "Dữ liệu con người (trong cấu trúc thông điệp dữ liệu trao đổi với Cơ sở dữ liệu tổng hợp quốc gia)",
+    "definition": "Bao gồm dữ liệu về con người, hình thành từ các cơ sở dữ liệu dân cư (Bộ Công an) và các dữ liệu về con người khác như dữ liệu sinh trắc, bảo hiểm, y tế và an sinh xã hội, giáo dục và đào tạo, lao động việc làm, hộ tịch và thu thập tối đa các thông tin lĩnh vực khác như vi phạm hành chính, thuế, thu nhập cá nhân,...",
+    "url": "https://thuvienphapluat.vn/tnpl/14228/Du-lieu-con-nguoi-trong-cau-truc-thong-diep-du-lieu-trao-doi-voi-Co-so-du-lieu-tong-hop-quoc-gia?tab=0"
+  },
+  {
+    "term_id": 869,
+    "term_name": "Thời điểm chỉ định (trong cấu trúc thông điệp dữ liệu trao đổi với Cơ sở dữ liệu tổng hợp quốc gia)",
+    "definition": "Là thời điểm giá trị của dữ liệu phản ánh thực tế tại thời điểm đó. Thời điểm chỉ định được cung cấp khi yêu cầu khai thác dữ liệu bằng việc truyền tham số đầu vào. Trường hợp không truyền tham số đầu vào thì thời điểm chỉ định là thời điểm hiện tại khi yêu cầu khai thác và dữ liệu chia sẻ là mới nhất.",
+    "url": "https://thuvienphapluat.vn/tnpl/14227/Thoi-diem-chi-dinh-trong-cau-truc-thong-diep-du-lieu-trao-doi-voi-Co-so-du-lieu-tong-hop-quoc-gia?tab=0"
+  },
+  {
+    "term_id": 870,
+    "term_name": "Lược đồ dữ liệu (trong cấu trúc thông điệp dữ liệu trao đổi với Cơ sở dữ liệu tổng hợp quốc gia)",
+    "definition": "Là cách thức mô tả dữ liệu theo mô hình dữ liệu và được thể hiện dưới một ngôn ngữ hình thức trong các hệ thống quản lý cơ sở dữ liệu hoặc mô hình dữ liệu mức vật lý.",
+    "url": "https://thuvienphapluat.vn/tnpl/14226/Luoc-do-du-lieu-trong-cau-truc-thong-diep-du-lieu-trao-doi-voi-Co-so-du-lieu-tong-hop-quoc-gia?tab=0"
+  },
+  {
+    "term_id": 871,
+    "term_name": "Mô hình dữ liệu (về cấu trúc thông điệp dữ liệu trao đổi với Cơ sở dữ liệu tổng hợp quốc gia)",
+    "definition": "Là một bản trình diễn kỹ thuật sử dụng các ký hiệu, ngôn ngữ để thể hiện cấu trúc, nội dung của dữ liệu bao gồm các phần tử dữ liệu, thuộc tính, đặc tính, ràng buộc của dữ liệu; mối quan hệ giữa các phần tử dữ liệu.",
+    "url": "https://thuvienphapluat.vn/tnpl/14225/Mo-hinh-du-lieu-ve-cau-truc-thong-diep-du-lieu-trao-doi-voi-Co-so-du-lieu-tong-hop-quoc-gia?tab=0"
+  },
+  {
+    "term_id": 872,
+    "term_name": "Sản phẩm đa thành phần (sản phẩm thực phẩm bảo vệ sức khỏe)",
+    "definition": "Là sản phẩm thực phẩm bảo vệ sức khỏe chứa hỗn hợp của hai hoặc nhiều loại thành phần, bao gồm:\n\n- Vitamin, khoáng chất, acid amin, acid béo, enzyme, probiotic và chất có hoạt tính sinh học khác;\n\n- Chất có nguồn gốc tự nhiên, bao gồm động vật, khoáng vật và thực vật dưới dạng chiết xuất, phân lập, cô đặc và chuyển hóa;\n\n- Các nguồn tổng hợp của những thành phần đề cập tại trên đây.",
+    "url": "https://thuvienphapluat.vn/tnpl/14224/San-pham-da-thanh-phan-san-pham-thuc-pham-bao-ve-suc-khoe?tab=0"
+  },
+  {
+    "term_id": 873,
+    "term_name": "Mạch phụ của khởi động mềm phòng nổ",
+    "definition": "Là toàn bộ phần mang điện (không phải mạch chính) có trong các mạch điều khiển, đo lường, tín hiệu.",
+    "url": "https://thuvienphapluat.vn/tnpl/14221/Mach-phu-cua-khoi-dong-mem-phong-no?tab=0"
+  },
+  {
+    "term_id": 874,
+    "term_name": "Mạch lực của khởi động mềm phòng nổ",
+    "definition": "Là toàn bộ phần mang điện trong mạch được dùng để truyền năng lượng điện cho phụ tải.",
+    "url": "https://thuvienphapluat.vn/tnpl/14220/Mach-luc-cua-khoi-dong-mem-phong-no?tab=0"
+  },
+  {
+    "term_id": 875,
+    "term_name": "Contactor Bypass",
+    "definition": "Bộ nối tắt bypass\nTiếng Anh: \n\nLà thiết bị dùng để ngắt hoặc kết nối trực tiếp động cơ với nguồn điện sau khi khởi động.",
+    "url": "https://thuvienphapluat.vn/tnpl/14219/Bo-noi-tat-bypass?tab=0"
+  },
+  {
+    "term_id": 876,
+    "term_name": "Thyristor (SCR)",
+    "definition": "Tiếng Anh: Thyristor (SCR)\n\nLà linh kiện bán dẫn đóng vai trò như một khóa điện tử có điều khiển được sử dụng với chức năng chính là điều khiển và đóng ngắt dòng điện.",
+    "url": "https://thuvienphapluat.vn/tnpl/14217/Thyristor-SCR?tab=0"
+  },
+  {
+    "term_id": 877,
+    "term_name": "Dây nổ chịu nước",
+    "definition": "Là dây nổ sử dụng được trong môi trường nước.",
+    "url": "https://thuvienphapluat.vn/tnpl/14215/Day-no-chiu-nuoc?tab=0"
+  },
+  {
+    "term_id": 878,
+    "term_name": "Gia súc, gia cầm non",
+    "definition": "Bao gồm các đối tượng sau đây:\n\n- Lợn con có khối lượng đến 25 kg hoặc từ sơ sinh đến 60 ngày tuổi;\n\n- Gà, vịt, ngan, chim cút từ 01 đến 21 ngày tuổi;\n\n- Bê từ sơ sinh đến 06 tháng tuổi.",
+    "url": "https://thuvienphapluat.vn/tnpl/14212/Gia-suc-gia-cam-non?tab=0"
+  },
+  {
+    "term_id": 879,
+    "term_name": "Nước sạch sử dụng cho mục đích sinh hoạt",
+    "definition": "Là nước đã qua xử lý có chất lượng bảo đảm, đáp ứng yêu cầu sử dụng cho mục đích ăn uống, vệ sinh của con người (nước sạch).",
+    "url": "https://thuvienphapluat.vn/tnpl/14210/Nuoc-sach-su-dung-cho-muc-dich-sinh-hoat?tab=0"
+  },
+  {
+    "term_id": 880,
+    "term_name": "Hàm lượng ôxy tham chiếu (%) quy định trong khí thải công nghiệp",
+    "definition": "Là lượng ôxy dư tiêu chuẩn được xác định khi thực hiện quá trình đốt cháy nhiên liệu ở các dạng khác nhau ở điều kiện tiêu chuẩn.",
+    "url": "https://thuvienphapluat.vn/tnpl/14204/Ham-luong-oxy-tham-chieu-quy-dinh-trong-khi-thai-cong-nghiep?tab=0"
+  }
+]

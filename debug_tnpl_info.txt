@@ -1,0 +1,43 @@
+
+=== Main containers ===
+Found 45 content containers
+
+=== Forms ===
+Form 1: id=aspnetForm, class=None
+Form 2: id=FrFogetPassword, class=None
+Form 3: id=FrFeedBack_vb, class=None
+Form 4: id=FrAnnotate, class=None
+Form 5: id=updateHopdong, class=None
+Form 6: id=FrSendEmailDoc, class=None
+Form 7: id=FrFeedBack, class=None
+Form 8: id=FrChangePassword, class=None
+
+=== Tables ===
+Table 1: id=tblcontainer, class=None, rows=23
+Table 2: id=None, class=None, rows=22
+Table 3: id=None, class=None, rows=16
+Table 4: id=None, class=None, rows=9
+Table 5: id=None, class=None, rows=1
+Table 6: id=None, class=table, rows=3
+Table 7: id=None, class=None, rows=1
+Table 8: id=None, class=None, rows=4
+Table 9: id=None, class=None, rows=4
+Table 10: id=None, class=None, rows=3
+Table 11: id=None, class=None, rows=2
+Table 12: id=None, class=None, rows=1
+Table 13: id=None, class=None, rows=5
+Table 14: id=None, class=None, rows=5
+Table 15: id=None, class=None, rows=1
+Table 16: id=None, class=None, rows=1
+
+=== Links (first 10) ===
+1.   Thuật ngữ pháp lý -> /tnpl/home
+2. Thuật ngữ pháp lý -> /tnpl/home
+3. Cát, sỏi lòng sông, lòng hồ -> /tnpl/4334/Cat-soi-long-song-long-ho?tab=0
+4. Tàu quân sự nước ngoài đến Việt Nam -> /tnpl/6074/Tau-quan-su-nuoc-ngoai-den-Viet-Nam?tab=0
+5. Các cơ quan quản lý nhà nước chuyên ngành tại cảng -> /tnpl/6084/Cac-co-quan-quan-ly-nha-nuoc-chuyen-nganh-tai-cang-bien?tab=0
+6. Điểm chuẩn (tài liệu khí tượng bề mặt) -> /tnpl/14675/Diem-chuan-tai-lieu-khi-tuong-be-mat?tab=0
+7. Điểm chất lượng (tài liệu khí tượng bề mặt) -> /tnpl/14677/Diem-chat-luong-tai-lieu-khi-tuong-be-mat?tab=0
+8. Phương tiện đo khí tượng bề mặt không tự động -> /tnpl/14678/Phuong-tien-do-khi-tuong-be-mat-khong-tu-dong?tab=0
+9. Phương tiện đo khí tượng bề mặt tự động -> /tnpl/14679/Phuong-tien-do-khi-tuong-be-mat-tu-dong?tab=0
+10. Trạm khí tượng bề mặt quan trắc bằng phương tiện đ -> /tnpl/14680/Tram-khi-tuong-be-mat-quan-trac-bang-phuong-tien-do-khong-tu-dong?tab=0

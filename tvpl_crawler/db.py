@@ -1,9 +1,18 @@
 """Module lưu dữ liệu vào PostgreSQL"""
-import psycopg2
+try:
+    import psycopg2
+    import psycopg2.extras
+    HAS_PSYCOPG2 = True
+except ImportError:
+    HAS_PSYCOPG2 = False
 import json
 import hashlib
 from datetime import datetime
 from typing import Dict, List
+if HAS_PSYCOPG2:
+    from psycopg2.extensions import register_adapter, AsIs
+    # Register adapter for dict -> jsonb
+    register_adapter(dict, psycopg2.extras.Json)
 
 class TVPLDatabase:
     def __init__(self, host="localhost", port=5432, dbname="tvpl_crawl", user="tvpl_user", password=""):
@@ -17,6 +26,8 @@ class TVPLDatabase:
         self.conn = None
     
     def connect(self):
+        if not HAS_PSYCOPG2:
+            raise ImportError("psycopg2 not installed. Install with: pip install psycopg2-binary")
         if not self.conn or self.conn.closed:
             self.conn = psycopg2.connect(**self.conn_params)
         return self.conn
@@ -31,7 +42,9 @@ class TVPLDatabase:
         cur = conn.cursor()
         try:
             cur.execute("""
-                INSERT INTO crawl_sessions (status) VALUES ('RUNNING') RETURNING session_id
+                INSERT INTO crawl_sessions (status, started_at) 
+                VALUES ('RUNNING', NOW() AT TIME ZONE 'Asia/Ho_Chi_Minh') 
+                RETURNING session_id
             """)
             session_id = cur.fetchone()[0]
             conn.commit()
@@ -46,7 +59,24 @@ class TVPLDatabase:
         try:
             cur.execute("""
                 UPDATE crawl_sessions 
-                SET status = 'COMPLETED', completed_at = NOW(), 
+                SET status = 'COMPLETED', 
+                    completed_at = NOW() AT TIME ZONE 'Asia/Ho_Chi_Minh', 
+                    total_docs = %s, new_versions = %s, unchanged_docs = %s
+                WHERE session_id = %s
+            """, (total, new_versions, unchanged, session_id))
+            conn.commit()
+        finally:
+            cur.close()
+    
+    def fail_crawl_session(self, session_id: int, total: int, new_versions: int, unchanged: int, errors: int):
+        """Kết thúc session với lỗi"""
+        conn = self.connect()
+        cur = conn.cursor()
+        try:
+            cur.execute("""
+                UPDATE crawl_sessions 
+                SET status = 'FAILED', 
+                    completed_at = NOW() AT TIME ZONE 'Asia/Ho_Chi_Minh', 
                     total_docs = %s, new_versions = %s, unchanged_docs = %s
                 WHERE session_id = %s
             """, (total, new_versions, unchanged, session_id))
@@ -70,7 +100,7 @@ class TVPLDatabase:
     
     def _compute_diff(self, old_data: dict, new_data: dict) -> dict:
         """Tính toán thay đổi giữa 2 versions"""
-        diff = {"changed_fields": []}
+        diff = {"changed_fields": [], "relations_added": 0, "relations_removed": 0}
         
         # So sánh doc_info
         old_info = old_data.get("doc_info", {})
@@ -112,35 +142,94 @@ class TVPLDatabase:
             if tab8_links:
                 download_link = tab8_links[0].get("href", "")
             
-            content_hash = self._compute_hash(data)
+            # Chỉ tính hash dựa trên phần quan trọng (doc_info + tab4 + tab8), bỏ screenshots
+            important_data = {
+                "doc_info": data.get("doc_info", {}),
+                "tab4": data.get("tab4", {}),
+                "tab8": data.get("tab8", {})
+            }
+            content_hash = self._compute_hash(important_data)
             
-            # Kiểm tra hash cũ TRƯỚC khi update
+            # Kiểm tra hash cũ VÀ ngày cập nhật
             cur.execute("""
-                SELECT hash FROM documents_finals WHERE doc_id = %s
+                SELECT hash, update_date FROM documents_finals WHERE doc_id = %s
             """, (doc_id,))
-            old_hash_row = cur.fetchone()
-            old_hash = old_hash_row[0] if old_hash_row else None
+            old_row_check = cur.fetchone()
+            old_hash = old_row_check[0] if old_row_check else None
+            old_update_date = old_row_check[1] if old_row_check else None
             
-            # Xác định có thay đổi không (lần đầu = thay đổi)
-            has_changed = (old_hash is None or old_hash != content_hash)
+            # Xác định có thay đổi: hash khác HOẶC ngày cập nhật mới hơn
+            has_changed = (
+                old_hash is None or 
+                old_hash != content_hash or
+                (update_date and old_update_date and update_date > old_update_date)
+            )
             
-            # Insert/Update documents_finals
+            # Lấy toàn bộ data cũ từ DB để merge thông minh
             cur.execute("""
-                INSERT INTO documents_finals (doc_id, title, url, hash, update_date, effective_date, metadata, download_link, last_crawled)
-                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, NOW())
-                ON CONFLICT (doc_id) DO UPDATE SET
-                    title = EXCLUDED.title,
-                    url = EXCLUDED.url,
-                    hash = EXCLUDED.hash,
-                    update_date = EXCLUDED.update_date,
-                    effective_date = EXCLUDED.effective_date,
-                    metadata = EXCLUDED.metadata,
-                    download_link = EXCLUDED.download_link,
-                    last_crawled = NOW(),
-                    updated_at = NOW()
-            """, (doc_id, title, url, content_hash, update_date, effective_date, json.dumps(metadata), download_link))
+                SELECT metadata, hash FROM documents_finals WHERE doc_id = %s
+            """, (doc_id,))
+            old_row = cur.fetchone()
             
-            # Chỉ insert version nếu có thay đổi (bao gồm lần đầu)
+            if old_row:
+                old_metadata = old_row[0]
+                
+                # 1. Chỉ dùng metadata mới (schema mới), không merge với cũ
+                # Vì schema đã thay đổi từ key có dấu sang không dấu
+                # metadata giữ nguyên từ data mới
+                
+                # 2. Tab4: Ưu tiên bản mới (nguồn chính thức), chỉ fallback nếu bản mới trống/lỗi
+                if has_changed:
+                    new_total = data.get("tab4", {}).get("total", 0)
+                    
+                    # Chỉ fallback sang bản cũ nếu bản mới rõ ràng bị lỗi (total = 0 nhưng cũ có data)
+                    if new_total == 0:
+                        try:
+                            cur.execute("""
+                                SELECT content FROM document_versions 
+                                WHERE doc_id = %s ORDER BY crawled_at DESC LIMIT 1
+                            """, (doc_id,))
+                            old_content_row = cur.fetchone()
+                            if old_content_row:
+                                old_tab4 = old_content_row[0].get("tab4", {})
+                                old_total = old_tab4.get("total", 0)
+                                # Chỉ dùng bản cũ nếu nó có data và bản mới thực sự trống
+                                if old_total > 0:
+                                    data["tab4"] = old_tab4
+                        except Exception:
+                            pass
+                    # Ngược lại: luôn dùng bản mới (kể cả khi ít hơn bản cũ)
+                
+                # 3. Tab8: luôn lấy bản mới (links có thể thay đổi)
+                # Không cần xử lý gì, giữ nguyên data mới
+            
+            # Chỉ update finals khi hash thay đổi
+            should_update = has_changed
+            
+            if should_update:
+                cur.execute("""
+                    INSERT INTO documents_finals (doc_id, title, url, hash, update_date, effective_date, metadata, download_link, last_crawled)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, NOW() AT TIME ZONE 'Asia/Ho_Chi_Minh')
+                    ON CONFLICT (doc_id) DO UPDATE SET
+                        title = EXCLUDED.title,
+                        url = EXCLUDED.url,
+                        hash = EXCLUDED.hash,
+                        update_date = EXCLUDED.update_date,
+                        effective_date = EXCLUDED.effective_date,
+                        metadata = EXCLUDED.metadata,
+                        download_link = EXCLUDED.download_link,
+                        last_crawled = NOW() AT TIME ZONE 'Asia/Ho_Chi_Minh',
+                        updated_at = NOW() AT TIME ZONE 'Asia/Ho_Chi_Minh'
+                """, (doc_id, title, url, content_hash, update_date, effective_date, metadata, download_link))
+            else:
+                # Data mới kém hơn, chỉ update last_crawled
+                cur.execute("""
+                    UPDATE documents_finals 
+                    SET last_crawled = NOW() AT TIME ZONE 'Asia/Ho_Chi_Minh'
+                    WHERE doc_id = %s
+                """, (doc_id,))
+            
+            # Chỉ insert version nếu có thay đổi
             if has_changed:
                 # Tính diff_summary và source_snapshot_date
                 diff_summary = None
@@ -153,13 +242,19 @@ class TVPLDatabase:
                     """, (doc_id,))
                     old_content_row = cur.fetchone()
                     if old_content_row:
-                        old_data = json.loads(old_content_row[0])
+                        old_data = old_content_row[0]  # Already a dict from jsonb
                         diff_summary = self._compute_diff(old_data, data)
+                
+                # Rút gọn content: chỉ lưu doc_info và tab4
+                compact_content = {
+                    "doc_info": data.get("doc_info", {}),
+                    "tab4": data.get("tab4", {})
+                }
                 
                 cur.execute("""
                     INSERT INTO document_versions (doc_id, version_hash, content, session_id, diff_summary, source_snapshot_date)
                     VALUES (%s, %s, %s, %s, %s, %s)
-                """, (doc_id, content_hash, json.dumps(data), session_id, json.dumps(diff_summary) if diff_summary else None, source_snapshot_date))
+                """, (doc_id, content_hash, compact_content, session_id, diff_summary, source_snapshot_date))
             
             # Chỉ update relations nếu có thay đổi
             if has_changed:

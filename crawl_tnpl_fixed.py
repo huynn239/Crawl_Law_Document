@@ -34,8 +34,12 @@ async def crawl_tnpl_page(page, page_num=1, retry=3):
     terms = []
     
     for div in divs:
-        # Lấy link đầu tiên (tên thuật ngữ chính)
-        first_link = await div.query_selector("a.tnpl")
+        # Lấy thẻ <b> đầu tiên, sau đó lấy link đầu tiên trong <b> (trước <br>)
+        b_tag = await div.query_selector("b")
+        if not b_tag:
+            continue
+        
+        first_link = await b_tag.query_selector("a.tnpl")
         if not first_link:
             continue
         
@@ -51,11 +55,21 @@ async def crawl_tnpl_page(page, page_num=1, retry=3):
         
         title = (await first_link.inner_text()).strip()
         
-        # Lấy definition từ div chứa thẻ p (sau div.px5)
-        # Bỏ qua các thẻ <b> (chứa tiếng Anh)
+        # Lấy definition: chỉ lấy nội dung từ các thẻ <p> trong div sau div.px5
         content_div = await div.query_selector("div.px5 ~ div")
         if content_div:
-            definition = (await content_div.inner_text()).strip()
+            # Lấy tất cả thẻ <p> trong div
+            p_tags = await content_div.query_selector_all("p")
+            if p_tags:
+                p_texts = []
+                for p in p_tags:
+                    text = (await p.inner_text()).strip()
+                    if text:
+                        p_texts.append(text)
+                definition = "\n".join(p_texts)
+            else:
+                # Fallback: lấy toàn bộ text
+                definition = (await content_div.inner_text()).strip()
         else:
             definition = ""
         
@@ -88,7 +102,8 @@ async def main():
     session_id = db.start_session()
     print(f"🚀 Session #{session_id} started\n")
     
-    async with async_playwright() as p:
+    try:
+        async with async_playwright() as p:
         browser = await p.chromium.launch(
             headless=not HEADED,
             args=['--disable-blink-features=AutomationControlled']
@@ -125,10 +140,17 @@ async def main():
                 print(f"  Skipping to next page...")
                 continue
         
-        await browser.close()
-    
-    db.complete_session(session_id, new_count + updated_count, new_count, updated_count)
-    db.close()
+            await browser.close()
+        
+        db.complete_session(session_id, new_count + updated_count, new_count, updated_count)
+    except KeyboardInterrupt:
+        print("\n⚠️ Interrupted by user")
+        db.complete_session(session_id, new_count + updated_count, new_count, updated_count, status='FAILED')
+    except Exception as e:
+        print(f"\n❌ Error: {e}")
+        db.complete_session(session_id, new_count + updated_count, new_count, updated_count, status='FAILED')
+    finally:
+        db.close()
     
     print(f"\n✅ Hoàn tất!")
     print(f"  - New: {new_count}")

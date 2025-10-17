@@ -8,13 +8,18 @@ services:
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_DB: tvpl_db
+      POSTGRES_DB: tvpl_crawl
       POSTGRES_USER: tvpl_user
       POSTGRES_PASSWORD: tvpl_pass
+    command: [
+      "postgres",
+      "-c", "max_connections=200",
+      "-c", "shared_buffers=256MB"
+    ]
     volumes:
       - postgres-data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U tvpl_user -d tvpl_db"]
+      test: ["CMD-SHELL", "pg_isready -U tvpl_user -d tvpl_crawl"]
       interval: 5s
       timeout: 5s
       retries: 10
@@ -51,9 +56,9 @@ services:
     environment:
       DB_HOST: postgres
       DB_PORT: 5432
-      DB_NAME: tvpl_db
+      DB_NAME: tvpl_crawl
       DB_USER: tvpl_user
-      DB_PASS: tvpl_pass
+      DB_PASSWORD: tvpl_pass
     volumes:
       - ./data:/app/data
       - ./api:/app/api

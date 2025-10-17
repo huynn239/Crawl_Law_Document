@@ -36,16 +36,16 @@ class TNPLDatabase:
         finally:
             cur.close()
     
-    def complete_session(self, session_id: int, total: int, new: int, updated: int):
+    def complete_session(self, session_id: int, total: int, new: int, updated: int, status: str = 'COMPLETED'):
         conn = self.connect()
         cur = conn.cursor()
         try:
             cur.execute("""
                 UPDATE tnpl_crawl_sessions 
-                SET status = 'COMPLETED', completed_at = NOW(), 
+                SET status = %s, completed_at = NOW(), 
                     total_terms = %s, new_terms = %s, updated_terms = %s
                 WHERE session_id = %s
-            """, (total, new, updated, session_id))
+            """, (status, total, new, updated, session_id))
             conn.commit()
         finally:
             cur.close()

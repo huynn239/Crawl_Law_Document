@@ -1,3 +1,6 @@
+# Import logger config FIRST before any other imports
+from api.logger_config import logger
+
 from fastapi import FastAPI, HTTPException, Body, Query
 from pydantic import BaseModel
 from typing import List, Optional
@@ -5,20 +8,19 @@ from pathlib import Path
 import tempfile
 import json
 import os
-from loguru import logger
-from tvpl_crawler.db import TVPLDatabase
+# from tvpl_crawler.core.db import TVPLDatabase
 
 # Reuse existing CLI-layer functions to avoid duplicating logic
-from tvpl_crawler.main import (
-    cmd_links_from_search,
-    cmd_luoc_do_playwright_from_file,
-)
-from tvpl_crawler.playwright_login import login_with_playwright
-from tvpl_crawler.playwright_extract import (
-    extract_tab8_batch_with_playwright,
-    extract_luoc_do_with_playwright,
-)
-from tvpl_crawler.compact_schema import compact_schema
+# from tvpl_crawler.main import (
+#     cmd_links_from_search,
+#     cmd_luoc_do_playwright_from_file,
+# )
+# from tvpl_crawler.crawlers.playwright.playwright_login import login_with_playwright
+# from tvpl_crawler.crawlers.playwright.playwright_extract import (
+#     extract_tab8_batch_with_playwright,
+#     extract_luoc_do_with_playwright,
+# )
+# from tvpl_crawler.utils.compact_schema import compact_schema
 
 
 app = FastAPI(title="TVPL Crawler API", version="0.1.0")
@@ -44,6 +46,7 @@ def health():
 
 @app.post("/refresh-cookies")
 def refresh_cookies():
+    from tvpl_crawler.crawlers.playwright.playwright_login import login_with_playwright
     """Login using environment variables to refresh cookies without sending credentials via HTTP.
     Env vars:
       - TVPL_USERNAME, TVPL_PASSWORD, TVPL_LOGIN_URL (optional)
@@ -99,6 +102,7 @@ class LoginRequest(BaseModel):
 
 @app.post("/login")
 def login(req: LoginRequest):
+    from tvpl_crawler.crawlers.playwright.playwright_login import login_with_playwright
     try:
         ok = login_with_playwright(
             login_url=req.login_url,
@@ -127,7 +131,7 @@ async def links_basic(req: LinksRequest):
     try:
         if req.use_playwright:
             # Use Playwright with CAPTCHA bypass
-            from tvpl_crawler.links_playwright import crawl_links_with_playwright
+            from tvpl_crawler.crawlers.links_playwright import crawl_links_with_playwright
             
             start_page = req.start_page or 1
             end_page = req.end_page if req.end_page else (start_page + req.max_pages - 1)
@@ -143,8 +147,8 @@ async def links_basic(req: LinksRequest):
             )
         else:
             # Use HTTP client (original method) - call async logic directly
-            from tvpl_crawler.http import HttpClient
-            from tvpl_crawler.parser import extract_document_items_from_search
+            from tvpl_crawler.core.http_client import HttpClient
+            from tvpl_crawler.core.parser import extract_document_items_from_search
             from urllib.parse import urlparse, urlunparse, parse_qs, urlencode
             import random
             
@@ -230,7 +234,7 @@ async def links_basic(req: LinksRequest):
         # Upsert links to doc_urls table
         if os.getenv('SUPABASE_URL'):
             try:
-                from tvpl_crawler.upsert_links import upsert_links
+                from tvpl_crawler.utils.upsert_links import upsert_links
                 stats = upsert_links(data)
                 logger.info(f"Upsert links: {stats}")
             except Exception as e:
@@ -256,6 +260,7 @@ class Tab8Request(BaseModel):
 
 @app.post("/tab8-download")
 def tab8_download(req: Tab8Request):
+    from tvpl_crawler.crawlers.playwright.playwright_extract import extract_tab8_batch_with_playwright
     try:
         results = extract_tab8_batch_with_playwright(
             urls=req.links,
@@ -335,7 +340,7 @@ async def crawl_pending(limit: int = None, concurrency: int = 2, timeout_ms: int
     
     try:
         # Fetch pending URLs from DB
-        from tvpl_crawler.fetch_pending_urls import fetch_pending_urls
+        from tvpl_crawler.crawlers.fetch_pending_urls import fetch_pending_urls
         
         tmp_links = Path(tempfile.gettempdir()) / "api_pending_links.json"
         links = fetch_pending_urls(limit, str(tmp_links))
@@ -396,12 +401,12 @@ async def crawl_pending(limit: int = None, concurrency: int = 2, timeout_ms: int
         if session_file.exists():
             try:
                 session_id = int(session_file.read_text())
-                from tvpl_crawler.import_supabase_v2 import supabase
+                from tvpl_crawler.utils.import_supabase_v2 import supabase
                 from datetime import datetime
                 
-                session = supabase.from_('system.crawl_sessions').select('*').eq('session_id', session_id).execute()
+                session = supabase.table('crawl_sessions').select('*').eq('session_id', session_id).execute()
                 if session.data and session.data[0]['status'] == 'RUNNING':
-                    supabase.from_('system.crawl_sessions').update({
+                    supabase.table('crawl_sessions').update({
                         'status': 'FAILED',
                         'completed_at': datetime.now().isoformat()
                     }).eq('session_id', session_id).execute()
@@ -493,10 +498,9 @@ async def download_pending(limit: int = 100, file_types: List[str] = ["doc", "do
         supabase_key = os.getenv('SUPABASE_SERVICE_ROLE_KEY') or os.getenv('SUPABASE_KEY')
         supabase = create_client(supabase_url, supabase_key)
         
-        # Query pending and failed files
-        query = supabase.from_('tvpl.document_files').select('*').in_('download_status', ['pending', 'failed'])
-        if file_types:
-            query = query.in_('file_type', file_types)
+        # Query pending and failed files - use view for better filtering
+        query = supabase.table('v_pending_downloads').select('*')
+        # View already filters: download_status IN ('pending', 'failed') AND file_type = 'doc'
         
         result = query.limit(limit).execute()
         files = result.data
@@ -562,7 +566,7 @@ async def download_pending(limit: int = 100, file_types: List[str] = ["doc", "do
                     )
                     
                     # Update status
-                    supabase.from_('tvpl.document_files').update({
+                    supabase.table('document_files').update({
                         'download_status': 'downloaded',
                         'local_path': bucket_path,
                         'downloaded_at': datetime.now().isoformat()
@@ -582,7 +586,7 @@ async def download_pending(limit: int = 100, file_types: List[str] = ["doc", "do
                     logger.error(f"✗ Failed to download {file_name}: {e}")
                     
                     # Update failed status
-                    supabase.from_('tvpl.document_files').update({
+                    supabase.table('document_files').update({
                         'download_status': 'failed'
                     }).eq('id', file_id).execute()
         
@@ -644,6 +648,9 @@ def _relogin_sync():
 
 @app.post("/tab4-details")
 def tab4_details(req: Tab4Request):
+    from tvpl_crawler.crawlers.playwright.playwright_extract import extract_luoc_do_with_playwright
+    from tvpl_crawler.utils.compact_schema import compact_schema
+    from tvpl_crawler.core.db import TVPLDatabase
     """Open each document URL and parse Tab4 (Lược đồ) fields.
     Returns a list of dicts with compact schema.
     """
@@ -726,7 +733,7 @@ def tab4_details(req: Tab4Request):
 async def extract_formulas(req: FormulaRequest):
     """Extract công thức tính toán từ tab1 (nội dung) của các văn bản"""
     try:
-        from tvpl_crawler.formula_extractor import extract_formulas_with_crawl4ai, extract_tab1_content_simple
+        from tvpl_crawler.extractors.formula_extractor import extract_formulas_with_crawl4ai, extract_tab1_content_simple
         from playwright.async_api import async_playwright
         
         results = []

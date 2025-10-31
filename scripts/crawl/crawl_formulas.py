@@ -9,7 +9,7 @@ from pathlib import Path
 # Fix encoding for Windows
 if sys.platform == 'win32':
     sys.stdout.reconfigure(encoding='utf-8')
-from tvpl_crawler.formula_extractor import extract_tab1_content_simple, extract_formulas_with_crawl4ai
+from tvpl_crawler.extractors.formula_extractor import extract_tab1_content_simple, extract_formulas_with_crawl4ai
 from playwright.async_api import async_playwright
 
 if len(sys.argv) < 2:
@@ -31,7 +31,7 @@ async def crawl_formulas():
     
     if method == "crawl4ai" or method == "hybrid":
         # Sử dụng Crawl4AI + LLM
-        from tvpl_crawler.formula_extractor import extract_formulas_with_crawl4ai
+        from tvpl_crawler.extractors.formula_extractor import extract_formulas_with_crawl4ai
         
         for idx, item in enumerate(links, 1):
             url = item.get("Url") or item.get("url", "")
@@ -47,7 +47,7 @@ async def crawl_formulas():
                 if result.get("total_formulas", 0) == 0:
                     print("  Crawl4AI found nothing, trying ultimate hybrid extractor...")
                     try:
-                        from ultimate_formula_extractor import UltimateFormulaExtractor
+                        from scripts.extract.ultimate_formula_extractor import UltimateFormulaExtractor
                         import os
                         from dotenv import load_dotenv
                         

@@ -3,8 +3,8 @@ import asyncio
 import os
 from loguru import logger
 from pathlib import Path
-from .http_client import fetch_text
-from .parser import (
+from .core.http_client import fetch_text
+from .core.parser import (
     parse_title,
     extract_document_info,
     extract_document_links_from_search,
@@ -14,7 +14,7 @@ from .parser import (
 from urllib.parse import urlparse, urlunparse, parse_qs, urlencode
 from getpass import getpass
 from typing import List
-from .http_client import HttpClient
+from .core.http_client import HttpClient
 from .playwright_login import login_with_playwright
 from .playwright_extract import extract_luoc_do_with_playwright
 
@@ -26,7 +26,7 @@ def cmd_crawl_url(url: str, out: Path | None):
         title = parse_title(html)
         logger.info(f"Title: {title}")
         if out:
-            from .storage import JsonlWriter
+            from .core.storage import JsonlWriter
             w = JsonlWriter(out)
             w.write({"url": url, **info})
             w.close()
@@ -79,7 +79,7 @@ def cmd_luoc_do_playwright_from_file(
     rows: list[dict] = []
     w = None
     if fmt != 'json':
-        from .storage import JsonlWriter
+        from .core.storage import JsonlWriter
         out.parent.mkdir(parents=True, exist_ok=True)
         w = JsonlWriter(out)
     else:
@@ -199,7 +199,7 @@ def cmd_luoc_do_from_file(
                 out.write_text(json.dumps(results, ensure_ascii=False, indent=2), encoding='utf-8')
                 logger.info(f"Saved JSON array to {out}")
             else:
-                from .storage import JsonlWriter
+                from .core.storage import JsonlWriter
                 w = JsonlWriter(out)
                 for row in results:
                     w.write(row)
@@ -340,7 +340,7 @@ def cmd_links_from_search(
                                     writer.writerow([idx, it.get("title", ""), it.get("canonical_url") or it.get("url"), it.get("ngay_cap_nhat", "")])
                         logger.info(f"Saved CSV to {out}")
                     else:  # jsonl
-                        from .storage import JsonlWriter
+                        from .core.storage import JsonlWriter
                         w = JsonlWriter(out)
                         if only_basic:
                             for row in basic_items:

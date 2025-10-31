@@ -1,0 +1,60 @@
+{
+  "analysis_timestamp": "20251021_095509",
+  "regex_file": "regex_results_20251021_095203.json",
+  "llm_file": "llm_results_20251021_095203.json",
+  "total_urls_processed": 3,
+  "summary": {
+    "total_missed_formulas_by_regex": 0,
+    "total_missed_parameters_by_regex": 0,
+    "total_false_positive_formulas": 0,
+    "total_false_positive_parameters": 0,
+    "gap_score": 0
+  },
+  "learning_targets": {
+    "missed_formulas_sample": [],
+    "missed_parameters_sample": [],
+    "pattern_analysis": {},
+    "total_learning_opportunities": 0
+  },
+  "detailed_comparison": [
+    {
+      "url": "https://thuvienphapluat.vn/cong-van/Lao-dong-Tien-luong/Cong-van-7516-BGDDT-NGCBQLGD-2024-che-do-phu-cap-uu-dai-nha-giao-trong-thoi-gian-nghi-om-dau-634140.aspx",
+      "regex_error": null,
+      "llm_error": "",
+      "regex_formulas_count": 0,
+      "llm_formulas_count": 0,
+      "regex_parameters_count": 0,
+      "llm_parameters_count": 0,
+      "missed_formulas_by_regex": [],
+      "missed_parameters_by_regex": [],
+      "false_positive_formulas": [],
+      "false_positive_parameters": []
+    },
+    {
+      "url": "https://thuvienphapluat.vn/van-ban/Lao-dong-Tien-luong/Thong-tu-lien-tich-07-2013-TTLT-BGDDT-BNV-BTC-huong-dan-che-do-tra-luong-176067.aspx",
+      "regex_error": "Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://thuvienphapluat.vn/van-ban/Lao-dong-Tien-luong/Thong-tu-lien-tich-07-2013-TTLT-BGDDT-BNV-BTC-huong-dan-che-do-tra-luong-176067.aspx\", waiting until \"domcontentloaded\"\n",
+      "llm_error": "",
+      "regex_formulas_count": 0,
+      "llm_formulas_count": 0,
+      "regex_parameters_count": 0,
+      "llm_parameters_count": 0,
+      "missed_formulas_by_regex": [],
+      "missed_parameters_by_regex": [],
+      "false_positive_formulas": [],
+      "false_positive_parameters": []
+    },
+    {
+      "url": "https://thuvienphapluat.vn/van-ban/Giao-duc/Thong-tu-21-2025-TT-BGDDT-che-do-tra-tien-luong-day-them-gio-nha-giao-trong-cac-co-so-giao-duc-cong-lap-673797.aspx?dll=true",
+      "regex_error": "Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://thuvienphapluat.vn/van-ban/Giao-duc/Thong-tu-21-2025-TT-BGDDT-che-do-tra-tien-luong-day-them-gio-nha-giao-trong-cac-co-so-giao-duc-cong-lap-673797.aspx?dll=true\", waiting until \"domcontentloaded\"\n",
+      "llm_error": "",
+      "regex_formulas_count": 0,
+      "llm_formulas_count": 0,
+      "regex_parameters_count": 0,
+      "llm_parameters_count": 0,
+      "missed_formulas_by_regex": [],
+      "missed_parameters_by_regex": [],
+      "false_positive_formulas": [],
+      "false_positive_parameters": []
+    }
+  ]
+}

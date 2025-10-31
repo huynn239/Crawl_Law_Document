@@ -3,7 +3,7 @@ import asyncio
 import os
 from loguru import logger
 from pathlib import Path
-from .http import fetch_text
+from .http_client import fetch_text
 from .parser import (
     parse_title,
     extract_document_info,
@@ -14,7 +14,7 @@ from .parser import (
 from urllib.parse import urlparse, urlunparse, parse_qs, urlencode
 from getpass import getpass
 from typing import List
-from .http import HttpClient
+from .http_client import HttpClient
 from .playwright_login import login_with_playwright
 from .playwright_extract import extract_luoc_do_with_playwright
 
@@ -226,6 +226,8 @@ def cmd_links_from_search(
     fmt_opt: str | None = None,
     only_basic: bool = False,
     cookies_in: Path | None = None,
+    start_page: int = 1,
+    end_page: int | None = None,
 ):
     async def _run():
         # Prepare client (with optional cookies)
@@ -240,11 +242,19 @@ def cmd_links_from_search(
 
             all_items = []
             seen_keys = set()  # use doc_id first, fallback to canonical url
-            for page in range(1, max_pages + 1):
-                page_url = _set_query_param(url, page_param, str(page)) if max_pages > 1 else url
+            # Use start_page and end_page if provided, otherwise use max_pages
+            page_start = start_page
+            page_end = end_page if end_page else (start_page + max_pages - 1)
+            for page in range(page_start, page_end + 1):
+                page_url = _set_query_param(url, page_param, str(page))
                 logger.debug(f"Fetching search page: {page_url}")
                 try:
                     html = await client.get_text(page_url)
+                    # Check for CAPTCHA
+                    if "Bạn đã tìm kiếm với tốc độ của Robot" in html or "txtSecCode" in html:
+                        logger.error(f"CAPTCHA detected on page {page}! Stopping crawl.")
+                        logger.error("Please increase delay or use Playwright with CAPTCHA solver.")
+                        break
                 except Exception as e:
                     logger.error(f"Fetch failed for {page_url}: {e}")
                     continue
@@ -283,6 +293,12 @@ def cmd_links_from_search(
                 logger.info(
                     f"Page {page}: added {page_added} (unique candidates on page: {page_seen}, raw items: {len(items)})"
                 )
+                # Add delay between pages to avoid CAPTCHA (5-10s)
+                if page < page_end:
+                    import random
+                    delay = random.uniform(5.0, 10.0)
+                    logger.info(f"Waiting {delay:.1f}s before next page...")
+                    await asyncio.sleep(delay)
             logger.info(f"Total unique items: {len(all_items)}")
             for it in all_items:
                 print(it.get("canonical_url") or it.get("url"))
@@ -368,7 +384,9 @@ def build_parser() -> argparse.ArgumentParser:
         help="URL trang tim kiem (mac dinh la trang tim van ban chung)"
     )
     p2.add_argument("--out", "-o", type=Path, help="Duong dan file dau ra")
-    p2.add_argument("--max-pages", "-m", type=int, default=1, help="So trang can lay (mac dinh 1)")
+    p2.add_argument("--max-pages", "-m", type=int, default=1, help="So trang can lay (mac dinh 1, bo qua neu dung --start-page/--end-page)")
+    p2.add_argument("--start-page", type=int, help="Trang bat dau (mac dinh 1)")
+    p2.add_argument("--end-page", type=int, help="Trang ket thuc (dung voi --start-page)")
     p2.add_argument("--page-param", type=str, default="page", help="Ten tham so phan trang, mac dinh 'page'")
     # Format option: by file extension or --format
     p2.add_argument("--format", "-f", choices=["jsonl", "json", "csv"], help="Dinh dang xuat (mac dinh dua tren duoi file)")
@@ -384,7 +402,9 @@ def build_parser() -> argparse.ArgumentParser:
         help="URL trang tim kiem (mac dinh la trang tim van ban chung)"
     )
     p3.add_argument("--out", "-o", type=Path, required=True, help="Duong dan file dau ra (.json, .jsonl hoac .csv)")
-    p3.add_argument("--max-pages", "-m", type=int, default=1, help="So trang can lay (mac dinh 1)")
+    p3.add_argument("--max-pages", "-m", type=int, default=1, help="So trang can lay (mac dinh 1, bo qua neu dung --start-page/--end-page)")
+    p3.add_argument("--start-page", type=int, help="Trang bat dau (mac dinh 1)")
+    p3.add_argument("--end-page", type=int, help="Trang ket thuc (dung voi --start-page)")
     p3.add_argument("--page-param", type=str, default="page", help="Ten tham so phan trang, mac dinh 'page'")
     p3.add_argument("--cookies", type=Path, help="Nap cookies tu file JSON de truy cap tinh nang yeu cau dang nhap")
 
@@ -436,11 +456,13 @@ def main():
     if args.cmd == "crawl-url":
         cmd_crawl_url(args.url, args.out)
     elif args.cmd == "links-from-search":
-        cmd_links_from_search(args.url, args.out, args.max_pages, args.page_param, args.format, args.only_basic, args.cookies)
+        cmd_links_from_search(args.url, args.out, args.max_pages, args.page_param, args.format, args.only_basic, args.cookies, 
+                            args.start_page or 1, args.end_page)
     elif args.cmd == "links-basic":
         # Infer format from file extension, default json if none
         fmt = (args.out.suffix.lower().lstrip('.') or 'json') if args.out else 'json'
-        cmd_links_from_search(args.url, args.out, args.max_pages, args.page_param, fmt, True, args.cookies)
+        cmd_links_from_search(args.url, args.out, args.max_pages, args.page_param, fmt, True, args.cookies,
+                            args.start_page or 1, args.end_page)
     elif args.cmd == "login-playwright":
         # Prioritize environment variables if not passed as parameters
         username = args.username or os.getenv("TVPL_USERNAME") or input("Username: ")

@@ -76,6 +76,7 @@ services:
     ports:
       - "5678:5678"
     environment:
+      WEBHOOK_URL: https://unpollarded-cason-unsaddened.ngrok-free.dev/
       DB_TYPE: postgresdb
       DB_POSTGRESDB_HOST: postgres
       DB_POSTGRESDB_PORT: 5432
@@ -89,6 +90,9 @@ services:
         condition: service_healthy
     volumes:
       - n8n_data:/home/node/.n8n
+      - ./data:/data
+      - ./.env:/home/node/.env:ro
+      - ./:/workspace:ro
     networks:
       - tvpl-net
 

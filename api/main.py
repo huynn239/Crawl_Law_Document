@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Body, Query
 from pydantic import BaseModel
 from typing import List, Optional
 from pathlib import Path
@@ -18,7 +18,7 @@ from tvpl_crawler.playwright_extract import (
     extract_tab8_batch_with_playwright,
     extract_luoc_do_with_playwright,
 )
-from compact_schema import compact_schema
+from tvpl_crawler.compact_schema import compact_schema
 
 
 app = FastAPI(title="TVPL Crawler API", version="0.1.0")
@@ -27,9 +27,14 @@ app = FastAPI(title="TVPL Crawler API", version="0.1.0")
 class LinksRequest(BaseModel):
     url: str
     max_pages: int = 1
+    start_page: Optional[int] = None
+    end_page: Optional[int] = None
     page_param: str = "page"
     cookies: Optional[str] = "data/cookies.json"
-    only_basic: bool = True  # default to basic 3 fields
+    only_basic: bool = True
+    output: Optional[str] = None  # Optional output file path
+    use_playwright: bool = False  # Use Playwright with CAPTCHA bypass
+    headed: bool = False  # Show browser (for debugging)
 
 
 @app.get("/health")
@@ -118,22 +123,119 @@ def login(req: LoginRequest):
 
 
 @app.post("/links-basic")
-def links_basic(req: LinksRequest):
+async def links_basic(req: LinksRequest):
     try:
-        tmp_out = Path(tempfile.gettempdir()) / "links_basic.json"
-        # Ensure parent exists
-        tmp_out.parent.mkdir(parents=True, exist_ok=True)
-        # fmt=json to return an array; only_basic True for 3 fields when requested
-        cmd_links_from_search(
-            url=req.url,
-            out=tmp_out,
-            max_pages=req.max_pages,
-            page_param=req.page_param,
-            fmt_opt="json",
-            only_basic=req.only_basic,
-            cookies_in=Path(req.cookies) if req.cookies else None,
-        )
-        data = json.loads(tmp_out.read_text(encoding="utf-8"))
+        if req.use_playwright:
+            # Use Playwright with CAPTCHA bypass
+            from tvpl_crawler.links_playwright import crawl_links_with_playwright
+            
+            start_page = req.start_page or 1
+            end_page = req.end_page if req.end_page else (start_page + req.max_pages - 1)
+            
+            data = await crawl_links_with_playwright(
+                url=req.url,
+                start_page=start_page,
+                end_page=end_page,
+                page_param=req.page_param,
+                only_basic=req.only_basic,
+                headed=req.headed,
+                storage_state=req.cookies
+            )
+        else:
+            # Use HTTP client (original method) - call async logic directly
+            from tvpl_crawler.http import HttpClient
+            from tvpl_crawler.parser import extract_document_items_from_search
+            from urllib.parse import urlparse, urlunparse, parse_qs, urlencode
+            import random
+            
+            client = HttpClient()
+            try:
+                if req.cookies:
+                    client.load_cookies(Path(req.cookies))
+                
+                def _set_query_param(url: str, key: str, value: str) -> str:
+                    parsed = urlparse(url)
+                    qs = parse_qs(parsed.query, keep_blank_values=True)
+                    qs[key] = [value]
+                    new_query = urlencode(qs, doseq=True)
+                    return urlunparse((parsed.scheme, parsed.netloc, parsed.path, parsed.params, new_query, parsed.fragment))
+                
+                all_items = []
+                seen_keys = set()
+                page_start = req.start_page or 1
+                page_end = req.end_page if req.end_page else (page_start + req.max_pages - 1)
+                
+                for page in range(page_start, page_end + 1):
+                    page_url = _set_query_param(req.url, req.page_param, str(page))
+                    logger.debug(f"Fetching search page: {page_url}")
+                    
+                    try:
+                        html = await client.get_text(page_url)
+                        if "Bạn đã tìm kiếm với tốc độ của Robot" in html or "txtSecCode" in html:
+                            logger.error(f"CAPTCHA detected on page {page}! Stopping crawl.")
+                            break
+                    except Exception as e:
+                        logger.error(f"Fetch failed for {page_url}: {e}")
+                        continue
+                    
+                    parsed = urlparse(page_url)
+                    base_url = f"{parsed.scheme}://{parsed.netloc}"
+                    
+                    try:
+                        items = extract_document_items_from_search(html, base_url)
+                    except Exception as e:
+                        logger.error(f"Parse failed for {page_url}: {e}")
+                        items = []
+                    
+                    for it in items:
+                        pu = urlparse(it["url"])
+                        it["canonical_url"] = urlunparse((pu.scheme, pu.netloc, pu.path, "", "", ""))
+                    
+                    per_page_limit = 20
+                    page_added = 0
+                    page_seen = 0
+                    
+                    for it in items:
+                        key = it.get("doc_id") or it.get("canonical_url")
+                        if key and key not in seen_keys:
+                            page_seen += 1
+                            if page_added < per_page_limit:
+                                seen_keys.add(key)
+                                all_items.append(it)
+                                page_added += 1
+                    
+                    logger.info(f"Page {page}: added {page_added} (unique candidates: {page_seen}, raw: {len(items)})")
+                    
+                    if page < page_end:
+                        import asyncio
+                        delay = random.uniform(5.0, 10.0)
+                        logger.info(f"Waiting {delay:.1f}s before next page...")
+                        await asyncio.sleep(delay)
+                
+                if req.only_basic:
+                    data = [
+                        {
+                            "Stt": idx,
+                            "Ten van ban": it.get("title"),
+                            "Url": it.get("canonical_url") or it.get("url"),
+                            "Ngay cap nhat": it.get("ngay_cap_nhat"),
+                        }
+                        for idx, it in enumerate(all_items, start=1)
+                    ]
+                else:
+                    data = all_items
+            finally:
+                await client.close()
+        
+        # Upsert links to doc_urls table
+        if os.getenv('SUPABASE_URL'):
+            try:
+                from tvpl_crawler.upsert_links import upsert_links
+                stats = upsert_links(data)
+                logger.info(f"Upsert links: {stats}")
+            except Exception as e:
+                logger.warning(f"Failed to upsert links: {e}")
+        
         return data
     except Exception as e:
         logger.exception("/links-basic failed")
@@ -197,6 +299,14 @@ def tab8_download(req: Tab8Request):
         raise HTTPException(status_code=400, detail=str(e))
 
 
+class CrawlDocsRequest(BaseModel):
+    links: List[dict]  # [{"Stt": 1, "Url": "...", "Ten van ban": "..."}]
+    concurrency: int = 2
+    timeout_ms: int = 30000
+    reuse_session: bool = False
+    headed: bool = False
+    save_per_batch: bool = True  # Auto-save to Supabase after each batch
+
 class Tab4Request(BaseModel):
     links: List[str]
     cookies: Optional[str] = "data/cookies.json"
@@ -205,7 +315,315 @@ class Tab4Request(BaseModel):
     timeout_ms: int = 20000
     screenshots: bool = True
     save_to_db: bool = False
+    extract_formulas: bool = True  # Extract tab1 formulas
 
+class FormulaRequest(BaseModel):
+    links: List[str]
+    cookies: Optional[str] = "data/cookies.json"
+    method: str = "playwright"  # "playwright" or "crawl4ai"
+    headed: bool = False
+
+
+@app.post("/crawl-pending")
+async def crawl_pending(limit: int = None, concurrency: int = 2, timeout_ms: int = 30000, reuse_session: bool = False, headed: bool = False, save_per_batch: bool = True):
+    """Crawl pending documents from doc_urls table"""
+    import subprocess
+    import tempfile
+    
+    process = None
+    session_file = Path(tempfile.gettempdir()) / "api_session_id.txt"
+    
+    try:
+        # Fetch pending URLs from DB
+        from tvpl_crawler.fetch_pending_urls import fetch_pending_urls
+        
+        tmp_links = Path(tempfile.gettempdir()) / "api_pending_links.json"
+        links = fetch_pending_urls(limit, str(tmp_links))
+        
+        if not links:
+            return {"status": "success", "message": "No pending documents found", "crawled": 0}
+        
+        tmp_result = Path(tempfile.gettempdir()) / "api_pending_result.json"
+        
+        cmd = [
+            "python", "-m", "tvpl_crawler.crawl_data_fast",
+            str(tmp_links), str(tmp_result),
+            str(concurrency), str(timeout_ms)
+        ]
+        if reuse_session:
+            cmd.append("--reuse-session")
+        if headed:
+            cmd.append("--headed")
+        if save_per_batch:
+            cmd.append("--save-per-batch")
+        
+        logger.info(f"Crawling {len(links)} pending documents: {' '.join(cmd)}")
+        
+        try:
+            process = subprocess.Popen(cmd, text=True, encoding="utf-8")
+            process.wait(timeout=3600)
+            session_file.unlink(missing_ok=True)
+        except subprocess.TimeoutExpired:
+            if process:
+                process.kill()
+            logger.error("crawl_data_fast timeout after 1 hour")
+            raise HTTPException(status_code=504, detail="Crawl timeout after 1 hour")
+        
+        if process.returncode != 0:
+            logger.error(f"crawl_data_fast failed with code {process.returncode}")
+            raise HTTPException(status_code=500, detail=f"Process failed with code {process.returncode}")
+        
+        data = json.loads(tmp_result.read_text(encoding="utf-8"))
+        
+        tmp_links.unlink(missing_ok=True)
+        tmp_result.unlink(missing_ok=True)
+        
+        return {"status": "success", "crawled": len(data), "data": data}
+    except HTTPException:
+        raise
+    except Exception as e:
+        if process and process.poll() is None:
+            process.kill()
+        logger.exception("/crawl-pending failed")
+        raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        # Kill process if still running
+        if process and process.poll() is None:
+            process.kill()
+            logger.warning("Process killed")
+        
+        # Cleanup: mark session as FAILED if process was killed
+        if session_file.exists():
+            try:
+                session_id = int(session_file.read_text())
+                from tvpl_crawler.import_supabase_v2 import supabase
+                from datetime import datetime
+                
+                session = supabase.from_('system.crawl_sessions').select('*').eq('session_id', session_id).execute()
+                if session.data and session.data[0]['status'] == 'RUNNING':
+                    supabase.from_('system.crawl_sessions').update({
+                        'status': 'FAILED',
+                        'completed_at': datetime.now().isoformat()
+                    }).eq('session_id', session_id).execute()
+                    logger.info(f"Marked session #{session_id} as FAILED (interrupted)")
+                
+                session_file.unlink(missing_ok=True)
+            except Exception as e:
+                logger.warning(f"Could not cleanup session: {e}")
+
+@app.post("/crawl-documents")
+async def crawl_documents(req: CrawlDocsRequest):
+    """Fast crawl using crawl_data_fast logic with CAPTCHA bypass"""
+    import subprocess
+    import tempfile
+    
+    try:
+        tmp_links = Path(tempfile.gettempdir()) / "api_links.json"
+        tmp_result = Path(tempfile.gettempdir()) / "api_result.json"
+        
+        tmp_links.write_text(json.dumps(req.links, ensure_ascii=False), encoding="utf-8")
+        
+        cmd = [
+            "python", "-m", "tvpl_crawler.crawl_data_fast",
+            str(tmp_links), str(tmp_result),
+            str(req.concurrency), str(req.timeout_ms)
+        ]
+        if req.reuse_session:
+            cmd.append("--reuse-session")
+        if req.headed:
+            cmd.append("--headed")
+        if req.save_per_batch:
+            cmd.append("--save-per-batch")
+        
+        logger.info(f"Running: {' '.join(cmd)}")
+        try:
+            result = subprocess.run(cmd, text=True, encoding="utf-8", timeout=600)  # 10 min timeout
+        except subprocess.TimeoutExpired:
+            logger.error("crawl_data_fast timeout after 10 minutes")
+            raise HTTPException(status_code=504, detail="Crawl timeout after 10 minutes")
+        
+        if result.returncode != 0:
+            logger.error(f"crawl_data_fast failed with code {result.returncode}")
+            raise HTTPException(status_code=500, detail=f"Process failed with code {result.returncode}")
+        
+        data = json.loads(tmp_result.read_text(encoding="utf-8"))
+        
+        tmp_links.unlink(missing_ok=True)
+        tmp_result.unlink(missing_ok=True)
+        
+        return data
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.exception("/crawl-documents failed")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/transform")
+def transform(data: List[dict] = Body(...)):
+    """Pass-through raw data (import_supabase_v2 handles raw format)"""
+    return data
+
+# Rate limiting: track last call time
+_last_download_call = None
+_download_min_interval = 60  # 60 seconds between calls
+
+@app.post("/download-pending")
+async def download_pending(limit: int = 100, file_types: List[str] = ["doc", "docx"]):
+    """Download pending files from document_files table and upload to Supabase Storage"""
+    import httpx
+    from datetime import datetime
+    from supabase import create_client
+    import time
+    
+    global _last_download_call
+    
+    # Rate limiting check
+    if _last_download_call:
+        elapsed = time.time() - _last_download_call
+        if elapsed < _download_min_interval:
+            wait_time = _download_min_interval - elapsed
+            logger.warning(f"Rate limit: Called too soon. Wait {wait_time:.0f}s")
+            raise HTTPException(status_code=429, detail=f"Too many requests. Wait {wait_time:.0f}s")
+    
+    _last_download_call = time.time()
+    
+    try:
+        # Dùng SERVICE_ROLE_KEY để có full quyền upload storage
+        supabase_url = os.getenv('SUPABASE_URL')
+        supabase_key = os.getenv('SUPABASE_SERVICE_ROLE_KEY') or os.getenv('SUPABASE_KEY')
+        supabase = create_client(supabase_url, supabase_key)
+        
+        # Query pending and failed files
+        query = supabase.from_('tvpl.document_files').select('*').in_('download_status', ['pending', 'failed'])
+        if file_types:
+            query = query.in_('file_type', file_types)
+        
+        result = query.limit(limit).execute()
+        files = result.data
+        
+        if not files:
+            return {"status": "success", "message": "No pending files", "downloaded": 0}
+        
+        logger.info(f"Found {len(files)} pending files to download")
+        
+        downloaded = 0
+        failed = 0
+        
+        # Load cookies from cookies.json (from /refresh-cookies)
+        cookies = {}
+        cookies_path = Path("data/cookies.json")
+        if cookies_path.exists():
+            cookies_data = json.loads(cookies_path.read_text())
+            # cookies.json format: [{"name": "...", "value": "..."}]
+            for cookie in cookies_data:
+                cookies[cookie['name']] = cookie['value']
+        
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36",
+            "Referer": "https://thuvienphapluat.vn/"
+        }
+        
+        import asyncio
+        import random
+        
+        async with httpx.AsyncClient(timeout=60.0, cookies=cookies, headers=headers, follow_redirects=True) as client:
+            for idx, file_info in enumerate(files):
+                file_id = file_info['id']
+                file_url = file_info['file_url']
+                file_name = file_info['file_name']
+                doc_id = file_info['doc_id']
+                
+                try:
+                    # Decode HTML entities in URL
+                    import html
+                    file_url = html.unescape(file_url)
+                    
+                    # Download file
+                    logger.info(f"Downloading {file_name} from {file_url}")
+                    response = await client.get(file_url)
+                    response.raise_for_status()
+                    
+                    # Upload to Supabase Storage
+                    bucket_name = os.getenv('SUPABASE_BUCKET', 'tvpl-files')
+                    
+                    # Sanitize filename - replace Vietnamese chars and spaces
+                    import re
+                    from urllib.parse import quote
+                    safe_filename = f"{doc_id}.doc"  # Simple: use doc_id as filename
+                    bucket_path = f"{doc_id}/{safe_filename}"
+                    
+                    logger.info(f"Using bucket: {bucket_name}, path: {bucket_path}")
+                    
+                    # Upload with proper options
+                    supabase.storage.from_(bucket_name).upload(
+                        path=bucket_path,
+                        file=response.content,
+                        file_options={"content-type": "application/msword", "upsert": "true"}
+                    )
+                    
+                    # Update status
+                    supabase.from_('tvpl.document_files').update({
+                        'download_status': 'downloaded',
+                        'local_path': bucket_path,
+                        'downloaded_at': datetime.now().isoformat()
+                    }).eq('id', file_id).execute()
+                    
+                    downloaded += 1
+                    logger.info(f"✓ Downloaded {file_name}")
+                    
+                    # Delay giữa các file để tránh rate limit
+                    if idx < len(files) - 1:
+                        delay = random.uniform(2.0, 5.0)
+                        logger.info(f"⏱ Waiting {delay:.1f}s...")
+                        await asyncio.sleep(delay)
+                    
+                except Exception as e:
+                    failed += 1
+                    logger.error(f"✗ Failed to download {file_name}: {e}")
+                    
+                    # Update failed status
+                    supabase.from_('tvpl.document_files').update({
+                        'download_status': 'failed'
+                    }).eq('id', file_id).execute()
+        
+        return {
+            "status": "success",
+            "total": len(files),
+            "downloaded": downloaded,
+            "failed": failed
+        }
+    except Exception as e:
+        logger.exception("/download-pending failed")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/import-supabase")
+def import_supabase(data: List[dict] = Body(...)):
+    """Import raw crawled data to Supabase with version tracking"""
+    import subprocess
+    import tempfile
+    
+    try:
+        tmp_in = Path(tempfile.gettempdir()) / "import_in.json"
+        
+        tmp_in.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
+        
+        result = subprocess.run(
+            ["python", "-m", "tvpl_crawler.import_supabase_v2", str(tmp_in)],
+            capture_output=True, text=True, encoding="utf-8"
+        )
+        
+        if result.returncode != 0:
+            logger.error(f"import failed: {result.stderr}")
+            raise HTTPException(status_code=500, detail=result.stderr)
+        
+        tmp_in.unlink(missing_ok=True)
+        
+        return {"status": "success", "message": result.stdout}
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.exception("/import-supabase failed")
+        raise HTTPException(status_code=500, detail=str(e))
 
 def _relogin_sync():
     """Sync relogin helper"""
@@ -301,4 +719,67 @@ def tab4_details(req: Tab4Request):
         return compact_results
     except Exception as e:
         logger.exception("/tab4-details failed")
+        raise HTTPException(status_code=400, detail=str(e))
+
+
+@app.post("/extract-formulas")
+async def extract_formulas(req: FormulaRequest):
+    """Extract công thức tính toán từ tab1 (nội dung) của các văn bản"""
+    try:
+        from tvpl_crawler.formula_extractor import extract_formulas_with_crawl4ai, extract_tab1_content_simple
+        from playwright.async_api import async_playwright
+        
+        results = []
+        
+        if req.method == "crawl4ai":
+            # Sử dụng Crawl4AI + LLM
+            for idx, url in enumerate(req.links, 1):
+                try:
+                    result = await extract_formulas_with_crawl4ai(url, req.cookies)
+                    result["stt"] = idx
+                    results.append(result)
+                except Exception as e:
+                    results.append({
+                        "stt": idx,
+                        "url": url,
+                        "error": str(e),
+                        "formulas": [],
+                        "total_formulas": 0
+                    })
+        else:
+            # Sử dụng Playwright + Regex
+            async with async_playwright() as p:
+                browser = await p.chromium.launch(headless=not req.headed)
+                
+                context_options = {}
+                if req.cookies and Path(req.cookies).exists():
+                    context_options["storage_state"] = req.cookies
+                
+                context = await browser.new_context(**context_options)
+                
+                for idx, url in enumerate(req.links, 1):
+                    page = await context.new_page()
+                    try:
+                        await page.goto(url, wait_until="domcontentloaded", timeout=30000)
+                        await page.wait_for_timeout(2000)
+                        
+                        result = await extract_tab1_content_simple(page, url)
+                        result["stt"] = idx
+                        results.append(result)
+                    except Exception as e:
+                        results.append({
+                            "stt": idx,
+                            "url": url,
+                            "error": str(e),
+                            "formulas": [],
+                            "total_formulas": 0
+                        })
+                    finally:
+                        await page.close()
+                
+                await browser.close()
+        
+        return results
+    except Exception as e:
+        logger.exception("/extract-formulas failed")
         raise HTTPException(status_code=400, detail=str(e))

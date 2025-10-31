@@ -1,0 +1,82 @@
+{
+  "formulas": [
+    {
+      "name": "Tiền lương 01 tiết dạy |  = |  Tổng tiền lương của 12 tháng trong năm ...",
+      "formula": "Tiền lương 01 tiết dạy |  = |  Tổng tiền lương của 12 tháng trong năm học |  x |  Số tuần giảng dạy hoặc dạy trẻ (không bao gồm số tuần dự phòng)  \n---|---|---|---|---  \nĐịnh mức tiết dạy/năm học |  52 tuần  \nb) Đối với nhà giáo trong cơ sở giáo dục đại học, cao đẳng sư phạm, cơ sở đào tạo, bồi dưỡng của Bộ, cơ quan ngang Bộ,",
+      "type": "regex_detected",
+      "confidence": 0.9,
+      "extraction_method": "layer_1_regex"
+    },
+    {
+      "name": "Tiền lương 01 tiết dạy |  = |  Tổng tiền lương của 12 tháng trong năm ...",
+      "formula": "Tiền lương 01 tiết dạy |  = |  Tổng tiền lương của 12 tháng trong năm học |  x |  Định mức tiết dạy/năm học tính theo giờ hành chính |  x |  44 tuần  \n---|---|---|---|---|---|---  \nĐịnh mức tiết dạy/năm học |  1760 giờ |  52 tuần  \nc) Đối với nhà giáo giữ chức vụ cán bộ quản lý cơ sở giáo dục hoặc nhà giáo được phân công làm n",
+      "type": "regex_detected",
+      "confidence": 0.9,
+      "extraction_method": "layer_1_regex"
+    },
+    {
+      "name": "Tiền lương 01 tiết dạy |  = |  Tổng số tiền lương được chi trả tương ứ...",
+      "formula": "Tiền lương 01 tiết dạy |  = |  Tổng số tiền lương được chi trả tương ứng với thời gian công tác thực tế |  x |  Số tuần thực dạy tương ứng với thời gian công tác thực tế  \n---|---|---|---|---  \nĐịnh mức tiết dạy/thời gian công tác thực tế |  52 tuần - (Số tuần giảng dạy hoặc dạy trẻ theo quy định - Số tuần thực dạy tương ứng v",
+      "type": "regex_detected",
+      "confidence": 0.9,
+      "extraction_method": "layer_1_regex"
+    },
+    {
+      "name": "Định mức tiết dạy/năm học của giáo viên mầm non = (Số giờ dạy định mức...",
+      "formula": "Định mức tiết dạy/năm học của giáo viên mầm non = (Số giờ dạy định mức/ngày) x (Số ngày làm việc/tuần) x (Số tuần dạy trẻ/năm học);\nc) Định mức tiết dạy/năm học của nhà giáo các cơ sở giáo dục khác thực hiện theo quy định hiện hành về chế độ làm việc",
+      "type": "regex_detected",
+      "confidence": 0.9,
+      "extraction_method": "layer_1_regex"
+    },
+    {
+      "name": "mức tiết dạy/năm học của giáo viên mầm non = (Số giờ dạy định mức/ngày...",
+      "formula": "mức tiết dạy/năm học của giáo viên mầm non = (Số giờ dạy định mức/ngày) x (Số ngày làm việc/tuần) x (Số tuần dạy trẻ/năm học);\nc) Định mức tiết dạy/năm học của nhà giáo các cơ sở giáo dục khác thực hiện theo quy định hiện hành về chế độ làm việc",
+      "type": "regex_detected",
+      "confidence": 0.9,
+      "extraction_method": "layer_1_regex"
+    },
+    {
+      "name": "Tiền lương 01 tiết dạy |  = |  Tổng tiền lương của 12 tháng trong năm ...",
+      "formula": "Tiền lương 01 tiết dạy |  = |  Tổng tiền lương của 12 tháng trong năm học |  x |  Số tuần giảng dạy hoặc dạy trẻ (không bao gồm số tuần dự phòng)  \n---|---|---|---|---  \nĐịnh mức tiết dạy/năm học |  52 tuần  \nb) Đối với nhà giáo",
+      "type": "regex_detected",
+      "confidence": 0.9,
+      "extraction_method": "layer_1_regex"
+    },
+    {
+      "name": "Tiền lương 01 tiết dạy |  = |  Tổng tiền lương của 12 tháng trong năm ...",
+      "formula": "Tiền lương 01 tiết dạy |  = |  Tổng tiền lương của 12 tháng trong năm học |  x |  Định mức tiết dạy/năm học tính theo giờ hành chính |  x |  44 tuần  \n---|---|---|---|---|---|---  \nĐịnh mức tiết dạy/năm học |  1760 giờ |  52 tuầ",
+      "type": "regex_detected",
+      "confidence": 0.9,
+      "extraction_method": "layer_1_regex"
+    },
+    {
+      "name": "Tiền lương 01 tiết dạy |  = |  Tổng số tiền lương được chi trả tương ứ...",
+      "formula": "Tiền lương 01 tiết dạy |  = |  Tổng số tiền lương được chi trả tương ứng với thời gian công tác thực tế |  x |  Số tuần thực dạy tương ứng với thời gian công tác thực tế  \n---|---|---|---|---  \nĐịnh mức tiết dạy/thời gian công t",
+      "type": "regex_detected",
+      "confidence": 0.9,
+      "extraction_method": "layer_1_regex"
+    },
+    {
+      "name": "mức tiết dạy/thời gian công tác thực tế = (Số giờ dạy định mức/ngày) x...",
+      "formula": "mức tiết dạy/thời gian công tác thực tế = (Số giờ dạy định mức/ngày) x (Số ngày làm việc/tuần) x (Số tuần thực dạy tương ứng với thời gian công tác thực tế);\nb) Đối với nhà giáo trong cơ sở giáo dục phổ thông, cơ sở giáo dục thường xuyên, trư",
+      "type": "regex_detected",
+      "confidence": 0.9,
+      "extraction_method": "layer_1_regex"
+    },
+    {
+      "name": "mức tiết dạy/thời gian công tác thực tế = (Định mức tiết dạy trung bìn...",
+      "formula": "mức tiết dạy/thời gian công tác thực tế = (Định mức tiết dạy trung bình trong 01 tuần) x (Số tuần thực dạy tương ứng với thời gian công tác thực tế);\nc) Đối với nhà giáo cơ sở giáo dục khác: Định mức tiết dạy/thời gian công tác thực tế = [(Đị",
+      "type": "regex_detected",
+      "confidence": 0.9,
+      "extraction_method": "layer_1_regex"
+    }
+  ],
+  "parameters": [],
+  "total_formulas": 10,
+  "total_parameters": 0,
+  "extraction_method": "layer_1_regex_confident",
+  "confidence_score": 1.0,
+  "confidence_threshold": 0.75,
+  "url": "https://thuvienphapluat.vn/van-ban/Giao-duc/Thong-tu-21-2025-TT-BGDDT-che-do-tra-tien-luong-day-them-gio-nha-giao-trong-cac-co-so-giao-duc-cong-lap-673797.aspx",
+  "content_length": 80305
+}

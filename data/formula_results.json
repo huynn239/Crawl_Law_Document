@@ -1,0 +1,22 @@
+[
+  {
+    "url": "https://thuvienphapluat.vn/van-ban/Giao-duc/Thong-tu-21-2025-TT-BGDDT-che-do-tra-tien-luong-day-them-gio-nha-giao-trong-cac-co-so-giao-duc-cong-lap-673797.aspx",
+    "error": "Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://thuvienphapluat.vn/van-ban/Giao-duc/Thong-tu-21-2025-TT-BGDDT-che-do-tra-tien-luong-day-them-gio-nha-giao-trong-cac-co-so-giao-duc-cong-lap-673797.aspx\", waiting until \"load\"\n",
+    "formulas": [],
+    "parameters": [],
+    "total_formulas": 0,
+    "total_parameters": 0,
+    "stt": 1,
+    "title": "Thông tư 21/2025 - Chế độ trả tiền lương dạy thêm giờ"
+  },
+  {
+    "url": "https://thuvienphapluat.vn/van-ban/Xay-dung-Do-thi/Nghi-dinh-257-2025-ND-CP-huong-dan-thuc-hien-du-an-ap-dung-loai-hop-dong-Xay-dung-Chuyen-giao-675635.aspx",
+    "error": "Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://thuvienphapluat.vn/van-ban/Xay-dung-Do-thi/Nghi-dinh-257-2025-ND-CP-huong-dan-thuc-hien-du-an-ap-dung-loai-hop-dong-Xay-dung-Chuyen-giao-675635.aspx\", waiting until \"load\"\n",
+    "formulas": [],
+    "parameters": [],
+    "total_formulas": 0,
+    "total_parameters": 0,
+    "stt": 2,
+    "title": "Nghị định 257/2025 - Hướng dẫn thực hiện dự án"
+  }
+]

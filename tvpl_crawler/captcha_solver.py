@@ -6,8 +6,7 @@ import random
 from PIL import Image
 import pytesseract
 
-# Đường dẫn Tesseract (Windows)
-pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+# pytesseract will auto-detect from PATH (tesseract must be installed)
 
 async def bypass_captcha(page, doc_id=0) -> bool:
     """Bypass CAPTCHA bằng OCR với logic mạnh mẽ"""
@@ -35,22 +34,29 @@ async def bypass_captcha(page, doc_id=0) -> bool:
                     im = im.resize((w * 2, h * 2), Image.Resampling.LANCZOS)
                     im = im.point(lambda x: 0 if x < 150 else 255, '1')
                     
-                    # OCR đọc số (cho phép cả chữ và số)
-                    config = '--psm 7 -c tessedit_char_whitelist=0123456789'
-                    code = pytesseract.image_to_string(im, config=config)
-                    code = ''.join(ch for ch in code if ch.isdigit())
+                    # OCR đọc cả số và chữ (CAPTCHA có thể là alphanumeric)
+                    config = '--psm 7 -c tessedit_char_whitelist=0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+                    raw_code = pytesseract.image_to_string(im, config=config).strip()
+                    code = ''.join(ch for ch in raw_code if ch.isalnum()).upper()
                     
-                    # Nếu không đọc được số, thử đọc chữ + số
-                    if len(code) < 4:
-                        config = '--psm 7 -c tessedit_char_whitelist=0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-                        code = pytesseract.image_to_string(im, config=config)
-                        code = ''.join(ch for ch in code if ch.isalnum()).upper()
-                    
-                    if len(code) < 4:
-                        print(f"[CAPTCHA] doc_id={doc_id}: ⚠ Code không hợp lệ ('{code}'), làm mới...")
+                    # Validate code length (thường 4-6 ký tự)
+                    if len(code) < 3 or len(code) > 8:
+                        print(f"[CAPTCHA] doc_id={doc_id}: ⚠ Code không hợp lệ ('{code}', len={len(code)}), làm mới...")
                         await img_locator.click()
                         await asyncio.sleep(1.5)
                         continue
+                    
+                    # Nếu code chỉ có 1-2 ký tự, thử lại với config khác
+                    if len(code) <= 2:
+                        config = '--psm 8 --oem 3'
+                        raw_code = pytesseract.image_to_string(im, config=config).strip()
+                        code = ''.join(ch for ch in raw_code if ch.isalnum()).upper()
+                        
+                        if len(code) < 3:
+                            print(f"[CAPTCHA] doc_id={doc_id}: ⚠ Code quá ngắn ('{code}'), làm mới...")
+                            await img_locator.click()
+                            await asyncio.sleep(1.5)
+                            continue
                     
                     print(f"[CAPTCHA] doc_id={doc_id}: 🔑 Đọc được code: {code}")
                     

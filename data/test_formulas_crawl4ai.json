@@ -1,0 +1,10 @@
+[
+  {
+    "url": "https://thuvienphapluat.vn/van-ban/Giao-duc/Thong-tu-21-2025-TT-BGDDT-che-do-tra-tien-luong-day-them-gio-nha-giao-trong-cac-co-so-giao-duc-cong-lap-673797.aspx",
+    "error": "Unexpected error in _crawl_web at line 204 in execute_hook (..\\..\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\crawl4ai\\async_crawler_strategy.py):\nError: extract_formulas_with_crawl4ai.<locals>.<lambda>() got an unexpected keyword argument 'context'\n\nCode context:\n 199           hook = self.hooks.get(hook_type)\n 200           if hook:\n 201               if asyncio.iscoroutinefunction(hook):\n 202                   return await hook(*args, **kwargs)\n 203               else:\n 204 →                 return hook(*args, **kwargs)\n 205           return args[0] if args else None\n 206   \n 207       def update_user_agent(self, user_agent: str):\n 208           \"\"\"\n 209           Update the user agent for the browser.",
+    "formulas": [],
+    "total_formulas": 0,
+    "stt": 1,
+    "title": "Thông tư 21/2025/TT-BGDĐT chế độ trả tiền lương dạy thêm giờ nhà giáo trong các cơ sở giáo dục công lập"
+  }
+]

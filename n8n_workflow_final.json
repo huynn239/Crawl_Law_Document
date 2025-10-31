@@ -1,0 +1,82 @@
+{
+  "name": "TVPL Crawler to Supabase - Production",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [{"field": "cronExpression", "expression": "0 2 * * *"}]
+        }
+      },
+      "name": "Schedule Daily 2AM",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "command": "cd C:\\Users\\huynn\\CascadeProjects\\thuvienphapluat-crawler && python -m tvpl_crawler links-basic -u \"https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&lan=1&status=-1&org=-1&field=-1&year=2025&page={page}\" -o data/links.json --start-page 1 --end-page 5"
+      },
+      "name": "Crawl Links",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "command": "cd C:\\Users\\huynn\\CascadeProjects\\thuvienphapluat-crawler && python crawl_data_fast.py data/links.json data/result.json"
+      },
+      "name": "Crawl Documents",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "command": "cd C:\\Users\\huynn\\CascadeProjects\\thuvienphapluat-crawler && python supabase_transform.py data/result.json"
+      },
+      "name": "Transform",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [850, 300]
+    },
+    {
+      "parameters": {
+        "command": "cd C:\\Users\\huynn\\CascadeProjects\\thuvienphapluat-crawler && python import_full_supabase.py"
+      },
+      "name": "Import to Supabase",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [1050, 300]
+    },
+    {
+      "parameters": {
+        "content": "=✅ TVPL Crawler Completed\n\nCheck Supabase for results",
+        "options": {}
+      },
+      "name": "Success Message",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [1250, 300]
+    }
+  ],
+  "connections": {
+    "Schedule Daily 2AM": {
+      "main": [[{"node": "Crawl Links", "type": "main", "index": 0}]]
+    },
+    "Crawl Links": {
+      "main": [[{"node": "Crawl Documents", "type": "main", "index": 0}]]
+    },
+    "Crawl Documents": {
+      "main": [[{"node": "Transform", "type": "main", "index": 0}]]
+    },
+    "Transform": {
+      "main": [[{"node": "Import to Supabase", "type": "main", "index": 0}]]
+    },
+    "Import to Supabase": {
+      "main": [[{"node": "Success Message", "type": "main", "index": 0}]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "timestamp": "20251021_094052",
+  "total_urls": 3,
+  "regex_results": [
+    {
+      "url": "https://thuvienphapluat.vn/van-ban/Giao-duc/Thong-tu-21-2025-TT-BGDDT-che-do-tra-tien-luong-day-them-gio-nha-giao-trong-cac-co-so-giao-duc-cong-lap-673797.aspx?dll=true",
+      "error": "No LLM API key found. Set GOOGLE_API_KEY or OPENAI_API_KEY"
+    },
+    {
+      "url": "https://thuvienphapluat.vn/van-ban/Lao-dong-Tien-luong/Thong-tu-lien-tich-07-2013-TTLT-BGDDT-BNV-BTC-huong-dan-che-do-tra-luong-176067.aspx",
+      "error": "No LLM API key found. Set GOOGLE_API_KEY or OPENAI_API_KEY"
+    },
+    {
+      "url": "https://thuvienphapluat.vn/cong-van/Lao-dong-Tien-luong/Cong-van-7516-BGDDT-NGCBQLGD-2024-che-do-phu-cap-uu-dai-nha-giao-trong-thoi-gian-nghi-om-dau-634140.aspx",
+      "error": "No LLM API key found. Set GOOGLE_API_KEY or OPENAI_API_KEY"
+    }
+  ],
+  "llm_results": [
+    {
+      "url": "https://thuvienphapluat.vn/van-ban/Giao-duc/Thong-tu-21-2025-TT-BGDDT-che-do-tra-tien-luong-day-them-gio-nha-giao-trong-cac-co-so-giao-duc-cong-lap-673797.aspx?dll=true",
+      "error": "No LLM API key found. Set GOOGLE_API_KEY or OPENAI_API_KEY"
+    },
+    {
+      "url": "https://thuvienphapluat.vn/van-ban/Lao-dong-Tien-luong/Thong-tu-lien-tich-07-2013-TTLT-BGDDT-BNV-BTC-huong-dan-che-do-tra-luong-176067.aspx",
+      "error": "No LLM API key found. Set GOOGLE_API_KEY or OPENAI_API_KEY"
+    },
+    {
+      "url": "https://thuvienphapluat.vn/cong-van/Lao-dong-Tien-luong/Cong-van-7516-BGDDT-NGCBQLGD-2024-che-do-phu-cap-uu-dai-nha-giao-trong-thoi-gian-nghi-om-dau-634140.aspx",
+      "error": "No LLM API key found. Set GOOGLE_API_KEY or OPENAI_API_KEY"
+    }
+  ],
+  "summary": {
+    "regex_stats": {
+      "total_formulas": 0,
+      "total_parameters": 0,
+      "errors": 3,
+      "success_rate": 0.0
+    },
+    "llm_stats": {
+      "total_formulas": 0,
+      "total_parameters": 0,
+      "errors": 3,
+      "success_rate": 0.0
+    },
+    "gap_analysis": {
+      "formula_gap": 0,
+      "parameter_gap": 0
+    }
+  }
+}

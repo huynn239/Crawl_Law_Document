@@ -1,0 +1,21 @@
+[ERROR] $(date -Iseconds) - Pipeline failed: {{ $json.error || $json.statusCode || "Unknown error" }}
+[ERROR] $(date -Iseconds) - Pipeline failed: {{ $json.error || $json.statusCode || "Unknown error" }}
+[ERROR] $(date -Iseconds) - Pipeline failed: {{ $json.error || $json.statusCode || "Unknown error" }}
+[ERROR] $(date -Iseconds) - Pipeline failed: {{ $json.error || $json.statusCode || "Unknown error" }}
+[ERROR] $(date -Iseconds) - Pipeline failed: {{ $json.error || $json.statusCode || "Unknown error" }}
+[OK] $(date -Iseconds) - TVPL import completed successfully
+[OK] $(date -Iseconds) - TVPL import completed successfully
+[OK] $(date -Iseconds) - TVPL import completed successfully
+[OK] $(date -Iseconds) - TVPL import completed successfully
+[OK] $(date -Iseconds) - TVPL import completed successfully
+[OK] $(date -Iseconds) - TVPL import completed successfully
+[OK] $(date -Iseconds) - TVPL import completed successfully
+[OK] $(date -Iseconds) - TVPL import completed successfully
+[OK] $(date -Iseconds) - TVPL import completed successfully
+[OK] $(date -Iseconds) - TVPL import completed successfully
+[OK] $(date -Iseconds) - TVPL import completed successfully
+[OK] $(date -Iseconds) - TVPL import completed successfully
+[OK] $(date -Iseconds) - TVPL import completed successfully
+[OK] $(date -Iseconds) - TVPL import completed successfully
+[OK] $(date -Iseconds) - TVPL import completed successfully
+[OK] $(date -Iseconds) - TVPL import completed successfully

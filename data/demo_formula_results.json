@@ -1,0 +1,178 @@
+{
+  "demo_summary": {
+    "total_documents": 5,
+    "successful_extractions": 3,
+    "total_formulas": 9,
+    "success_rate": "60.0%",
+    "formula_types": {
+      "money_range": 3,
+      "percentage_rate": 1,
+      "allowance": 1,
+      "fee": 4
+    }
+  },
+  "results": [
+    {
+      "title": "Thông tư về thuế thu nhập cá nhân",
+      "content_length": 677,
+      "formulas": [
+        {
+          "name": "Khoảng tiền",
+          "formula": "từ 0 đến 5.000.000 đồng",
+          "description": "Khoảng tiền - money_range",
+          "context": "phụ thuộc là 4.400.000 đồng/tháng. Điều 6. Thuế suất thuế thu nhập cá nhân Thuế suất thuế thu nhập cá nhân được quy định như sau: - Đối với thu nhập **từ 0 đến 5.000.000 đồng**: 5% - Đối với thu nhập từ 5.000.001 đến 10.000.000 đồng: 10% - Đối với thu nhập từ 10.000.001 đến 18.000.000 đồng: 15% Điều 7. Cách tính thuế Thuế th",
+          "confidence": 0.9,
+          "type": "money_range",
+          "groups": [
+            "0",
+            "5.000.000",
+            "đồng"
+          ],
+          "paragraph": "Điều 5. Mức giảm trừ gia cảnh 1. Mức giảm trừ gia cảnh cho người nộp thuế là 11.000.000 đồng/tháng. 2. Mức giảm trừ gia cảnh cho mỗi người phụ thuộc là 4.400.000 đồng/tháng. Điều 6. Thuế suất thuế thu...",
+          "source_title": "Thông tư về thuế thu nhập cá nhân"
+        },
+        {
+          "name": "5.000.001",
+          "formula": "từ 5.000.001 đến 10.000.000 đồng",
+          "description": "Khoảng tiền - money_range",
+          "context": "ế suất thuế thu nhập cá nhân Thuế suất thuế thu nhập cá nhân được quy định như sau: - Đối với thu nhập từ 0 đến 5.000.000 đồng: 5% - Đối với thu nhập **từ 5.000.001 đến 10.000.000 đồng**: 10% - Đối với thu nhập từ 10.000.001 đến 18.000.000 đồng: 15% Điều 7. Cách tính thuế Thuế thu nhập cá nhân phải nộp = Thu nhập tính thuế × Thuế suất",
+          "confidence": 0.9,
+          "type": "money_range",
+          "groups": [
+            "5.000.001",
+            "10.000.000",
+            "đồng"
+          ],
+          "paragraph": "Điều 5. Mức giảm trừ gia cảnh 1. Mức giảm trừ gia cảnh cho người nộp thuế là 11.000.000 đồng/tháng. 2. Mức giảm trừ gia cảnh cho mỗi người phụ thuộc là 4.400.000 đồng/tháng. Điều 6. Thuế suất thuế thu...",
+          "source_title": "Thông tư về thuế thu nhập cá nhân"
+        },
+        {
+          "name": "10.000.001",
+          "formula": "từ 10.000.001 đến 18.000.000 đồng",
+          "description": "Khoảng tiền - money_range",
+          "context": "hân được quy định như sau: - Đối với thu nhập từ 0 đến 5.000.000 đồng: 5% - Đối với thu nhập từ 5.000.001 đến 10.000.000 đồng: 10% - Đối với thu nhập **từ 10.000.001 đến 18.000.000 đồng**: 15% Điều 7. Cách tính thuế Thuế thu nhập cá nhân phải nộp = Thu nhập tính thuế × Thuế suất",
+          "confidence": 0.9,
+          "type": "money_range",
+          "groups": [
+            "10.000.001",
+            "18.000.000",
+            "đồng"
+          ],
+          "paragraph": "Điều 5. Mức giảm trừ gia cảnh 1. Mức giảm trừ gia cảnh cho người nộp thuế là 11.000.000 đồng/tháng. 2. Mức giảm trừ gia cảnh cho mỗi người phụ thuộc là 4.400.000 đồng/tháng. Điều 6. Thuế suất thuế thu...",
+          "source_title": "Thông tư về thuế thu nhập cá nhân"
+        }
+      ],
+      "total_formulas": 3
+    },
+    {
+      "title": "Nghị định về bảo hiểm xã hội",
+      "content_length": 598,
+      "formulas": [],
+      "total_formulas": 0
+    },
+    {
+      "title": "Nghị định về lương cán bộ công chức",
+      "content_length": 557,
+      "formulas": [
+        {
+          "name": "Tỷ lệ phụ cấp thâm niên",
+          "formula": "Tỷ lệ phụ cấp thâm niên: 5%",
+          "description": "Tỷ lệ phần trăm - percentage_rate",
+          "context": "hụ cấp trách nhiệm được quy định từ 0,1 đến 2,0 Điều 5. Phụ cấp thâm niên nghề Phụ cấp thâm niên nghề = Tỷ lệ phụ cấp × Lương cơ sở × Số năm công tác **Tỷ lệ phụ cấp thâm niên: 5%** cho mỗi 5 năm công tác",
+          "confidence": 1.0,
+          "type": "percentage_rate",
+          "groups": [
+            "Tỷ lệ phụ cấp thâm niên",
+            "5%"
+          ],
+          "paragraph": "Điều 3. Lương cơ sở Lương cơ sở áp dụng chung đối với cán bộ, công chức, viên chức và lực lượng vũ trang là 1.800.000 đồng/tháng. Điều 4. Phụ cấp trách nhiệm 1. Phụ cấp trách nhiệm = Hệ số phụ cấp × L...",
+          "source_title": "Nghị định về lương cán bộ công chức"
+        },
+        {
+          "name": "phụ cấp thâm niên",
+          "formula": "phụ cấp thâm niên: 5%",
+          "description": "Phụ cấp - allowance",
+          "context": "trách nhiệm được quy định từ 0,1 đến 2,0 Điều 5. Phụ cấp thâm niên nghề Phụ cấp thâm niên nghề = Tỷ lệ phụ cấp × Lương cơ sở × Số năm công tác Tỷ lệ **phụ cấp thâm niên: 5%** cho mỗi 5 năm công tác",
+          "confidence": 1.0,
+          "type": "allowance",
+          "groups": [
+            "phụ cấp thâm niên",
+            "5%"
+          ],
+          "paragraph": "Điều 3. Lương cơ sở Lương cơ sở áp dụng chung đối với cán bộ, công chức, viên chức và lực lượng vũ trang là 1.800.000 đồng/tháng. Điều 4. Phụ cấp trách nhiệm 1. Phụ cấp trách nhiệm = Hệ số phụ cấp × L...",
+          "source_title": "Nghị định về lương cán bộ công chức"
+        }
+      ],
+      "total_formulas": 2
+    },
+    {
+      "title": "Thông tư về phí lệ phí",
+      "content_length": 539,
+      "formulas": [
+        {
+          "name": "Lệ phí cấp giấy phép lái xe 1. Lệ phí cấp giấy phép lái xe h",
+          "formula": "Lệ phí cấp giấy phép lái xe 1. Lệ phí cấp giấy phép lái xe hạng A1: 135.000 đồng",
+          "description": "Lệ phí - fee",
+          "context": "Điều 2. **Lệ phí cấp giấy phép lái xe 1. Lệ phí cấp giấy phép lái xe hạng A1: 135.000 đồng** 2. Lệ phí cấp giấy phép lái xe hạng A2: 135.000 đồng 3. Lệ phí cấp giấy phép lái xe hạng B1: 270.000 đồng 4. Lệ phí cấp giấy phép lái xe hạng B2: 270",
+          "confidence": 1.0,
+          "type": "fee",
+          "groups": [
+            "Lệ phí cấp giấy phép lái xe 1. Lệ phí cấp giấy phép lái xe hạng A1",
+            "135.000 đồng"
+          ],
+          "paragraph": "Điều 2. Lệ phí cấp giấy phép lái xe 1. Lệ phí cấp giấy phép lái xe hạng A1: 135.000 đồng 2. Lệ phí cấp giấy phép lái xe hạng A2: 135.000 đồng 3. Lệ phí cấp giấy phép lái xe hạng B1: 270.000 đồng 4. Lệ...",
+          "source_title": "Thông tư về phí lệ phí"
+        },
+        {
+          "name": "Lệ phí cấp giấy phép lái xe hạng A2",
+          "formula": "Lệ phí cấp giấy phép lái xe hạng A2: 135.000 đồng",
+          "description": "Lệ phí - fee",
+          "context": "Điều 2. Lệ phí cấp giấy phép lái xe 1. Lệ phí cấp giấy phép lái xe hạng A1: 135.000 đồng 2. **Lệ phí cấp giấy phép lái xe hạng A2: 135.000 đồng** 3. Lệ phí cấp giấy phép lái xe hạng B1: 270.000 đồng 4. Lệ phí cấp giấy phép lái xe hạng B2: 270.000 đồng Điều 3. Phí sát hạch lái xe Phí sát hạch lá",
+          "confidence": 1.0,
+          "type": "fee",
+          "groups": [
+            "Lệ phí cấp giấy phép lái xe hạng A2",
+            "135.000 đồng"
+          ],
+          "paragraph": "Điều 2. Lệ phí cấp giấy phép lái xe 1. Lệ phí cấp giấy phép lái xe hạng A1: 135.000 đồng 2. Lệ phí cấp giấy phép lái xe hạng A2: 135.000 đồng 3. Lệ phí cấp giấy phép lái xe hạng B1: 270.000 đồng 4. Lệ...",
+          "source_title": "Thông tư về phí lệ phí"
+        },
+        {
+          "name": "Lệ phí cấp giấy phép lái xe hạng B1",
+          "formula": "Lệ phí cấp giấy phép lái xe hạng B1: 270.000 đồng",
+          "description": "Lệ phí - fee",
+          "context": "Điều 2. Lệ phí cấp giấy phép lái xe 1. Lệ phí cấp giấy phép lái xe hạng A1: 135.000 đồng 2. Lệ phí cấp giấy phép lái xe hạng A2: 135.000 đồng 3. **Lệ phí cấp giấy phép lái xe hạng B1: 270.000 đồng** 4. Lệ phí cấp giấy phép lái xe hạng B2: 270.000 đồng Điều 3. Phí sát hạch lái xe Phí sát hạch lái xe = Phí lý thuyết + Phí thực hành - Phí sát hạch l",
+          "confidence": 1.0,
+          "type": "fee",
+          "groups": [
+            "Lệ phí cấp giấy phép lái xe hạng B1",
+            "270.000 đồng"
+          ],
+          "paragraph": "Điều 2. Lệ phí cấp giấy phép lái xe 1. Lệ phí cấp giấy phép lái xe hạng A1: 135.000 đồng 2. Lệ phí cấp giấy phép lái xe hạng A2: 135.000 đồng 3. Lệ phí cấp giấy phép lái xe hạng B1: 270.000 đồng 4. Lệ...",
+          "source_title": "Thông tư về phí lệ phí"
+        },
+        {
+          "name": "Lệ phí cấp giấy phép lái xe hạng B2",
+          "formula": "Lệ phí cấp giấy phép lái xe hạng B2: 270.000 đồng",
+          "description": "Lệ phí - fee",
+          "context": "p giấy phép lái xe hạng A1: 135.000 đồng 2. Lệ phí cấp giấy phép lái xe hạng A2: 135.000 đồng 3. Lệ phí cấp giấy phép lái xe hạng B1: 270.000 đồng 4. **Lệ phí cấp giấy phép lái xe hạng B2: 270.000 đồng** Điều 3. Phí sát hạch lái xe Phí sát hạch lái xe = Phí lý thuyết + Phí thực hành - Phí sát hạch lý thuyết: 70.000 đồng - Phí sát hạch thực hành: 120.0",
+          "confidence": 1.0,
+          "type": "fee",
+          "groups": [
+            "Lệ phí cấp giấy phép lái xe hạng B2",
+            "270.000 đồng"
+          ],
+          "paragraph": "Điều 2. Lệ phí cấp giấy phép lái xe 1. Lệ phí cấp giấy phép lái xe hạng A1: 135.000 đồng 2. Lệ phí cấp giấy phép lái xe hạng A2: 135.000 đồng 3. Lệ phí cấp giấy phép lái xe hạng B1: 270.000 đồng 4. Lệ...",
+          "source_title": "Thông tư về phí lệ phí"
+        }
+      ],
+      "total_formulas": 4
+    },
+    {
+      "title": "Nghị định về xử phạt vi phạm hành chính",
+      "content_length": 439,
+      "formulas": [],
+      "total_formulas": 0
+    }
+  ]
+}

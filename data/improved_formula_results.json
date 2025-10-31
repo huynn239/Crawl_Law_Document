@@ -1,0 +1,44 @@
+[
+  {
+    "url": "https://thuvienphapluat.vn/van-ban/Thue-Phi-Le-Phi/Thong-tu-30-2016-TT-BTC-huong-dan-thuc-hien-mot-so-dieu-cua-Luat-Thue-thu-nhap-ca-nhan-309144.aspx",
+    "tab1_content_length": 9578,
+    "formulas": [
+      {
+        "name": "Phép tính",
+        "formula": "156/2011",
+        "description": "Phép tính - calculation",
+        "context": "Tài chính hướng dẫn về phân loại hàng hóa, phân tích để phân loại hàng hóa, phân tích để kiểm tra chất lượng, kiểm tra an toàn thực phẩm  Thông tư số **156/2011**/TT-BTC ngày 14/11/2011 của Bộ Tài chính về việc ban hành Danh mục hàng hóa xuất khẩu, nhập khẩu Việt Nam  Trên cơ sở kết quả phân tích của Trung tâm",
+        "confidence": 0.75,
+        "type": "calculation",
+        "groups": [
+          "156",
+          "/",
+          "2011"
+        ],
+        "paragraph": "n n--- Tab1 content --- nBỘ TÀI CHÍNH TỔNG CỤC HẢI QUAN ------- CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM Độc lập - Tự do - Hạnh phúc --------------- Số: 9866/TB-TCHQ Hà Nội, ngày 26 tháng 10 năm 2015 THÔNG ..."
+      }
+    ],
+    "total_formulas": 1,
+    "extraction_method": "improved_patterns",
+    "stt": 1,
+    "title": ""
+  },
+  {
+    "url": "https://thuvienphapluat.vn/van-ban/Bao-hiem/Nghi-dinh-38-2019-ND-CP-quy-dinh-ve-bao-hiem-xa-hoi-415578.aspx",
+    "tab1_content_length": 49673,
+    "formulas": [],
+    "total_formulas": 0,
+    "extraction_method": "improved_patterns",
+    "stt": 2,
+    "title": ""
+  },
+  {
+    "url": "https://thuvienphapluat.vn/van-ban/Thue-Phi-Le-Phi/Thong-tu-78-2014-TT-BTC-huong-dan-tinh-thue-gia-tri-gia-tang-250508.aspx",
+    "tab1_content_length": 86,
+    "formulas": [],
+    "total_formulas": 0,
+    "extraction_method": "improved_patterns",
+    "stt": 3,
+    "title": ""
+  }
+]

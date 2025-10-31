@@ -9,53 +9,26 @@
     "httponly": false
   },
   {
+    "name": "ruirophaply-covi19",
+    "value": "29",
+    "domain": "thuvienphapluat.vn",
+    "path": "/",
+    "secure": false,
+    "expires": 1761809880,
+    "httponly": false
+  },
+  {
     "name": "G_ENABLED_IDPS",
     "value": "google",
     "domain": ".thuvienphapluat.vn",
     "path": "/",
     "secure": false,
-    "expires": 1795059987.405896,
-    "httponly": false
-  },
-  {
-    "name": "__tvpl__",
-    "value": "tvpl_ses_1760499993_MDk0MmU0Mj",
-    "domain": ".tvpl.vn",
-    "path": "/",
-    "secure": true,
-    "expires": 1795060009.84187,
-    "httponly": false
-  },
-  {
-    "name": "__tvpl__",
-    "value": "tvpl_ses_1760499993_MDk0MmU0Mj",
-    "domain": ".thuvienphapluat.vn",
-    "path": "/",
-    "secure": true,
-    "expires": 1795060009.923866,
-    "httponly": false
-  },
-  {
-    "name": "ruirophaply-covi19",
-    "value": "15",
-    "domain": "thuvienphapluat.vn",
-    "path": "/",
-    "secure": false,
-    "expires": 1760586409,
-    "httponly": false
-  },
-  {
-    "name": "Culture",
-    "value": "vi",
-    "domain": ".thuvienphapluat.vn",
-    "path": "/",
-    "secure": false,
-    "expires": 1792035997.55592,
+    "expires": 1796283475.690108,
     "httponly": false
   },
   {
     "name": "ASP.NET_SessionId",
-    "value": "dzo5fgvftqkl4gn0oq1supzz",
+    "value": "m3qfymcwf4wetinm2myxcnhr",
     "domain": "thuvienphapluat.vn",
     "path": "/",
     "secure": false,
@@ -63,12 +36,39 @@
     "httponly": true
   },
   {
-    "name": "thuvienphapluatnew",
-    "value": "E1F176D9C97272966FC095890071F8A7DF688993B7805E170633081019C3C731EDA2659897A548E0C3B6522644874ECF5FFD4B524A7D4E4587878EE0652779CBA603E5088C75EACC52AF8FC76BC4D1E2603A3002CB5E8FA76171EEE84FB8AFE984FEE0628373B1CAE3A11DE39E4F419B560EA2995CC90F49E250EFBF51299AEE135D9D99C00472B99D01ECB66419E512AF0F8039F8228CCA1D9BD1D3D53DFE90E41557D909D682C8AD248EA6032045F4963843979C3C7E61CC7F6CB926174249D9D59488D7DC025272665C17",
+    "name": "Culture",
+    "value": "vi",
     "domain": ".thuvienphapluat.vn",
     "path": "/",
     "secure": false,
-    "expires": 1795060007.122916,
+    "expires": 1793259475.731713,
+    "httponly": false
+  },
+  {
+    "name": "__tvpl__",
+    "value": "tvpl_ses_1761723474_YWNjZDM4Zm",
+    "domain": ".tvpl.vn",
+    "path": "/",
+    "secure": true,
+    "expires": 1796283480.495726,
+    "httponly": false
+  },
+  {
+    "name": "__tvpl__",
+    "value": "tvpl_ses_1761723474_YWNjZDM4Zm",
+    "domain": ".thuvienphapluat.vn",
+    "path": "/",
+    "secure": true,
+    "expires": 1796283480.502437,
+    "httponly": false
+  },
+  {
+    "name": "thuvienphapluatnew",
+    "value": "CBFE820507CDD388B61DFD9B6D0F59C31D6ED14E4B74503758CBEC06FEDEF711AB712D98E2B416D6901EB2A6A7A8D499333185770702E2C4785462AFA499E52CEED6B80621E004C30B31FA61CFBDDE2B650E8448223119390B9E21C1E4060AAF28E7CE77AC2D2F1FA578806A8916AAD891BC370B3FCF7E0920E1E175D94CC56C9284997FDC83EE8D68E888867AD619DDD1223042D42F14A81271813BA5A5C23E3E96E857785CCC60DE6FE9FF2ACFE976002576CBA10A2B2EDCE7F2B8505D9B77A90F7389124A46C4C8CB87DF",
+    "domain": ".thuvienphapluat.vn",
+    "path": "/",
+    "secure": false,
+    "expires": 1796283478.814063,
     "httponly": false
   },
   {
@@ -77,7 +77,7 @@
     "domain": ".thuvienphapluat.vn",
     "path": "/",
     "secure": false,
-    "expires": 1795060007.123034,
+    "expires": 1796283478.814181,
     "httponly": false
   },
   {
@@ -86,25 +86,25 @@
     "domain": ".thuvienphapluat.vn",
     "path": "/",
     "secure": false,
-    "expires": 1795060007.123103,
+    "expires": 1796283478.814231,
     "httponly": false
   },
   {
     "name": "43C504",
-    "value": "54c80b91-099d-4462-8507-d050304a054b",
+    "value": "0997da28-2fa7-4c5e-ba2d-329cb997b53d",
     "domain": "thuvienphapluat.vn",
     "path": "/",
     "secure": false,
-    "expires": 1795060007.123182,
+    "expires": 1796283478.814279,
     "httponly": false
   },
   {
     "name": "c_user",
-    "value": "V6RRME1UTTBPQ3d5TURJMUx6RXdMekUxSURFd09qUTJPalTk",
+    "value": "U0RRME1UTTBPQ3d5TURJMUx6RXdMekk1SURFME9qTTNPalTk",
     "domain": ".thuvienphapluat.vn",
     "path": "/",
     "secure": false,
-    "expires": 1795060009.088794,
+    "expires": 1796283479.254361,
     "httponly": false
   },
   {
@@ -113,7 +113,7 @@
     "domain": ".thuvienphapluat.vn",
     "path": "/",
     "secure": false,
-    "expires": 1760586409,
+    "expires": 1761809879,
     "httponly": false
   },
   {
@@ -122,7 +122,7 @@
     "domain": "thuvienphapluat.vn",
     "path": "/",
     "secure": false,
-    "expires": 1761104809,
+    "expires": 1762328280,
     "httponly": false
   }
 ]

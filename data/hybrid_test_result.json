@@ -1,0 +1,57 @@
+{
+  "formulas": [
+    {
+      "name": "Số tiết dạy thêm của nhà giáo/năm học = (Tổng số t...",
+      "formula": "Số tiết dạy thêm của nhà giáo/năm học = (Tổng số tiết dạy được tính thực tế/năm học) - (Định mức tiết dạy/năm học)\n    \n    2",
+      "type": "equation",
+      "confidence": 1.0,
+      "context": "\n    Điều 3. Số tiết dạy thêm của nhà giáo được xác định như sau:\n    \n    1. Số tiết dạy thêm của nhà giáo/năm học = (Tổng số tiết dạy được tính thực tế/năm học) - (Định mức tiết dạy/năm học)\n    \n  ",
+      "extraction_method": "hybrid_regex_validated"
+    },
+    {
+      "name": "Tiền lương dạy thêm giờ/năm học = Số tiết dạy thêm...",
+      "formula": "Tiền lương dạy thêm giờ/năm học = Số tiết dạy thêm/năm học × Tiền lương 01 tiết dạy thêm\n    \n    3",
+      "type": "equation",
+      "confidence": 1.0,
+      "context": "iáo/năm học = (Tổng số tiết dạy được tính thực tế/năm học) - (Định mức tiết dạy/năm học)\n    \n    2. Tiền lương dạy thêm giờ/năm học = Số tiết dạy thêm/năm học × Tiền lương 01 tiết dạy thêm\n    \n    3",
+      "extraction_method": "hybrid_regex_validated"
+    },
+    {
+      "name": "Định mức tiết dạy/năm học của giáo viên mầm non = ...",
+      "formula": "Định mức tiết dạy/năm học của giáo viên mầm non = (Số giờ dạy định mức/ngày) × (Số ngày làm việc/tuần) × (Số tuần dạy trẻ/năm học)\n    \n    4",
+      "type": "equation",
+      "confidence": 1.0,
+      "context": "Tiền lương dạy thêm giờ/năm học = Số tiết dạy thêm/năm học × Tiền lương 01 tiết dạy thêm\n    \n    3. Định mức tiết dạy/năm học của giáo viên mầm non = (Số giờ dạy định mức/ngày) × (Số ngày làm việc/tu",
+      "extraction_method": "hybrid_regex_validated"
+    },
+    {
+      "name": "Số tiết dạy thêm của nhà giáo được xác định như sa...",
+      "formula": "Số tiết dạy thêm của nhà giáo được xác định như sau:\n    \n    1",
+      "type": "multiplication",
+      "confidence": 0.95,
+      "context": "\n    Điều 3. Số tiết dạy thêm của nhà giáo được xác định như sau:\n    \n    1. Số tiết dạy thêm của nhà giáo/năm học = (Tổng số tiết dạy được tính thực tế/năm học) - (Định mức t",
+      "extraction_method": "hybrid_regex_validated"
+    }
+  ],
+  "parameters": [
+    {
+      "name": "không quá 200 tiết/năm học",
+      "value": "",
+      "full_text": "không quá 200 tiết/năm học",
+      "type": "limit",
+      "confidence": 0.8
+    },
+    {
+      "name": "là 1.800",
+      "value": "",
+      "full_text": "là 1.800",
+      "type": "fixed_value",
+      "confidence": 0.7
+    }
+  ],
+  "total_formulas": 4,
+  "total_parameters": 2,
+  "extraction_method": "hybrid_regex_llm",
+  "url": "https://thuvienphapluat.vn/van-ban/Giao-duc/Thong-tu-21-2025-TT-BGDDT-che-do-tra-tien-luong-day-them-gio-nha-giao-trong-cac-co-so-giao-duc-cong-lap-673797.aspx",
+  "content_length": 562
+}

@@ -1,0 +1,114 @@
+{
+  "extraction_report": {
+    "extraction_summary": {
+      "total_documents": 3,
+      "total_detected_formulas": 39,
+      "regex_extracted": 0,
+      "llm_extracted": 0,
+      "manual_required": 39,
+      "automation_rate": "0.0%",
+      "success_rate": "0.0%"
+    },
+    "cost_analysis": {
+      "manual_work_saved": "390,000 VND",
+      "manual_queue_size": 39,
+      "estimated_manual_hours": 3.9000000000000004
+    },
+    "manual_queue": [
+      {
+        "text": "Tra cứu mức phí, lệ phí 18",
+        "context": "Tra cứu mức phí, lệ phí 18",
+        "timestamp": "2025-10-19T18:01:04.199114"
+      },
+      {
+        "text": "Tính thuế thu nhập cá nhân Online 24. Văn bản TP",
+        "context": "Tính thuế thu nhập cá nhân Online 24. Văn bản TP",
+        "timestamp": "2025-10-19T18:01:04.200631"
+      },
+      {
+        "text": "Điều 9 Luật Ban hành văn bản quy phạm pháp luật 2025 Lao Động Tiền Lương X Chủ đề liên quan X Pháp Luật Nhà Đất X Tư vấn Pháp luật X Từ khoá: Số Hiệu, Tiêu đề hoặc Nội dung ngắn gọn của Văn Bản",
+        "context": "Điều 9 Luật Ban hành văn bản quy phạm pháp luật 2025 Lao Động Tiền Lương X Chủ đề liên quan X Pháp L",
+        "timestamp": "2025-10-19T18:01:04.200631"
+      },
+      {
+        "text": "Văn bản PL Dự thảo Công văn TCVN Tra cứu nhanh : Thời điểm Áp dụng Tình trạng Hiệu lực Lĩnh vực, Ngành Thời gian Ban hành Đăng nhập Dùng tài khoản L aw N et Quên mật khẩu? Đăng ký mới Google ĐĂNG KÝ THÀNH VIÊN MIỄN PHÍ ĐỂ Khai thác hơn 516.000 văn bản Pháp Luật Nhận Email văn bản mới hàng tuần Được hỗ trợ tra cứu trực tuyến Tra cứu Mẫu hợp đồng, Bảng giá đất",
+        "context": "Văn bản PL Dự thảo Công văn TCVN Tra cứu nhanh : Thời điểm Áp dụng Tình trạng Hiệu lực Lĩnh vực, N",
+        "timestamp": "2025-10-19T18:01:04.200631"
+      },
+      {
+        "text": "Đơn vị nhập khẩu: Công ty TNHH Coronet Việt Nam, địa chỉ: Lô EI-7, EI- 8, EI-9, KCN Giao Long giai đoạn II, xã An Phước, huyện Châu Thành, tỉnh Bến Tre; Mã số thuế: 1300932904. 3",
+        "context": "Đơn vị nhập khẩu: Công ty TNHH Coronet Việt Nam, địa chỉ: Lô EI-7, EI- 8, EI-9, KCN Giao Long giai đ",
+        "timestamp": "2025-10-19T18:01:04.200631"
+      },
+      {
+        "text": "vn Mã số thuế: 0315459414 Trang chủ Các Gói Dịch Vụ Online Đăng ký Thành viên Hướng Dẫn Sử Dụng Giới Thiệu Liên Hệ Quy Chế Hoạt Động Thỏa Ước Dịch Vụ PM TVPL trực tuyến Tra cứu Pháp Luật mới Tra cứu Công văn Tra cứu Tiêu Chuẩn Việt Nam Quy chế bảo vệ dữ liệu cá nhân IP: 42",
+        "context": "vn Mã số thuế: 0315459414 Trang chủ Các Gói Dịch Vụ Online Đăng ký Thành viên Hướng Dẫn Sử Dụng Giới",
+        "timestamp": "2025-10-19T18:01:04.200631"
+      },
+      {
+        "text": "E-mail: Sử dụng tài khoản L aw N et Tiếp tục Thoát Xác nhận Email nhận thông báo close Thông báo cho tôi khi Văn bản Email nhận thông báo: Gởi yêu cầu Thoát Nhận thông báo khi văn bản có nội dung close Thông báo cho tôi khi Văn bản Email nhận thông báo: Gởi yêu cầu Thoát Thông báo close Quý khách chưa đăng nhập, vui lòng Đăng nhập để trải nghiệm những tiện ích miễn phí. Xin chào Quý khách hàng - ! Mời Bạn trải nghiệm những tiện ích MIỄN PHÍ nổi bật trên www",
+        "context": "E-mail: Sử dụng tài khoản L aw N et Tiếp tục Thoát Xác nhận Email nhận thông báo close Thông báo cho",
+        "timestamp": "2025-10-19T18:01:04.200631"
+      },
+      {
+        "text": "Bỏ qua Bắt đầu xem hướng dẫn Đăng nhập để xem hướng dẫn Thông báo close Quý khách chưa đăng nhập, vui lòng Đăng nhập để trải nghiệm những tiện ích có phí. Xin chào Quý khách hàng - ! Mời Bạn trải nghiệm những tiện ích CÓ PHÍ khi xem văn bản trên www",
+        "context": "Bỏ qua Bắt đầu xem hướng dẫn Đăng nhập để xem hướng dẫn Thông báo close Quý khách chưa đăng nhập, vu",
+        "timestamp": "2025-10-19T18:01:04.200631"
+      },
+      {
+        "text": "Ngoài ra, Bạn có thể nhấn vào đây để trải nghiệm MIỄN PHÍ các tiện ích khi xem văn bản dành cho thành viên CÓ PHÍ . 👉 Xem thông tin chi tiết về gói dịch vụ và báo giá: Tại đây",
+        "context": "Ngoài ra, Bạn có thể nhấn vào đây để trải nghiệm MIỄN PHÍ các tiện ích khi xem văn bản dành cho thàn",
+        "timestamp": "2025-10-19T18:01:04.200631"
+      },
+      {
+        "text": "Tóm tắt mô tả và đặc tính hàng hóa: Chế phẩm màu hữu cơ được phân tán trong dung môi xylene, ethyl benzene, dipropylene glyco l methyl ether dùng đ ể sản xuất sơn cho da",
+        "context": "Tóm tắt mô tả và đặc tính hàng hóa: Chế phẩm màu hữu cơ được phân tán trong dung môi xylene, ethyl b",
+        "timestamp": "2025-10-19T18:01:04.200631"
+      }
+    ]
+  },
+  "documents": [
+    {
+      "url": "https://thuvienphapluat.vn/van-ban/Thue-Phi-Le-Phi/Thong-tu-30-2016-TT-BTC-huong-dan-thuc-hien-mot-so-dieu-cua-Luat-Thue-thu-nhap-ca-nhan-309144.aspx",
+      "total_candidates": 18,
+      "regex_extracted": 0,
+      "llm_extracted": 0,
+      "manual_required": 18,
+      "formulas": [],
+      "extraction_stats": {
+        "success_rate": 0.0,
+        "automation_rate": 0.0
+      },
+      "stt": 1,
+      "title": "Thông tư 30/2016/TT-BTC hướng dẫn thực hiện một số điều của Luật Thuế thu nhập cá nhân"
+    },
+    {
+      "url": "https://thuvienphapluat.vn/van-ban/Bao-hiem/Nghi-dinh-38-2019-ND-CP-quy-dinh-ve-bao-hiem-xa-hoi-415578.aspx",
+      "total_candidates": 21,
+      "regex_extracted": 0,
+      "llm_extracted": 0,
+      "manual_required": 21,
+      "formulas": [],
+      "extraction_stats": {
+        "success_rate": 0.0,
+        "automation_rate": 0.0
+      },
+      "stt": 2,
+      "title": "Nghị định 38/2019/NĐ-CP quy định về bảo hiểm xã hội"
+    },
+    {
+      "url": "https://thuvienphapluat.vn/van-ban/Thue-Phi-Le-Phi/Thong-tu-78-2014-TT-BTC-huong-dan-tinh-thue-gia-tri-gia-tang-250508.aspx",
+      "total_candidates": 0,
+      "regex_extracted": 0,
+      "llm_extracted": 0,
+      "manual_required": 0,
+      "formulas": [],
+      "extraction_stats": {
+        "success_rate": 0,
+        "automation_rate": 0
+      },
+      "stt": 3,
+      "title": "Thông tư 78/2014/TT-BTC hướng dẫn tính thuế giá trị gia tăng"
+    }
+  ]
+}

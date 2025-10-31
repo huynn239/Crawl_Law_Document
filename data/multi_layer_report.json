@@ -1,0 +1,86 @@
+{
+  "extraction_report": {
+    "extraction_summary": {
+      "total_documents": 1,
+      "total_detected_formulas": 40,
+      "regex_extracted": 0,
+      "llm_extracted": 0,
+      "manual_required": 40,
+      "automation_rate": "0.0%",
+      "success_rate": "0.0%"
+    },
+    "cost_analysis": {
+      "manual_work_saved": "400,000 VND",
+      "manual_queue_size": 40,
+      "estimated_manual_hours": 4.0
+    },
+    "manual_queue": [
+      {
+        "text": "Thông tư 21/2025/TT-BGDĐT chế độ trả tiền lương dạy thêm giờ nhà giáo trong các cơ sở giáo dục công lập mới nhất THƯ VIỆN PHÁP LUẬT Trang Thông tin điện tử tổng hợp ...loại rủi ro pháp lý, nắm cơ hội làm giàu",
+        "context": "Thông tư 21/2025/TT-BGDĐT chế độ trả tiền lương dạy thêm giờ nhà giáo trong các cơ sở giáo dục công ",
+        "timestamp": "2025-10-19T17:59:00.942044"
+      },
+      {
+        "text": "Tra cứu mức phí, lệ phí 18",
+        "context": "Tra cứu mức phí, lệ phí 18",
+        "timestamp": "2025-10-19T17:59:00.942044"
+      },
+      {
+        "text": "Tính thuế thu nhập cá nhân Online 24. Văn bản TP",
+        "context": "Tính thuế thu nhập cá nhân Online 24. Văn bản TP",
+        "timestamp": "2025-10-19T17:59:00.942044"
+      },
+      {
+        "text": "Văn bản PL Dự thảo Công văn TCVN Tra cứu nhanh : Thời điểm Áp dụng Tình trạng Hiệu lực Lĩnh vực, Ngành Thời gian Ban hành Đăng nhập Dùng tài khoản L aw N et Quên mật khẩu? Đăng ký mới Google ĐĂNG KÝ THÀNH VIÊN MIỄN PHÍ ĐỂ Khai thác hơn 516.000 văn bản Pháp Luật Nhận Email văn bản mới hàng tuần Được hỗ trợ tra cứu trực tuyến Tra cứu Mẫu hợp đồng, Bảng giá đất",
+        "context": "Văn bản PL Dự thảo Công văn TCVN Tra cứu nhanh : Thời điểm Áp dụng Tình trạng Hiệu lực Lĩnh vực, N",
+        "timestamp": "2025-10-19T17:59:00.942044"
+      },
+      {
+        "text": "- Việc lập dự toán, thanh toán, quyết toán kinh phí tiền lương dạy thêm giờ thực hiện theo quy định của pháp luật đối với đơn vị sự nghiệp công lập và các văn bản liên quan. Cơ sở giáo dục công lập căn cứ điều kiện cụ thể của đơn vị để thực hiện thanh toán hoặc tạm ứng tiền lương dạy thêm giờ theo tháng hoặc theo học kỳ hoặc theo năm học cho phù hợp",
+        "context": "- Việc lập dự toán, thanh toán, quyết toán kinh phí tiền lương dạy thêm giờ thực hiện theo quy định ",
+        "timestamp": "2025-10-19T17:59:00.942044"
+      },
+      {
+        "text": "Lưu ý: Thông tư 21/2025/TT-BGDĐT về tiền lương dạy thêm giờ đối với nhà giáo trong cơ sở giáo dục công lập không áp dụng đối với nhà giáo trong các cơ sở giáo dục thuộc Bộ Quốc phòng và Bộ Công an. Chỉ áp dụng đối với: - Nhà giáo và nhà giáo giữ chức vụ cán bộ quản lý cơ sở giáo dục (sau đây gọi chung là nhà giáo) thuộc danh sách trả lương được cơ quan có thẩm quyền phê duyệt, đang giảng dạy trong các cơ sở giáo dục công lập thuộc hệ thống giáo dục quốc dân",
+        "context": "Lưu ý: Thông tư 21/2025/TT-BGDĐT về tiền lương dạy thêm giờ đối với nhà giáo trong cơ sở giáo dục cô",
+        "timestamp": "2025-10-19T17:59:00.942044"
+      },
+      {
+        "text": "- Nhà giáo thuộc danh sách trả lương được cơ quan có thẩm quyền phê duyệt, đang hướng dẫn thực hành tại các xưởng trường, trạm, trại, phòng thí nghiệm trong các cơ sở giáo dục công lập hoặc hướng dẫn thực hành trên tàu huấn luyện",
+        "context": "- Nhà giáo thuộc danh sách trả lương được cơ quan có thẩm quyền phê duyệt, đang hướng dẫn thực hành ",
+        "timestamp": "2025-10-19T17:59:00.942044"
+      },
+      {
+        "text": "Thông tư này quy định chế độ trả tiền lương dạy thêm 2. Thông tư này không áp dụng đối với nhà giáo trong các cơ sở giáo dục thuộc Bộ Quốc phòng và Bộ Công an",
+        "context": "Thông tư này quy định chế độ trả tiền lương dạy thêm 2. Thông tư này không áp dụng đối với nhà giáo ",
+        "timestamp": "2025-10-19T17:59:00.942044"
+      },
+      {
+        "text": "Nhà giáo và nhà giáo giữ chức vụ cán bộ quản lý cơ sở giáo dục (sau đây gọi chung là nhà giáo) thuộc danh sách trả lương được cơ quan có thẩm quyền phê duyệt, đang giảng dạy trong các cơ sở giáo dục công lập thuộc hệ thống giáo dục quốc dân",
+        "context": "Nhà giáo và nhà giáo giữ chức vụ cán bộ quản lý cơ sở giáo dục (sau đây gọi chung là nhà giáo) thuộc",
+        "timestamp": "2025-10-19T17:59:00.942044"
+      },
+      {
+        "text": "Nhà giáo thuộc danh sách trả lương được cơ quan có thẩm quyền phê duyệt, đang hướng dẫn thực hành tại các xưởng trường, trạm, trại, phòng thí nghiệm trong các cơ sở giáo dục công lập hoặc hướng dẫn thực hành trên tàu huấn luyện",
+        "context": "Nhà giáo thuộc danh sách trả lương được cơ quan có thẩm quyền phê duyệt, đang hướng dẫn thực hành tạ",
+        "timestamp": "2025-10-19T17:59:00.942044"
+      }
+    ]
+  },
+  "documents": [
+    {
+      "url": "https://thuvienphapluat.vn/van-ban/Giao-duc/Thong-tu-21-2025-TT-BGDDT-che-do-tra-tien-luong-day-them-gio-nha-giao-trong-cac-co-so-giao-duc-cong-lap-673797.aspx",
+      "total_candidates": 40,
+      "regex_extracted": 0,
+      "llm_extracted": 0,
+      "manual_required": 40,
+      "formulas": [],
+      "extraction_stats": {
+        "success_rate": 0.0,
+        "automation_rate": 0.0
+      },
+      "stt": 1,
+      "title": "Thông tư 21/2025/TT-BGDĐT chế độ trả tiền lương dạy thêm giờ nhà giáo trong các cơ sở giáo dục công lập"
+    }
+  ]
+}

@@ -175,33 +175,40 @@ LIMIT 10;
 ## 🔗 6. XEM QUAN HỆ VĂN BẢN
 
 ```sql
--- Xem quan hệ của 1 văn bản (bao gồm doc_id)
+-- Xem quan hệ của 1 văn bản (sau khi migrate sang schemas)
 SELECT 
     dr.relation_type AS "Loại quan hệ",
     dr.target_doc_id AS "Doc ID",
     dr.target_title AS "Văn bản liên quan",
-    dr.target_url AS "URL"
-FROM document_relations dr
+    dr.target_url AS "URL",
+    dr.resolved AS "Đã crawl?"
+FROM tvpl.document_relations dr
 WHERE dr.source_doc_id = '676102'
 ORDER BY dr.relation_type, dr.target_doc_id;
 
--- Đếm số quan hệ
+-- Đếm số quan hệ theo loại
 SELECT 
     relation_type AS "Loại quan hệ",
-    COUNT(*) AS "Số lượng"
-FROM document_relations
+    COUNT(*) AS "Số lượng",
+    COUNT(*) FILTER (WHERE resolved = true) AS "Đã crawl",
+    COUNT(*) FILTER (WHERE resolved = false) AS "Chưa crawl"
+FROM tvpl.document_relations
 WHERE source_doc_id = '676102'
 GROUP BY relation_type;
+
+-- Xem chi tiết qua VIEW
+SELECT * FROM views.v_document_relations
+WHERE source_doc_id = '676102';
 
 -- Tìm văn bản có nhiều quan hệ nhất
 SELECT 
     df.doc_id,
     df.title AS "Tên văn bản",
-    COUNT(dr.id) AS "Số quan hệ"
-FROM documents_finals df
-JOIN document_relations dr ON df.doc_id = dr.source_doc_id
+    COUNT(dr.relation_id) AS "Số quan hệ"
+FROM tvpl.document_finals df
+JOIN tvpl.document_relations dr ON df.doc_id = dr.source_doc_id
 GROUP BY df.doc_id, df.title
-ORDER BY COUNT(dr.id) DESC
+ORDER BY COUNT(dr.relation_id) DESC
 LIMIT 10;
 ```
 

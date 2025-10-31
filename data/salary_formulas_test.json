@@ -1,0 +1,98 @@
+{
+  "formulas": [
+    {
+      "name": "Tiền lương 01 tiết dạy | = | Tổng tiền lương của 12 tháng tr...",
+      "formula": "Tiền lương 01 tiết dạy | = | Tổng tiền lương của 12 tháng trong năm học | × | Số tuần giảng dạy ---|---|---|---|--- Định mức tiết dạy/năm học | 52 tuần b) Đối với nhà giáo trong cơ sở giáo dục đại học: Tiền lương 01 tiết dạy | = | Tổng tiền lương của 12 tháng | × | Định mức tiết dạy/năm học | × | 44",
+      "type": "salary_per_lesson",
+      "confidence": 1.0,
+      "context": "n lương 01 tiết dạy của nhà giáo được xác định như sau:\n    \n    a) Đối với nhà giáo trong cơ sở giáo dục mầm non, cơ sở giáo dục phổ thông:\n    \n    Tiền lương 01 tiết dạy | = | Tổng tiền lương của 1",
+      "extraction_method": "ultimate_validated"
+    },
+    {
+      "name": "Tiền lương 01 tiết dạy | = | Tổng tiền lương của 12 tháng | ...",
+      "formula": "Tiền lương 01 tiết dạy | = | Tổng tiền lương của 12 tháng | × | Định mức tiết dạy/năm học | × | 44 tuần ---|---|---|---|---|---|--- Định mức tiết dạy/năm học | 1760 giờ | 52 tuần 2",
+      "type": "salary_calc",
+      "confidence": 1.0,
+      "context": "Số tuần giảng dạy\n    ---|---|---|---|---\n    Định mức tiết dạy/năm học | 52 tuần\n    \n    b) Đối với nhà giáo trong cơ sở giáo dục đại học:\n    \n    Tiền lương 01 tiết dạy | = | Tổng tiền lương của 1",
+      "extraction_method": "ultimate_validated"
+    },
+    {
+      "name": "Tiền lương dạy thêm giờ/năm học = Số tiết dạy thêm/năm học ×...",
+      "formula": "Tiền lương dạy thêm giờ/năm học = Số tiết dạy thêm/năm học × Tiền lương 01 tiết dạy thêm 3",
+      "type": "salary_calc",
+      "confidence": 1.0,
+      "context": "12 tháng | × | Định mức tiết dạy/năm học | × | 44 tuần\n    ---|---|---|---|---|---|---\n    Định mức tiết dạy/năm học | 1760 giờ | 52 tuần\n    \n    2. Tiền lương dạy thêm giờ/năm học = Số tiết dạy thêm",
+      "extraction_method": "ultimate_validated"
+    },
+    {
+      "name": "i nhà giáo trong cơ sở giáo dục mầm non, cơ sở giáo dục phổ ...",
+      "formula": "i nhà giáo trong cơ sở giáo dục mầm non, cơ sở giáo dục phổ thông: Tiền lương 01 tiết dạy | = | Tổng tiền lương của 12 tháng trong năm học | × | Số tuần giảng dạy ---|---|---|---|--- Định mức tiết dạy/năm học | 52 tuần b) Đối v",
+      "type": "complete_equation",
+      "confidence": 1.0,
+      "context": "\n    Điều 5. Tiền lương dạy thêm giờ\n    \n    1. Tiền lương 01 tiết dạy của nhà giáo được xác định như sau:\n    \n    a) Đối với nhà giáo trong cơ sở giáo dục mầm non, cơ sở giáo dục phổ thông:\n    \n  ",
+      "extraction_method": "ultimate_validated"
+    },
+    {
+      "name": "ới nhà giáo trong cơ sở giáo dục đại học: Tiền lương 01 tiết...",
+      "formula": "ới nhà giáo trong cơ sở giáo dục đại học: Tiền lương 01 tiết dạy | = | Tổng tiền lương của 12 tháng | × | Định mức tiết dạy/năm học | × | 44 tuần ---|---|---|---|---|---|--- Định mức tiết dạy/năm học | 1760 giờ",
+      "type": "complete_equation",
+      "confidence": 1.0,
+      "context": "| Tổng tiền lương của 12 tháng trong năm học | × | Số tuần giảng dạy\n    ---|---|---|---|---\n    Định mức tiết dạy/năm học | 52 tuần\n    \n    b) Đối với nhà giáo trong cơ sở giáo dục đại học:\n    \n   ",
+      "extraction_method": "ultimate_validated"
+    },
+    {
+      "name": "Số tiết dạy thêm của nhà giáo/năm học = (Tổng số tiết dạy đư...",
+      "formula": "Số tiết dạy thêm của nhà giáo/năm học = (Tổng số tiết dạy được tính thực tế/năm học) - (Định mức tiết dạy/năm học)",
+      "type": "complete_equation",
+      "confidence": 1.0,
+      "context": "tiết dạy/năm học | 1760 giờ | 52 tuần\n    \n    2. Tiền lương dạy thêm giờ/năm học = Số tiết dạy thêm/năm học × Tiền lương 01 tiết dạy thêm\n    \n    3. Số tiết dạy thêm của nhà giáo/năm học = (Tổng số ",
+      "extraction_method": "ultimate_validated"
+    },
+    {
+      "name": "Tiền lương 01 tiết dạy của nhà giáo được × ác định như sau: ...",
+      "formula": "Tiền lương 01 tiết dạy của nhà giáo được × ác định như sau: a) Đối với nhà giáo trong cơ sở giáo dục mầm non, cơ s",
+      "type": "multiplication",
+      "confidence": 0.9500000000000001,
+      "context": "\n    Điều 5. Tiền lương dạy thêm giờ\n    \n    1. Tiền lương 01 tiết dạy của nhà giáo được xác định như sau:\n    \n    a) Đối với nhà giáo trong cơ sở giáo dục mầm non, cơ sở giáo dục phổ thông:\n    \n  ",
+      "extraction_method": "ultimate_validated"
+    },
+    {
+      "name": "Tiền lương 01 tiết dạy | = | Tổng tiền lương của 12 tháng tr...",
+      "formula": "Tiền lương 01 tiết dạy | = | Tổng tiền lương của 12 tháng trong năm học | × | Số tuần giảng dạy ---|---|---|---|--- Định mức tiết dạy/năm học | 52 t",
+      "type": "multiplication",
+      "confidence": 0.9500000000000001,
+      "context": " 1. Tiền lương 01 tiết dạy của nhà giáo được xác định như sau:\n    \n    a) Đối với nhà giáo trong cơ sở giáo dục mầm non, cơ sở giáo dục phổ thông:\n    \n    Tiền lương 01 tiết dạy | = | Tổng tiền lươn",
+      "extraction_method": "ultimate_validated"
+    },
+    {
+      "name": "ục đại học: Tiền lương 01 tiết dạy | = | Tổng tiền lương của...",
+      "formula": "ục đại học: Tiền lương 01 tiết dạy | = | Tổng tiền lương của 12 tháng | × | Định mức tiết dạy/năm học | × | 44 tuần ---|---|---|---|---|---|--- Đị",
+      "type": "multiplication",
+      "confidence": 0.9500000000000001,
+      "context": " trong năm học | × | Số tuần giảng dạy\n    ---|---|---|---|---\n    Định mức tiết dạy/năm học | 52 tuần\n    \n    b) Đối với nhà giáo trong cơ sở giáo dục đại học:\n    \n    Tiền lương 01 tiết dạy | = | ",
+      "extraction_method": "ultimate_validated"
+    },
+    {
+      "name": "ng năm học | × | Số tuần giảng dạy ---|---|---|---|--- Định ...",
+      "formula": "ng năm học | × | Số tuần giảng dạy ---|---|---|---|--- Định mức tiết dạy/năm học | 52 tuần b) Đối với nhà giáo trong cơ sở giáo dục đại học:",
+      "type": "division",
+      "confidence": 0.9500000000000001,
+      "context": "    a) Đối với nhà giáo trong cơ sở giáo dục mầm non, cơ sở giáo dục phổ thông:\n    \n    Tiền lương 01 tiết dạy | = | Tổng tiền lương của 12 tháng trong năm học | × | Số tuần giảng dạy\n    ---|---|---",
+      "extraction_method": "ultimate_validated"
+    },
+    {
+      "name": "iền lương 01 tiết dạy | = | Tổng tiền lương của 12 tháng | ×...",
+      "formula": "iền lương 01 tiết dạy | = | Tổng tiền lương của 12 tháng | × | Định mức tiết dạy/năm học | × | 44 tuần ---|---|---|---|---|---|--- Định mức tiết dạy/năm",
+      "type": "division",
+      "confidence": 0.9500000000000001,
+      "context": "ố tuần giảng dạy\n    ---|---|---|---|---\n    Định mức tiết dạy/năm học | 52 tuần\n    \n    b) Đối với nhà giáo trong cơ sở giáo dục đại học:\n    \n    Tiền lương 01 tiết dạy | = | Tổng tiền lương của 12",
+      "extraction_method": "ultimate_validated"
+    }
+  ],
+  "parameters": [],
+  "total_formulas": 11,
+  "total_parameters": 0,
+  "extraction_method": "ultimate_crawl4ai_regex",
+  "url": null,
+  "content_length": 849
+}

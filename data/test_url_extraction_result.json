@@ -1,0 +1,69 @@
+{
+  "formulas": [
+    {
+      "name": "Tiền lương 01 tiết dạy",
+      "formula": "Tiền lương 01 tiết dạy=Tổng tiền lương của 12 tháng trong năm họcxSố tuần giảng dạy hoặc dạy trẻ (không bao gồm số tuần dự phòng)Định mức tiết dạy/năm học52 tuầnb) Đối với nhà giáo trong cơ sở giáo dục đại học, cao đẳng sư phạm, cơ sở đào tạo, bồi",
+      "description": "Công thức tính lương - salary_calculation",
+      "context": "sở giáo dục mầm non, cơ sở giáo dục phổ thông, cơ sở giáo dục thường xuyên, trường dự bị đại học, trường chuyên biệt và nhà giáo giáo dục nghề nghiệp:**Tiền lương 01 tiết dạy=Tổng tiền lương của 12 tháng trong năm họcxSố tuần giảng dạy hoặc dạy trẻ (không bao gồm số tuần dự phòng)Định mức tiết dạy/năm học52 tuầnb) Đối với nhà giáo trong cơ sở giáo dục đại học, cao đẳng sư phạm, cơ sở đào tạo, bồi** dưỡng của Bộ, cơ quan ngang Bộ, cơ quan thuộc Chính phủ, tổ chức chính trị, tổ chức chính trị - xã hội, trường chính trị của tỉnh, thành phố trực thu",
+      "confidence": 1.0,
+      "type": "salary_calculation",
+      "extraction_method": "production_enhanced_regex",
+      "groups": [
+        "Tiền lương 01 tiết dạy",
+        "Tổng tiền lương của 12 tháng trong năm họcxSố tuần giảng dạy hoặc dạy trẻ (không bao gồm số tuần dự phòng)Định mức tiết dạy/năm học52 tuầnb) Đối với nhà giáo trong cơ sở giáo dục đại học, cao đẳng sư phạm, cơ sở đào tạo, bồi"
+      ]
+    },
+    {
+      "name": "Tiền lương 01 tiết dạy thêm",
+      "formula": "Tiền lương 01 tiết dạy thêm= Tiền lương 01 tiết dạy x 150%",
+      "description": "Công thức tính lương - salary_calculation",
+      "context": "ng thức tính tại điểm a, điểm b khoản này được tính là định mức tiết dạy/năm học của nhà giáo cùng cấp học, trình độ đào tạo của cơ sở giáo dục đó.2. **Tiền lương 01 tiết dạy thêm= Tiền lương 01 tiết dạy x 150%**.3. Tiền lương dạy thêmgiờ/năm học = Số tiết dạy thêm/năm học x Tiền lương 01 tiết dạy thêm.4. Tiền lương làm thêm giờ đối với nhà giáo quy định tạikh",
+      "confidence": 1.0,
+      "type": "salary_calculation",
+      "extraction_method": "production_enhanced_regex",
+      "groups": [
+        "Tiền lương 01 tiết dạy thêm",
+        "Tiền lương 01 tiết dạy x 150%"
+      ]
+    },
+    {
+      "name": "Tiền lương dạy thêmgiờnăm học",
+      "formula": "Tiền lương dạy thêmgiờ/năm học = Số tiết dạy thêm/năm học x Tiền lương 01 tiết dạy thêm",
+      "description": "Công thức tính lương - salary_calculation",
+      "context": "c tiết dạy/năm học của nhà giáo cùng cấp học, trình độ đào tạo của cơ sở giáo dục đó.2. Tiền lương 01 tiết dạy thêm= Tiền lương 01 tiết dạy x 150%.3. **Tiền lương dạy thêmgiờ/năm học = Số tiết dạy thêm/năm học x Tiền lương 01 tiết dạy thêm**.4. Tiền lương làm thêm giờ đối với nhà giáo quy định tạikhoản 2 Điều 2 Thông tư nàythực hiện theo quy định về tiền lương làm thêm giờ của pháp luật v",
+      "confidence": 1.0,
+      "type": "salary_calculation",
+      "extraction_method": "production_enhanced_regex",
+      "groups": [
+        "Tiền lương dạy thêmgiờ/năm học ",
+        "Số tiết dạy thêm/năm học x Tiền lương 01 tiết dạy thêm"
+      ]
+    },
+    {
+      "name": "Tiền lương 01 tiết dạy",
+      "formula": "Tiền lương 01 tiết dạy=Tổng số tiền lương được chi trả tương ứng với thời gian công tác thực tếxSố tuần thực dạy tương ứng với thời gian công tác thực tếĐịnh mức tiết dạy/thời gian công tác thực tế52 tuần - (Số tuần giảng dạy hoặc dạy trẻ theo quy định - Số tuần thực dạy",
+      "description": "Công thức tính lương - salary_calculation",
+      "context": "g dạy thêmgiờ tương ứng với thời gian công tác thực tế.2. Tiền lương 01 tiết dạy đối với nhà giáo công tác không đủ một năm học được xác định như sau:**Tiền lương 01 tiết dạy=Tổng số tiền lương được chi trả tương ứng với thời gian công tác thực tếxSố tuần thực dạy tương ứng với thời gian công tác thực tếĐịnh mức tiết dạy/thời gian công tác thực tế52 tuần - (Số tuần giảng dạy hoặc dạy trẻ theo quy định - Số tuần thực dạy** tương ứng với thời gian công tác thực tế)Trong đó:a) Đối với nhà giáo trong cơ sở giáo dục mầm non: Định mức tiết dạy/thời gian công tác thực tế = (S",
+      "confidence": 1.0,
+      "type": "salary_calculation",
+      "extraction_method": "production_enhanced_regex",
+      "groups": [
+        "Tiền lương 01 tiết dạy",
+        "Tổng số tiền lương được chi trả tương ứng với thời gian công tác thực tếxSố tuần thực dạy tương ứng với thời gian công tác thực tếĐịnh mức tiết dạy/thời gian công tác thực tế52 tuần - (Số tuần giảng dạy hoặc dạy trẻ theo quy định - Số tuần thực dạy"
+      ]
+    }
+  ],
+  "parameters": [],
+  "total_formulas": 4,
+  "total_parameters": 0,
+  "original_matches": 4,
+  "content_length": 16466,
+  "extraction_method": "production_ready_25_patterns_with_separation",
+  "separation_method": "smart_type_based_detection",
+  "formula_confidence_avg": 1.0,
+  "parameter_confidence_avg": 0.0,
+  "formula_types": {
+    "salary_calculation": 4
+  },
+  "parameter_types": {}
+}

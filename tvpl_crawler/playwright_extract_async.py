@@ -5,6 +5,7 @@ from typing import Dict, Optional
 from playwright.async_api import async_playwright
 from .captcha_solver import bypass_captcha
 from .playwright_extract_simple import extract_tab4_simple_async
+from .formula_extractor import extract_tab1_content_simple
 import re
 
 async def extract_luoc_do_async(
@@ -17,12 +18,56 @@ async def extract_luoc_do_async(
     """Async extract document data (reuse existing page)"""
     
     await page.goto(url, wait_until="domcontentloaded", timeout=timeout_ms)
-    await page.wait_for_timeout(1000)
+    await page.wait_for_timeout(3000)  # Tăng delay sau goto
+    
+    # Kiểm tra Cloudflare challenge
+    try:
+        cloudflare = await page.query_selector("text=Verify you are human")
+        if cloudflare:
+            print("  🔒 Cloudflare detected, waiting for bypass...")
+            # Đợi tối đa 60s cho Cloudflare tự động pass (hoặc user click thủ công)
+            for i in range(60):
+                await page.wait_for_timeout(1000)
+                cloudflare = await page.query_selector("text=Verify you are human")
+                if not cloudflare:
+                    print("  ✓ Cloudflare passed, waiting 5s for cookies...")
+                    await page.wait_for_timeout(5000)
+                    break
+                # Hiển thị progress mỗi 10s
+                if (i + 1) % 10 == 0:
+                    print(f"  ⏳ Waiting... {i+1}s/60s (click manually if needed)")
+            else:
+                # Nếu vẫn chưa pass sau 60s, thử reload
+                print("  ⚠ Cloudflare timeout, reloading page...")
+                await page.reload(wait_until="domcontentloaded", timeout=timeout_ms)
+                await page.wait_for_timeout(5000)
+                # Check lại
+                cloudflare = await page.query_selector("text=Verify you are human")
+                if cloudflare:
+                    raise Exception("Cloudflare challenge timeout after reload")
+                print("  ✓ Cloudflare passed after reload")
+    except Exception as e:
+        if "Cloudflare" in str(e):
+            raise
     
     # Kiểm tra và bypass CAPTCHA nếu có
     doc_id = url.split('-')[-1].replace('.aspx', '') if '-' in url else 0
-    if not await bypass_captcha(page, doc_id):
-        raise Exception(f"CAPTCHA bypass failed for {url}")
+    
+    # Debug: screenshot trước khi bypass CAPTCHA
+    if screenshots_dir:
+        try:
+            await page.screenshot(path=str(screenshots_dir / f"before_captcha_{doc_id}.png"))
+        except:
+            pass
+    
+    captcha_result = await bypass_captcha(page, doc_id)
+    if not captcha_result:
+        if screenshots_dir:
+            try:
+                await page.screenshot(path=str(screenshots_dir / f"captcha_failed_{doc_id}.png"))
+            except:
+                pass
+        raise Exception(f"CAPTCHA bypass failed")
     
     # Click tab4 (Lược đồ) FIRST to load the content
     try:
@@ -32,10 +77,17 @@ async def extract_luoc_do_async(
     
     # Đợi tab4 hiển thị và nội dung load xong
     try:
-        await page.wait_for_selector("#tab4", state="visible", timeout=5000)
-        await page.wait_for_timeout(2000)  # Đợi thêm 2s cho nội dung render
+        await page.wait_for_selector("#tab4", state="visible", timeout=8000)
+        await page.wait_for_timeout(3000)  # Tăng từ 2s lên 3s
     except:
-        await page.wait_for_timeout(1000)
+        await page.wait_for_timeout(2000)
+    
+    # Debug: screenshot sau khi click tab4
+    if screenshots_dir:
+        try:
+            await page.screenshot(path=str(screenshots_dir / f"after_tab4_{doc_id}.png"))
+        except:
+            pass
     
     # Extract doc_info and tab4 relations using extract_tab4_simple_async
     tab4_data = await extract_tab4_simple_async(page)
@@ -85,6 +137,11 @@ async def extract_luoc_do_async(
     tab4_summary = tab4_data.get("tab4_summary", {})
     tab4_total = tab4_data.get("tab4_total_relations", 0)
     
+    # SKIP tab1 formulas extraction - only metadata & relations needed
+    # tab1_data = await extract_tab1_content_simple(page, url)
+    # tab1_formulas = tab1_data.get("formulas", [])
+    # tab1_total_formulas = tab1_data.get("total_formulas", 0)
+    
     # Click tab8
     tab8_links = []
     try:
@@ -119,7 +176,7 @@ async def extract_luoc_do_async(
     
     return {
         "url": url,
-        **doc_info,
+        "doc_info": doc_info,
         "tab4_relations": tab4_relations,
         "tab4_summary": tab4_summary,
         "tab4_total_relations": tab4_total,

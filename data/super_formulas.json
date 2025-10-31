@@ -1,0 +1,88 @@
+{
+  "url": "https://thuvienphapluat.vn/van-ban/Giao-duc/Thong-tu-21-2025-TT-BGDDT-che-do-tra-tien-luong-day-them-gio-nha-giao-trong-cac-co-so-giao-duc-cong-lap-673797.aspx",
+  "content_length": 18732,
+  "formulas": [
+    {
+      "name": "ọc đối với nhà giáo được xác định như sau: Số tiết",
+      "formula": "ọc đối với nhà giáo được xác định như sau: Số tiết dạy thêm của nhà giáo/năm học = (Tổng số tiết dạy được tính thực tế/năm học) - (Định mức tiết dạy/năm học)",
+      "description": "equation - confidence 0.9",
+      "context": "ịnh tại điểm a, điểm b, điểm c khoản 2 Điều 6 Thông tư này. 2. Tổng số tiết dạy thêm trong một năm học đối với nhà giáo được xác định như sau: Số tiết dạy thêm của nhà giáo/năm học = (Tổng số tiết dạy được tính thực tế/năm học) - (Định mức tiết dạy/năm học). Trong đó: a) Tổng số tiết dạy được tính thực tế/năm học bao gồm: số tiết đã dạy thực tế/năm học; s",
+      "confidence": 0.9,
+      "type": "equation"
+    },
+    {
+      "name": "Tiền lương 01 tiết dạy thêm",
+      "formula": "Tiền lương 01 tiết dạy thêm = Tiền lương 01 tiết dạy x 150%",
+      "description": "equation - confidence 0.9",
+      "context": "h là định mức tiết dạy/năm học của nhà giáo cùng cấp học, trình độ đào tạo của cơ sở giáo dục đó. 2. Tiền lương 01 tiết dạy thêm = Tiền lương 01 tiết dạy x 150%. 3. Tiền lương dạy thêm giờ/năm học = Số tiết dạy thêm/năm học x Tiền lương 01 tiết dạy thêm. 4. Ti",
+      "confidence": 0.9,
+      "type": "equation"
+    },
+    {
+      "name": "Tiền lương dạy thêm giờ/năm học",
+      "formula": "Tiền lương dạy thêm giờ/năm học = Số tiết dạy thêm/năm học x Tiền lương 01 tiết dạy thêm",
+      "description": "equation - confidence 0.9",
+      "context": "độ đào tạo của cơ sở giáo dục đó. 2. Tiền lương 01 tiết dạy thêm = Tiền lương 01 tiết dạy x 150%. 3. Tiền lương dạy thêm giờ/năm học = Số tiết dạy thêm/năm học x Tiền lương 01 tiết dạy thêm. 4. Tiền lương làm thêm giờ đối với nhà giáo quy định tại khoản 2 Điều 2 Thông tư này thực hiện the",
+      "confidence": 0.9,
+      "type": "equation"
+    },
+    {
+      "name": "hà giáo cơ sở giáo dục khác: Định mức tiết dạy/thờ",
+      "formula": "hà giáo cơ sở giáo dục khác: Định mức tiết dạy/thời gian công tác thực tế = [(Định mức tiết dạy/năm học) x (Số tuần thực dạy tương ứng với thời gian công tác thực tế)] / (Số tuần giảng dạy trong n",
+      "description": "equation - confidence 0.9",
+      "context": "rung bình trong 01 tuần) x (Số tuần thực dạy tương ứng với thời gian công tác thực tế); c) Đối với nhà giáo cơ sở giáo dục khác: Định mức tiết dạy/thời gian công tác thực tế = [(Định mức tiết dạy/năm học) x (Số tuần thực dạy tương ứng với thời gian công tác thực tế)] / (Số tuần giảng dạy trong năm học); d) Số tuần giảng dạy hoặc dạy trẻ theo quy định không bao gồm số tuần dự phòng. 3. Tổng số ",
+      "confidence": 0.9,
+      "type": "equation"
+    },
+    {
+      "name": "y định tại Điều này được xác định như sau: Số tiết",
+      "formula": "y định tại Điều này được xác định như sau: Số tiết dạy thêm của nhà giáo/năm học = (Tổng số tiết dạy trong thời gian công tác thực tế) - (Định mức tiết dạy/thời gian công tác thực tế)",
+      "description": "equation - confidence 0.9",
+      "context": " không bao gồm số tuần dự phòng. 3. Tổng số tiết dạy thêm trong một năm học đối với nhà giáo theo quy định tại Điều này được xác định như sau: Số tiết dạy thêm của nhà giáo/năm học = (Tổng số tiết dạy trong thời gian công tác thực tế) - (Định mức tiết dạy/thời gian công tác thực tế). Trong đó: Tổng số tiết dạy trong thời gian công tác thực tế bao gồm: số tiết đã dạy trong thời gia",
+      "confidence": 0.9,
+      "type": "equation"
+    },
+    {
+      "name": "không quá",
+      "formula": "không quá 200 tiết",
+      "description": "limit - confidence 0.8",
+      "context": ") Tổng số tiết dạy thêm trong một năm học của mỗi nhà giáo được tính để trả tiền lương dạy thêm giờ không quá 200 tiết trừ trường hợp quy định tại điểm b khoản này; b) Trường hợp tổng số tiết dạy thêm trong một năm học",
+      "confidence": 0.8,
+      "type": "limit"
+    },
+    {
+      "name": "Tổng số tiết dạy thêm tối đa trong một năm học",
+      "formula": "Tổng số tiết dạy thêm tối đa trong một năm học = [Tổng số tiết dạy các môn học, học phần, mô đun, hoạt động giáo dục của tất cả các lớp học theo chươ",
+      "description": "total_formula - confidence 0.8",
+      "context": " trong một năm học mà cơ sở giáo dục được thanh toán tiền lương dạy thêm giờ được xác định như sau: Tổng số tiết dạy thêm tối đa trong một năm học = [Tổng số tiết dạy các môn học, học phần, mô đun, hoạt động giáo dục của tất cả các lớp học theo chương trình giáo dục/năm học hoặc chương trình đào tạo/năm học + Tổng số tiết dạy được tính để thực hiệ",
+      "confidence": 0.8,
+      "type": "total_formula"
+    },
+    {
+      "name": "về việc tính trả tiền lương dạy thêm giờ 1. Định m",
+      "formula": "về việc tính trả tiền lương dạy thêm giờ 1. Định mức giờ dạy/năm học đối với giáo viên mầm non; định mức tiết dạy/năm học",
+      "description": "division - confidence 0.75",
+      "context": "ng các cơ sở giáo dục công lập hoặc hướng dẫn thực hành trên tàu huấn luyện. Điều 3. Quy định chung về việc tính trả tiền lương dạy thêm giờ 1. Định mức giờ dạy/năm học đối với giáo viên mầm non; định mức tiết dạy/năm học đối với giáo viên phổ thông, thường xuyên, dự bị đại học; định mức giờ giảng/năm học đối với nhà gi",
+      "confidence": 0.75,
+      "type": "division"
+    },
+    {
+      "name": "n phổ thông, thường xuyên, dự bị đại học; định mức",
+      "formula": "n phổ thông, thường xuyên, dự bị đại học; định mức giờ giảng/năm học đối với nhà giáo giáo dục nghề nghiệp; định mức giờ",
+      "description": "division - confidence 0.75",
+      "context": "iờ 1. Định mức giờ dạy/năm học đối với giáo viên mầm non; định mức tiết dạy/năm học đối với giáo viên phổ thông, thường xuyên, dự bị đại học; định mức giờ giảng/năm học đối với nhà giáo giáo dục nghề nghiệp; định mức giờ chuẩn giảng dạy/năm học đối với giảng viên cơ sở giáo dục đại học, cơ sở đào tạo, bồi dưỡng của Bộ, ",
+      "confidence": 0.75,
+      "type": "division"
+    },
+    {
+      "name": "hố trực thuộc Trung ương được gọi chung là định mứ",
+      "formula": "hố trực thuộc Trung ương được gọi chung là định mức tiết dạy/năm học",
+      "description": "division - confidence 0.75",
+      "context": "n thuộc Chính phủ, tổ chức chính trị, tổ chức chính trị - xã hội, trường chính trị của tỉnh, thành phố trực thuộc Trung ương được gọi chung là định mức tiết dạy/năm học. 2. Tiền lương của một tháng làm căn cứ tính trả tiền lương dạy thêm giờ của nhà giáo bao gồm: tiền",
+      "confidence": 0.75,
+      "type": "division"
+    }
+  ],
+  "total_formulas": 10,
+  "extraction_method": "super_patterns"
+}

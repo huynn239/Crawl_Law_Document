@@ -1,0 +1,50 @@
+{
+  "formulas": [
+    {
+      "name": "Tiền lương 01 tiết dạy",
+      "formula": "a) Tiền lương 01 tiết dạy = (Tổng tiền lương của 12 tháng trong năm học × Số tuần giảng dạy) ÷ (Định mức tiết dạy÷năm học × 52 tuần)",
+      "description": "Công thức salary_calculation",
+      "confidence": 0.98,
+      "type": "salary_calculation"
+    },
+    {
+      "name": "Tiền lương 01 tiết dạy",
+      "formula": "b) Tiền lương 01 tiết dạy = (Tổng tiền lương × Định mức tiết × 44 tuần) ÷ (Định mức tiết × 1760 giờ × 52 tuần)",
+      "description": "Công thức salary_calculation",
+      "confidence": 0.98,
+      "type": "salary_calculation"
+    },
+    {
+      "name": "Định mức tiết dạy/năm học của giáo viên mầm non",
+      "formula": "e) Định mức tiết dạy÷năm học của giáo viên mầm non = (Số giờ÷ngày) × (Số ngày÷tuần) × (Số tuần÷năm học)",
+      "description": "Công thức salary_calculation",
+      "confidence": 0.98,
+      "type": "salary_calculation"
+    },
+    {
+      "name": "Tổng số tiết dạy thêm tối đa trong một năm học",
+      "formula": "f) Tổng số tiết dạy thêm tối đa trong một năm học = [Tổng số tiết dạy các môn học÷năm học + Tổng số tiết dạy khác] - (Tổng định mức tiết dạy÷năm học)",
+      "description": "Công thức salary_calculation",
+      "confidence": 0.95,
+      "type": "salary_calculation"
+    },
+    {
+      "name": "Tiền lương 01 tiết dạy thêm",
+      "formula": "c) Tiền lương 01 tiết dạy thêm = Tiền lương 01 tiết dạy × 150%",
+      "description": "Công thức salary_calculation",
+      "confidence": 0.89,
+      "type": "salary_calculation"
+    },
+    {
+      "name": "Tiền lương dạy thêm giờ/năm",
+      "formula": "d) Tiền lương dạy thêm giờ÷năm = Số tiết × Tiền lương 01 tiết",
+      "description": "Công thức salary_calculation",
+      "confidence": 0.84,
+      "type": "salary_calculation"
+    }
+  ],
+  "total_formulas": 6,
+  "extraction_method": "improved_llm_v2.1_with_multiline",
+  "filtered_content_length": 622,
+  "original_content_length": 698
+}

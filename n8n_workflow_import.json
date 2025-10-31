@@ -1,0 +1,248 @@
+{
+  "name": "TVPL Crawler to Supabase",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 2 * * *"
+            }
+          ]
+        }
+      },
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "command": "cd C:\\Users\\huynn\\CascadeProjects\\thuvienphapluat-crawler && python -m tvpl_crawler links-basic -u \"https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&area=0&match=True&type=0&lan=1&status=-1&org=-1&field=-1&year=2025&page={page}\" -o data/links.json --start-page 1 --end-page 2"
+      },
+      "name": "Crawl Links",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "command": "cd C:\\Users\\huynn\\CascadeProjects\\thuvienphapluat-crawler && python crawl_data_fast.py data/links.json data/result.json"
+      },
+      "name": "Crawl Documents",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "command": "cd C:\\Users\\huynn\\CascadeProjects\\thuvienphapluat-crawler && python supabase_transform.py data/result.json"
+      },
+      "name": "Transform",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [850, 300]
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "filePath": "C:\\Users\\huynn\\CascadeProjects\\thuvienphapluat-crawler\\data\\result_supabase.json",
+        "dataPropertyName": "data"
+      },
+      "name": "Read JSON",
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [1050, 300]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "doc_metadata",
+        "options": {}
+      },
+      "name": "Split Metadata",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 1,
+      "position": [1250, 300]
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "tableId": "doc_urls",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "url",
+              "fieldValue": "={{ $json.url }}"
+            },
+            {
+              "fieldId": "status",
+              "fieldValue": "crawled"
+            }
+          ]
+        },
+        "options": {
+          "onConflict": "url"
+        }
+      },
+      "name": "Upsert URL",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [1450, 300],
+      "credentials": {
+        "supabaseApi": {
+          "id": "1",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "doc_metadata",
+        "returnAll": false,
+        "limit": 1,
+        "filterType": "manual",
+        "matchType": "allFilters",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "doc_url_id",
+              "keyValue": "={{ $('Upsert URL').item.json.id }}"
+            }
+          ]
+        },
+        "sort": {
+          "sortProperties": [
+            {
+              "keyName": "version",
+              "sortDirection": "desc"
+            }
+          ]
+        }
+      },
+      "name": "Get Latest Version",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [1650, 300],
+      "credentials": {
+        "supabaseApi": {
+          "id": "1",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $('Get Latest Version').item.json.length === 0 || $('Get Latest Version').item.json[0].content_hash !== $json.content_hash }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "name": "IF Changed",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [1850, 300]
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "tableId": "doc_metadata",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "doc_url_id",
+              "fieldValue": "={{ $('Upsert URL').item.json.id }}"
+            },
+            {
+              "fieldId": "so_hieu",
+              "fieldValue": "={{ $json.so_hieu }}"
+            },
+            {
+              "fieldId": "loai_van_ban",
+              "fieldValue": "={{ $json.loai_van_ban }}"
+            },
+            {
+              "fieldId": "linh_vuc",
+              "fieldValue": "={{ $json.linh_vuc }}"
+            },
+            {
+              "fieldId": "noi_ban_hanh",
+              "fieldValue": "={{ $json.noi_ban_hanh }}"
+            },
+            {
+              "fieldId": "nguoi_ky",
+              "fieldValue": "={{ $json.nguoi_ky }}"
+            },
+            {
+              "fieldId": "ngay_ban_hanh",
+              "fieldValue": "={{ $json.ngay_ban_hanh }}"
+            },
+            {
+              "fieldId": "ngay_hieu_luc",
+              "fieldValue": "={{ $json.ngay_hieu_luc }}"
+            },
+            {
+              "fieldId": "tinh_trang",
+              "fieldValue": "={{ $json.tinh_trang }}"
+            },
+            {
+              "fieldId": "raw_data",
+              "fieldValue": "={{ JSON.stringify($json.raw_data) }}"
+            },
+            {
+              "fieldId": "content_hash",
+              "fieldValue": "={{ $json.content_hash }}"
+            }
+          ]
+        }
+      },
+      "name": "Insert Metadata",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [2050, 200],
+      "credentials": {
+        "supabaseApi": {
+          "id": "1",
+          "name": "Supabase account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Schedule Trigger": {
+      "main": [[{"node": "Crawl Links", "type": "main", "index": 0}]]
+    },
+    "Crawl Links": {
+      "main": [[{"node": "Crawl Documents", "type": "main", "index": 0}]]
+    },
+    "Crawl Documents": {
+      "main": [[{"node": "Transform", "type": "main", "index": 0}]]
+    },
+    "Transform": {
+      "main": [[{"node": "Read JSON", "type": "main", "index": 0}]]
+    },
+    "Read JSON": {
+      "main": [[{"node": "Split Metadata", "type": "main", "index": 0}]]
+    },
+    "Split Metadata": {
+      "main": [[{"node": "Upsert URL", "type": "main", "index": 0}]]
+    },
+    "Upsert URL": {
+      "main": [[{"node": "Get Latest Version", "type": "main", "index": 0}]]
+    },
+    "Get Latest Version": {
+      "main": [[{"node": "IF Changed", "type": "main", "index": 0}]]
+    },
+    "IF Changed": {
+      "main": [
+        [{"node": "Insert Metadata", "type": "main", "index": 0}],
+        []
+      ]
+    }
+  }
+}

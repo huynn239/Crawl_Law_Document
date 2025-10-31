@@ -1,0 +1,316 @@
+{
+  "test_content_length": 1891,
+  "total_formulas": 20,
+  "formulas": [
+    {
+      "name": "Mức lương cơ bản hiện hành",
+      "formula": "Mức lương cơ bản hiện hành: 1.800.000 đồng/tháng",
+      "description": "Mức tiền cụ thể - amount_definition",
+      "context": "ịnh mức tiết dạy/năm học đối với giáo viên phổ thông: 200 tiết b) Định mức tiết dạy/năm học của giáo viên mầm non = (Số giờ dạy định mức/ngày) × (Số ngày làm việc/tuần) × (Số tuần dạy trẻ/năm học) 4. **Mức lương cơ bản hiện hành: 1.800.000 đồng/tháng** 5. Tỷ lệ đóng bảo hiểm xã hội: 8% 6. Tỷ lệ đóng bảo hiểm y tế: 1.5% 7. Phụ cấp trách nhiệm = 25% × mức lương cơ bản 8. Giảm trừ gia cảnh: 11.000.000 đồng/tháng 9. Thuế suất thuế thu nhập cá nhân: 10%",
+      "confidence": 1.0,
+      "type": "amount_definition",
+      "extraction_method": "super_enhanced_regex",
+      "groups": [
+        "Mức lương cơ bản hiện hành",
+        "1.800.000 đồng/tháng"
+      ],
+      "paragraph_preview": "Điều 3. Cách tính tiền lương dạy thêm giờ 1. Tiền lương của một tháng làm căn cứ tính trả tiền lương dạy thêm giờ của nhà giáo bao gồm: tiền lương tín..."
+    },
+    {
+      "name": "mức lương cơ bản 8 Giảm trừ gia cảnh",
+      "formula": "mức lương cơ bản 8. Giảm trừ gia cảnh: 11.000.000 đồng/tháng",
+      "description": "Mức tiền cụ thể - amount_definition",
+      "context": "ngày làm việc/tuần) × (Số tuần dạy trẻ/năm học) 4. Mức lương cơ bản hiện hành: 1.800.000 đồng/tháng 5. Tỷ lệ đóng bảo hiểm xã hội: 8% 6. Tỷ lệ đóng bảo hiểm y tế: 1.5% 7. Phụ cấp trách nhiệm = 25% × **mức lương cơ bản 8. Giảm trừ gia cảnh: 11.000.000 đồng/tháng** 9. Thuế suất thuế thu nhập cá nhân: 10% 10. Lệ phí đăng ký hồ sơ: 500.000 đồng 11. Mức phạt vi phạm hành chính: từ 1.000.000 đến 5.000.000 đồng 12. Hệ số lương K = 2.34 13. Tổng số tiết dạy thêm tron",
+      "confidence": 1.0,
+      "type": "amount_definition",
+      "extraction_method": "super_enhanced_regex",
+      "groups": [
+        "mức lương cơ bản 8. Giảm trừ gia cảnh",
+        "11.000.000 đồng/tháng"
+      ],
+      "paragraph_preview": "Điều 3. Cách tính tiền lương dạy thêm giờ 1. Tiền lương của một tháng làm căn cứ tính trả tiền lương dạy thêm giờ của nhà giáo bao gồm: tiền lương tín..."
+    },
+    {
+      "name": "Tiền lương 01 tiết dạy",
+      "formula": "Tiền lương 01 tiết dạy = (Tổng tiền lương của 12 tháng trong năm học × Số tuần giảng dạy hoặc dạy trẻ) / (Định mức tiết dạy/năm học × 52 tuần) b) Đối với nhà giáo trong cơ sở giáo dục đại học, cao đẳng sư phạm: Tiền lương 01 tiết dạy",
+      "description": "Công thức tính lương - salary_calculation",
+      "context": "hiệm (nếu có). 2. Tiền lương 01 tiết dạy thêm giờ được tính như sau: a) Đối với nhà giáo trong cơ sở giáo dục mầm non, phổ thông, thường xuyên, trung tâm giáo dục nghề nghiệp - giáo dục thường xuyên: **Tiền lương 01 tiết dạy = (Tổng tiền lương của 12 tháng trong năm học × Số tuần giảng dạy hoặc dạy trẻ) / (Định mức tiết dạy/năm học × 52 tuần) b) Đối với nhà giáo trong cơ sở giáo dục đại học, cao đẳng sư phạm: Tiền lương 01 tiết dạy** = (Tổng tiền lương của 12 tháng trong năm học × Định mức tiết dạy/năm học tính theo giờ hành chính × 44 tuần) / (Định mức tiết dạy/năm học × 1760 giờ × 52 tuần) 3. Định mức tiết dạy/năm học: a) Định",
+      "confidence": 1.0,
+      "type": "salary_calculation",
+      "extraction_method": "super_enhanced_regex",
+      "groups": [
+        "Tiền lương 01 tiết dạy ",
+        "(Tổng tiền lương của 12 tháng trong năm học × Số tuần giảng dạy hoặc dạy trẻ) / (Định mức tiết dạy/năm học × 52 tuần) b) Đối với nhà giáo trong cơ sở giáo dục đại học, cao đẳng sư phạm: Tiền lương 01 tiết dạy"
+      ],
+      "paragraph_preview": "Điều 3. Cách tính tiền lương dạy thêm giờ 1. Tiền lương của một tháng làm căn cứ tính trả tiền lương dạy thêm giờ của nhà giáo bao gồm: tiền lương tín..."
+    },
+    {
+      "name": "định mức tiết dạynăm học đối với giáo viên phổ thông",
+      "formula": "định mức tiết dạy/năm học đối với giáo viên phổ thông: 200 tiết",
+      "description": "Định mức - quota_rate",
+      "context": "× Định mức tiết dạy/năm học tính theo giờ hành chính × 44 tuần) / (Định mức tiết dạy/năm học × 1760 giờ × 52 tuần) 3. Định mức tiết dạy/năm học: a) Định mức giờ dạy/năm học đối với giáo viên mầm non; **định mức tiết dạy/năm học đối với giáo viên phổ thông: 200 tiết** b) Định mức tiết dạy/năm học của giáo viên mầm non = (Số giờ dạy định mức/ngày) × (Số ngày làm việc/tuần) × (Số tuần dạy trẻ/năm học) 4. Mức lương cơ bản hiện hành: 1.800.000 đồng/tháng 5. Tỷ lệ đóng",
+      "confidence": 1.0,
+      "type": "quota_rate",
+      "extraction_method": "super_enhanced_regex",
+      "groups": [
+        "định mức tiết dạy/năm học đối với giáo viên phổ thông",
+        "200 tiết"
+      ],
+      "paragraph_preview": "Điều 3. Cách tính tiền lương dạy thêm giờ 1. Tiền lương của một tháng làm căn cứ tính trả tiền lương dạy thêm giờ của nhà giáo bao gồm: tiền lương tín..."
+    },
+    {
+      "name": "Thuế suất thuế thu nhập cá nhân",
+      "formula": "Thuế suất thuế thu nhập cá nhân: 10%",
+      "description": "Thuế suất - tax_rate",
+      "context": "bản hiện hành: 1.800.000 đồng/tháng 5. Tỷ lệ đóng bảo hiểm xã hội: 8% 6. Tỷ lệ đóng bảo hiểm y tế: 1.5% 7. Phụ cấp trách nhiệm = 25% × mức lương cơ bản 8. Giảm trừ gia cảnh: 11.000.000 đồng/tháng 9. **Thuế suất thuế thu nhập cá nhân: 10%** 10. Lệ phí đăng ký hồ sơ: 500.000 đồng 11. Mức phạt vi phạm hành chính: từ 1.000.000 đến 5.000.000 đồng 12. Hệ số lương K = 2.34 13. Tổng số tiết dạy thêm trong một năm học không quá 200 tiết 14. Lãi",
+      "confidence": 1.0,
+      "type": "tax_rate",
+      "extraction_method": "super_enhanced_regex",
+      "groups": [
+        "Thuế suất thuế thu nhập cá nhân",
+        "10%"
+      ],
+      "paragraph_preview": "Điều 3. Cách tính tiền lương dạy thêm giờ 1. Tiền lương của một tháng làm căn cứ tính trả tiền lương dạy thêm giờ của nhà giáo bao gồm: tiền lương tín..."
+    },
+    {
+      "name": "Phụ cấp trách nhiệm",
+      "formula": "Phụ cấp trách nhiệm = 25%",
+      "description": "Phụ cấp - allowance",
+      "context": "giờ dạy định mức/ngày) × (Số ngày làm việc/tuần) × (Số tuần dạy trẻ/năm học) 4. Mức lương cơ bản hiện hành: 1.800.000 đồng/tháng 5. Tỷ lệ đóng bảo hiểm xã hội: 8% 6. Tỷ lệ đóng bảo hiểm y tế: 1.5% 7. **Phụ cấp trách nhiệm = 25%** × mức lương cơ bản 8. Giảm trừ gia cảnh: 11.000.000 đồng/tháng 9. Thuế suất thuế thu nhập cá nhân: 10% 10. Lệ phí đăng ký hồ sơ: 500.000 đồng 11. Mức phạt vi phạm hành chính: từ 1.000.000 đến 5.000.0",
+      "confidence": 1.0,
+      "type": "allowance",
+      "extraction_method": "super_enhanced_regex",
+      "groups": [
+        "Phụ cấp trách nhiệm ",
+        "25%"
+      ],
+      "paragraph_preview": "Điều 3. Cách tính tiền lương dạy thêm giờ 1. Tiền lương của một tháng làm căn cứ tính trả tiền lương dạy thêm giờ của nhà giáo bao gồm: tiền lương tín..."
+    },
+    {
+      "name": "bảo hiểm xã hội",
+      "formula": "bảo hiểm xã hội: 8%",
+      "description": "Bảo hiểm - insurance_rate",
+      "context": "b) Định mức tiết dạy/năm học của giáo viên mầm non = (Số giờ dạy định mức/ngày) × (Số ngày làm việc/tuần) × (Số tuần dạy trẻ/năm học) 4. Mức lương cơ bản hiện hành: 1.800.000 đồng/tháng 5. Tỷ lệ đóng **bảo hiểm xã hội: 8%** 6. Tỷ lệ đóng bảo hiểm y tế: 1.5% 7. Phụ cấp trách nhiệm = 25% × mức lương cơ bản 8. Giảm trừ gia cảnh: 11.000.000 đồng/tháng 9. Thuế suất thuế thu nhập cá nhân: 10% 10. Lệ phí đăng ký hồ sơ: 500.000",
+      "confidence": 1.0,
+      "type": "insurance_rate",
+      "extraction_method": "super_enhanced_regex",
+      "groups": [
+        "bảo hiểm xã hội",
+        "8%"
+      ],
+      "paragraph_preview": "Điều 3. Cách tính tiền lương dạy thêm giờ 1. Tiền lương của một tháng làm căn cứ tính trả tiền lương dạy thêm giờ của nhà giáo bao gồm: tiền lương tín..."
+    },
+    {
+      "name": "bảo hiểm y tế",
+      "formula": "bảo hiểm y tế: 1.5%",
+      "description": "Bảo hiểm - insurance_rate",
+      "context": "iáo viên mầm non = (Số giờ dạy định mức/ngày) × (Số ngày làm việc/tuần) × (Số tuần dạy trẻ/năm học) 4. Mức lương cơ bản hiện hành: 1.800.000 đồng/tháng 5. Tỷ lệ đóng bảo hiểm xã hội: 8% 6. Tỷ lệ đóng **bảo hiểm y tế: 1.5%** 7. Phụ cấp trách nhiệm = 25% × mức lương cơ bản 8. Giảm trừ gia cảnh: 11.000.000 đồng/tháng 9. Thuế suất thuế thu nhập cá nhân: 10% 10. Lệ phí đăng ký hồ sơ: 500.000 đồng 11. Mức phạt vi phạm hành ch",
+      "confidence": 1.0,
+      "type": "insurance_rate",
+      "extraction_method": "super_enhanced_regex",
+      "groups": [
+        "bảo hiểm y tế",
+        "1.5%"
+      ],
+      "paragraph_preview": "Điều 3. Cách tính tiền lương dạy thêm giờ 1. Tiền lương của một tháng làm căn cứ tính trả tiền lương dạy thêm giờ của nhà giáo bao gồm: tiền lương tín..."
+    },
+    {
+      "name": "Lệ phí đăng ký hồ sơ",
+      "formula": "Lệ phí đăng ký hồ sơ: 500.000 đồng",
+      "description": "Lệ phí - fee",
+      "context": "ỷ lệ đóng bảo hiểm xã hội: 8% 6. Tỷ lệ đóng bảo hiểm y tế: 1.5% 7. Phụ cấp trách nhiệm = 25% × mức lương cơ bản 8. Giảm trừ gia cảnh: 11.000.000 đồng/tháng 9. Thuế suất thuế thu nhập cá nhân: 10% 10. **Lệ phí đăng ký hồ sơ: 500.000 đồng** 11. Mức phạt vi phạm hành chính: từ 1.000.000 đến 5.000.000 đồng 12. Hệ số lương K = 2.34 13. Tổng số tiết dạy thêm trong một năm học không quá 200 tiết 14. Lãi suất cho vay ưu đãi: 6.5%/năm 15. Tỷ g",
+      "confidence": 1.0,
+      "type": "fee",
+      "extraction_method": "super_enhanced_regex",
+      "groups": [
+        "Lệ phí đăng ký hồ sơ",
+        "500.000 đồng"
+      ],
+      "paragraph_preview": "Điều 3. Cách tính tiền lương dạy thêm giờ 1. Tiền lương của một tháng làm căn cứ tính trả tiền lương dạy thêm giờ của nhà giáo bao gồm: tiền lương tín..."
+    },
+    {
+      "name": "Hệ số lương K",
+      "formula": "Hệ số lương K = 2.34",
+      "description": "Hệ số - coefficient",
+      "context": "cơ bản 8. Giảm trừ gia cảnh: 11.000.000 đồng/tháng 9. Thuế suất thuế thu nhập cá nhân: 10% 10. Lệ phí đăng ký hồ sơ: 500.000 đồng 11. Mức phạt vi phạm hành chính: từ 1.000.000 đến 5.000.000 đồng 12. **Hệ số lương K = 2.34** 13. Tổng số tiết dạy thêm trong một năm học không quá 200 tiết 14. Lãi suất cho vay ưu đãi: 6.5%/năm 15. Tỷ giá USD: 24.500 đồng 16. Chỉ số giá tiêu dùng tăng: 3.2%",
+      "confidence": 1.0,
+      "type": "coefficient",
+      "extraction_method": "super_enhanced_regex",
+      "groups": [
+        "Hệ số lương K ",
+        "2.34"
+      ],
+      "paragraph_preview": "Điều 3. Cách tính tiền lương dạy thêm giờ 1. Tiền lương của một tháng làm căn cứ tính trả tiền lương dạy thêm giờ của nhà giáo bao gồm: tiền lương tín..."
+    },
+    {
+      "name": "Giảm trừ gia cảnh",
+      "formula": "Giảm trừ gia cảnh: 11.000.000 đồng/tháng",
+      "description": "Giảm trừ - deduction",
+      "context": "× (Số tuần dạy trẻ/năm học) 4. Mức lương cơ bản hiện hành: 1.800.000 đồng/tháng 5. Tỷ lệ đóng bảo hiểm xã hội: 8% 6. Tỷ lệ đóng bảo hiểm y tế: 1.5% 7. Phụ cấp trách nhiệm = 25% × mức lương cơ bản 8. **Giảm trừ gia cảnh: 11.000.000 đồng/tháng** 9. Thuế suất thuế thu nhập cá nhân: 10% 10. Lệ phí đăng ký hồ sơ: 500.000 đồng 11. Mức phạt vi phạm hành chính: từ 1.000.000 đến 5.000.000 đồng 12. Hệ số lương K = 2.34 13. Tổng số tiết dạy thêm tron",
+      "confidence": 1.0,
+      "type": "deduction",
+      "extraction_method": "super_enhanced_regex",
+      "groups": [
+        "Giảm trừ gia cảnh",
+        "11.000.000 đồng/tháng"
+      ],
+      "paragraph_preview": "Điều 3. Cách tính tiền lương dạy thêm giờ 1. Tiền lương của một tháng làm căn cứ tính trả tiền lương dạy thêm giờ của nhà giáo bao gồm: tiền lương tín..."
+    },
+    {
+      "name": "Công thức có điều kiện",
+      "formula": "nếu có) và các khoản phụ cấp chức vụ, phụ cấp trách nhiệm (nếu có). 2. Tiền lương 01 tiết dạy thêm giờ được tính như sau: a) Đối với nhà giáo trong cơ sở giáo dục mầm non, phổ thông, thường xuyên, trung tâm giáo dục nghề nghiệp - giáo dục thường xuyên: Tiền lương 01 tiết dạy = (Tổng tiền lương của 12 tháng trong năm học × Số tuần giảng dạy hoặc dạy trẻ) / (Định mức tiết dạy/năm học × 52 tuần) b) Đối với nhà giáo trong cơ sở giáo dục đại học, cao đẳng sư phạm: Tiền lương 01 tiết dạy = (Tổng tiền lương của 12 tháng trong năm học × Định mức tiết dạy/năm học tính theo giờ hành chính × 44 tuần) / (Định mức tiết dạy/năm học × 1760 giờ × 52 tuần) 3. Định mức tiết dạy/năm học: a) Định mức giờ dạy/năm học đối với giáo viên mầm non; định mức tiết dạy/năm học đối với giáo viên phổ thông: 200 tiết b) Định mức tiết dạy/năm học của giáo viên mầm non = (Số giờ dạy định mức/ngày) × (Số ngày làm việc/tuần) × (Số tuần dạy trẻ/năm học) 4. Mức lương cơ bản hiện hành: 1.800.000 đồng/tháng 5. Tỷ lệ đóng bảo hiểm xã hội: 8% 6. Tỷ lệ đóng bảo hiểm y tế: 1.5% 7. Phụ cấp trách nhiệm = 25% × mức lương cơ bản 8. Giảm trừ gia cảnh: 11.000.000 đồng/tháng 9. Thuế suất thuế thu nhập cá nhân: 10% 10. Lệ phí đăng ký hồ sơ: 500.000 đồng 11. Mức phạt vi phạm hành chính: từ 1.000.000 đến 5.000.000 đồng 12. Hệ số lương K = 2.34 13. Tổng số tiết dạy thêm trong một năm học không quá 200 tiết 14. Lãi suất cho vay ưu đãi: 6.5%/năm 15. Tỷ giá USD: 24.500 đồng 16. Chỉ số giá tiêu dùng tăng: 3.2%",
+      "description": "Công thức có điều kiện - conditional_formula",
+      "context": "Cách tính tiền lương dạy thêm giờ 1. Tiền lương của một tháng làm căn cứ tính trả tiền lương dạy thêm giờ của nhà giáo bao gồm: tiền lương tính theo hệ số lương (bao gồm phụ cấp thâm niên vượt khung **nếu có) và các khoản phụ cấp chức vụ, phụ cấp trách nhiệm (nếu có). 2. Tiền lương 01 tiết dạy thêm giờ được tính như sau: a) Đối với nhà giáo trong cơ sở giáo dục mầm non, phổ thông, thường xuyên, trung tâm giáo dục nghề nghiệp - giáo dục thường xuyên: Tiền lương 01 tiết dạy = (Tổng tiền lương của 12 tháng trong năm học × Số tuần giảng dạy hoặc dạy trẻ) / (Định mức tiết dạy/năm học × 52 tuần) b) Đối với nhà giáo trong cơ sở giáo dục đại học, cao đẳng sư phạm: Tiền lương 01 tiết dạy = (Tổng tiền lương của 12 tháng trong năm học × Định mức tiết dạy/năm học tính theo giờ hành chính × 44 tuần) / (Định mức tiết dạy/năm học × 1760 giờ × 52 tuần) 3. Định mức tiết dạy/năm học: a) Định mức giờ dạy/năm học đối với giáo viên mầm non; định mức tiết dạy/năm học đối với giáo viên phổ thông: 200 tiết b) Định mức tiết dạy/năm học của giáo viên mầm non = (Số giờ dạy định mức/ngày) × (Số ngày làm việc/tuần) × (Số tuần dạy trẻ/năm học) 4. Mức lương cơ bản hiện hành: 1.800.000 đồng/tháng 5. Tỷ lệ đóng bảo hiểm xã hội: 8% 6. Tỷ lệ đóng bảo hiểm y tế: 1.5% 7. Phụ cấp trách nhiệm = 25% × mức lương cơ bản 8. Giảm trừ gia cảnh: 11.000.000 đồng/tháng 9. Thuế suất thuế thu nhập cá nhân: 10% 10. Lệ phí đăng ký hồ sơ: 500.000 đồng 11. Mức phạt vi phạm hành chính: từ 1.000.000 đến 5.000.000 đồng 12. Hệ số lương K = 2.34 13. Tổng số tiết dạy thêm trong một năm học không quá 200 tiết 14. Lãi suất cho vay ưu đãi: 6.5%/năm 15. Tỷ giá USD: 24.500 đồng 16. Chỉ số giá tiêu dùng tăng: 3.2%**",
+      "confidence": 1.0,
+      "type": "conditional_formula",
+      "extraction_method": "super_enhanced_regex",
+      "groups": [
+        "nếu",
+        "có) và các khoản phụ cấp chức vụ",
+        "phụ cấp trách nhiệm (nếu có). 2. Tiền lương 01 tiết dạy thêm giờ được tính như sau: a) Đối với nhà giáo trong cơ sở giáo dục mầm non, phổ thông, thường xuyên, trung tâm giáo dục nghề nghiệp - giáo dục thường xuyên: Tiền lương 01 tiết dạy = (Tổng tiền lương của 12 tháng trong năm học × Số tuần giảng dạy hoặc dạy trẻ) / (Định mức tiết dạy/năm học × 52 tuần) b) Đối với nhà giáo trong cơ sở giáo dục đại học, cao đẳng sư phạm: Tiền lương 01 tiết dạy = (Tổng tiền lương của 12 tháng trong năm học × Định mức tiết dạy/năm học tính theo giờ hành chính × 44 tuần) / (Định mức tiết dạy/năm học × 1760 giờ × 52 tuần) 3. Định mức tiết dạy/năm học: a) Định mức giờ dạy/năm học đối với giáo viên mầm non; định mức tiết dạy/năm học đối với giáo viên phổ thông: 200 tiết b) Định mức tiết dạy/năm học của giáo viên mầm non = (Số giờ dạy định mức/ngày) × (Số ngày làm việc/tuần) × (Số tuần dạy trẻ/năm học) 4. Mức lương cơ bản hiện hành: 1.800.000 đồng/tháng 5. Tỷ lệ đóng bảo hiểm xã hội: 8% 6. Tỷ lệ đóng bảo hiểm y tế: 1.5% 7. Phụ cấp trách nhiệm = 25% × mức lương cơ bản 8. Giảm trừ gia cảnh: 11.000.000 đồng/tháng 9. Thuế suất thuế thu nhập cá nhân: 10% 10. Lệ phí đăng ký hồ sơ: 500.000 đồng 11. Mức phạt vi phạm hành chính: từ 1.000.000 đến 5.000.000 đồng 12. Hệ số lương K = 2.34 13. Tổng số tiết dạy thêm trong một năm học không quá 200 tiết 14. Lãi suất cho vay ưu đãi: 6.5%/năm 15. Tỷ giá USD: 24.500 đồng 16. Chỉ số giá tiêu dùng tăng: 3.2%"
+      ],
+      "paragraph_preview": "Điều 3. Cách tính tiền lương dạy thêm giờ 1. Tiền lương của một tháng làm căn cứ tính trả tiền lương dạy thêm giờ của nhà giáo bao gồm: tiền lương tín..."
+    },
+    {
+      "name": "Lãi suất cho vay ưu đãi",
+      "formula": "Lãi suất cho vay ưu đãi: 6.5%/năm",
+      "description": "Lãi suất - interest_rate",
+      "context": "10% 10. Lệ phí đăng ký hồ sơ: 500.000 đồng 11. Mức phạt vi phạm hành chính: từ 1.000.000 đến 5.000.000 đồng 12. Hệ số lương K = 2.34 13. Tổng số tiết dạy thêm trong một năm học không quá 200 tiết 14. **Lãi suất cho vay ưu đãi: 6.5%/năm** 15. Tỷ giá USD: 24.500 đồng 16. Chỉ số giá tiêu dùng tăng: 3.2%",
+      "confidence": 1.0,
+      "type": "interest_rate",
+      "extraction_method": "super_enhanced_regex",
+      "groups": [
+        "Lãi suất cho vay ưu đãi",
+        "6.5%/năm"
+      ],
+      "paragraph_preview": "Điều 3. Cách tính tiền lương dạy thêm giờ 1. Tiền lương của một tháng làm căn cứ tính trả tiền lương dạy thêm giờ của nhà giáo bao gồm: tiền lương tín..."
+    },
+    {
+      "name": "Tỷ giá USD",
+      "formula": "Tỷ giá USD: 24.500 đồng",
+      "description": "Tỷ giá - exchange_rate",
+      "context": "đồng 11. Mức phạt vi phạm hành chính: từ 1.000.000 đến 5.000.000 đồng 12. Hệ số lương K = 2.34 13. Tổng số tiết dạy thêm trong một năm học không quá 200 tiết 14. Lãi suất cho vay ưu đãi: 6.5%/năm 15. **Tỷ giá USD: 24.500 đồng** 16. Chỉ số giá tiêu dùng tăng: 3.2%",
+      "confidence": 1.0,
+      "type": "exchange_rate",
+      "extraction_method": "super_enhanced_regex",
+      "groups": [
+        "Tỷ giá USD",
+        "24.500 đồng"
+      ],
+      "paragraph_preview": "Điều 3. Cách tính tiền lương dạy thêm giờ 1. Tiền lương của một tháng làm căn cứ tính trả tiền lương dạy thêm giờ của nhà giáo bao gồm: tiền lương tín..."
+    },
+    {
+      "name": "tiết dạy",
+      "formula": "tiết dạy = (Tổng tiền lương của 12 tháng trong năm học × Số tuần giảng dạy hoặc dạy trẻ) / (Định mức tiết dạy/năm học × 52 tuần) b) Đối với nhà giáo trong cơ sở giáo dục đ",
+      "description": "Công thức phân số - fraction_formula",
+      "context": ". 2. Tiền lương 01 tiết dạy thêm giờ được tính như sau: a) Đối với nhà giáo trong cơ sở giáo dục mầm non, phổ thông, thường xuyên, trung tâm giáo dục nghề nghiệp - giáo dục thường xuyên: Tiền lương 01** tiết dạy = (Tổng tiền lương của 12 tháng trong năm học × Số tuần giảng dạy hoặc dạy trẻ) / (Định mức tiết dạy/năm học × 52 tuần) b) Đối với nhà giáo trong cơ sở giáo dục đ**ại học, cao đẳng sư phạm: Tiền lương 01 tiết dạy = (Tổng tiền lương của 12 tháng trong năm học × Định mức tiết dạy/năm học tính theo giờ hành chính × 44 tuần) / (Định mức tiết dạy/năm học × 1760 giờ ×",
+      "confidence": 1.0,
+      "type": "fraction_formula",
+      "extraction_method": "super_enhanced_regex",
+      "groups": [
+        " tiết dạy ",
+        "(Tổng tiền lương của 12 tháng trong năm học × Số tuần giảng dạy hoặc dạy trẻ) ",
+        "(Định mức tiết dạy/năm học × 52 tuần) b) Đối với nhà giáo trong cơ sở giáo dục đ"
+      ],
+      "paragraph_preview": "Điều 3. Cách tính tiền lương dạy thêm giờ 1. Tiền lương của một tháng làm căn cứ tính trả tiền lương dạy thêm giờ của nhà giáo bao gồm: tiền lương tín..."
+    },
+    {
+      "name": "tiết dạy",
+      "formula": "tiết dạy = (Tổng tiền lương của 12 tháng trong năm học × Định mức tiết dạy/năm học tính theo giờ hành chính × 44 tuần) / (Định mức tiết dạy/năm học × 1760",
+      "description": "Công thức phân số - fraction_formula",
+      "context": "(Tổng tiền lương của 12 tháng trong năm học × Số tuần giảng dạy hoặc dạy trẻ) / (Định mức tiết dạy/năm học × 52 tuần) b) Đối với nhà giáo trong cơ sở giáo dục đại học, cao đẳng sư phạm: Tiền lương 01** tiết dạy = (Tổng tiền lương của 12 tháng trong năm học × Định mức tiết dạy/năm học tính theo giờ hành chính × 44 tuần) / (Định mức tiết dạy/năm học × 1760 **giờ × 52 tuần) 3. Định mức tiết dạy/năm học: a) Định mức giờ dạy/năm học đối với giáo viên mầm non; định mức tiết dạy/năm học đối với giáo viên phổ thông: 200 tiết b) Định mức tiết dạy/năm học của giá",
+      "confidence": 1.0,
+      "type": "fraction_formula",
+      "extraction_method": "super_enhanced_regex",
+      "groups": [
+        " tiết dạy ",
+        "(Tổng tiền lương của 12 tháng trong năm học × Định mức tiết dạy",
+        "năm học tính theo giờ hành chính × 44 tuần) / (Định mức tiết dạy/năm học × 1760 "
+      ],
+      "paragraph_preview": "Điều 3. Cách tính tiền lương dạy thêm giờ 1. Tiền lương của một tháng làm căn cứ tính trả tiền lương dạy thêm giờ của nhà giáo bao gồm: tiền lương tín..."
+    },
+    {
+      "name": "Phụ cấp trách nhiệm",
+      "formula": "Phụ cấp trách nhiệm = 25% × mức lương cơ bản 8. Giảm trừ gia cảnh: 11.000.000 đồng/tháng 9",
+      "description": "Công thức phân số - fraction_formula",
+      "context": "giờ dạy định mức/ngày) × (Số ngày làm việc/tuần) × (Số tuần dạy trẻ/năm học) 4. Mức lương cơ bản hiện hành: 1.800.000 đồng/tháng 5. Tỷ lệ đóng bảo hiểm xã hội: 8% 6. Tỷ lệ đóng bảo hiểm y tế: 1.5% 7.** Phụ cấp trách nhiệm = 25% × mức lương cơ bản 8. Giảm trừ gia cảnh: 11.000.000 đồng/tháng 9**. Thuế suất thuế thu nhập cá nhân: 10% 10. Lệ phí đăng ký hồ sơ: 500.000 đồng 11. Mức phạt vi phạm hành chính: từ 1.000.000 đến 5.000.000 đồng 12. Hệ số lương K = 2.34 13. Tổng số tiết dạy thêm trong",
+      "confidence": 1.0,
+      "type": "fraction_formula",
+      "extraction_method": "super_enhanced_regex",
+      "groups": [
+        " Phụ cấp trách nhiệm ",
+        "25% × mức lương cơ bản 8. Giảm trừ gia cảnh: 11.000.000 đồng",
+        "tháng 9"
+      ],
+      "paragraph_preview": "Điều 3. Cách tính tiền lương dạy thêm giờ 1. Tiền lương của một tháng làm căn cứ tính trả tiền lương dạy thêm giờ của nhà giáo bao gồm: tiền lương tín..."
+    },
+    {
+      "name": "1000000",
+      "formula": "từ 1.000.000 đến 5.000.000 đồng",
+      "description": "Khoảng giá trị - value_range",
+      "context": "hụ cấp trách nhiệm = 25% × mức lương cơ bản 8. Giảm trừ gia cảnh: 11.000.000 đồng/tháng 9. Thuế suất thuế thu nhập cá nhân: 10% 10. Lệ phí đăng ký hồ sơ: 500.000 đồng 11. Mức phạt vi phạm hành chính: **từ 1.000.000 đến 5.000.000 đồng** 12. Hệ số lương K = 2.34 13. Tổng số tiết dạy thêm trong một năm học không quá 200 tiết 14. Lãi suất cho vay ưu đãi: 6.5%/năm 15. Tỷ giá USD: 24.500 đồng 16. Chỉ số giá tiêu dùng tăng: 3.2%",
+      "confidence": 0.9500000000000001,
+      "type": "value_range",
+      "extraction_method": "super_enhanced_regex",
+      "groups": [
+        "1.000.000",
+        "5.000.000",
+        "đồng"
+      ],
+      "paragraph_preview": "Điều 3. Cách tính tiền lương dạy thêm giờ 1. Tiền lương của một tháng làm căn cứ tính trả tiền lương dạy thêm giờ của nhà giáo bao gồm: tiền lương tín..."
+    },
+    {
+      "name": "Chỉ số giá tiêu dùng tăng",
+      "formula": "Chỉ số giá tiêu dùng tăng: 3.2%",
+      "description": "Chỉ số - index",
+      "context": "nh chính: từ 1.000.000 đến 5.000.000 đồng 12. Hệ số lương K = 2.34 13. Tổng số tiết dạy thêm trong một năm học không quá 200 tiết 14. Lãi suất cho vay ưu đãi: 6.5%/năm 15. Tỷ giá USD: 24.500 đồng 16. **Chỉ số giá tiêu dùng tăng: 3.2%**",
+      "confidence": 0.9500000000000001,
+      "type": "index",
+      "extraction_method": "super_enhanced_regex",
+      "groups": [
+        "Chỉ số giá tiêu dùng tăng",
+        "3.2%"
+      ],
+      "paragraph_preview": "Điều 3. Cách tính tiền lương dạy thêm giờ 1. Tiền lương của một tháng làm căn cứ tính trả tiền lương dạy thêm giờ của nhà giáo bao gồm: tiền lương tín..."
+    },
+    {
+      "name": "năm học của giáo viên mầm non",
+      "formula": "năm học của giáo viên mầm non = (Số giờ dạy định mức/ngày) × (Số ngày làm việc/tuần) × (Số tuần dạy trẻ/năm học) 4",
+      "description": "Công thức phân số - fraction_formula",
+      "context": "năm học × 1760 giờ × 52 tuần) 3. Định mức tiết dạy/năm học: a) Định mức giờ dạy/năm học đối với giáo viên mầm non; định mức tiết dạy/năm học đối với giáo viên phổ thông: 200 tiết b) Định mức tiết dạy/**năm học của giáo viên mầm non = (Số giờ dạy định mức/ngày) × (Số ngày làm việc/tuần) × (Số tuần dạy trẻ/năm học) 4**. Mức lương cơ bản hiện hành: 1.800.000 đồng/tháng 5. Tỷ lệ đóng bảo hiểm xã hội: 8% 6. Tỷ lệ đóng bảo hiểm y tế: 1.5% 7. Phụ cấp trách nhiệm = 25% × mức lương cơ bản 8. Giảm trừ gia cảnh: 11.000.000",
+      "confidence": 0.9500000000000001,
+      "type": "fraction_formula",
+      "extraction_method": "super_enhanced_regex",
+      "groups": [
+        "năm học của giáo viên mầm non ",
+        "(Số giờ dạy định mức",
+        "ngày) × (Số ngày làm việc/tuần) × (Số tuần dạy trẻ/năm học) 4"
+      ],
+      "paragraph_preview": "Điều 3. Cách tính tiền lương dạy thêm giờ 1. Tiền lương của một tháng làm căn cứ tính trả tiền lương dạy thêm giờ của nhà giáo bao gồm: tiền lương tín..."
+    }
+  ],
+  "type_counts": {
+    "amount_definition": 2,
+    "salary_calculation": 1,
+    "quota_rate": 1,
+    "tax_rate": 1,
+    "allowance": 1,
+    "insurance_rate": 2,
+    "fee": 1,
+    "coefficient": 1,
+    "deduction": 1,
+    "conditional_formula": 1,
+    "interest_rate": 1,
+    "exchange_rate": 1,
+    "fraction_formula": 4,
+    "value_range": 1,
+    "index": 1
+  },
+  "confidence_stats": {
+    "average": 0.9924999999999999,
+    "high_confidence_count": 20,
+    "medium_confidence_count": 0,
+    "low_confidence_count": 0
+  },
+  "extraction_method": "super_enhanced_25_patterns_test"
+}

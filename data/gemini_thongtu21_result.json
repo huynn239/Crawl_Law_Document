@@ -1,0 +1,125 @@
+{
+  "formulas": [
+    {
+      "name": "Tiền lương 01 tiết dạy (Mầm non, Phổ thông, GD Thường xuyên, Dự bị ĐH, Chuyên biệt, GDNN)",
+      "formula": "Tiền lương 01 tiết dạy = (Tổng tiền lương của 12 tháng trong năm học × Số tuần giảng dạy hoặc dạy trẻ) / 52 tuần",
+      "type": "salary_calc",
+      "confidence": 0.95,
+      "context": "Điều 5. Tiền lương dạy thêm giờ. 1. a)",
+      "variables": [
+        "Tiền lương 01 tiết dạy",
+        "Tổng tiền lương của 12 tháng trong năm học",
+        "Số tuần giảng dạy hoặc dạy trẻ"
+      ],
+      "description": "Tính tiền lương 01 tiết dạy cho nhà giáo trong cơ sở giáo dục mầm non, phổ thông, thường xuyên, dự bị đại học, trường chuyên biệt và nhà giáo giáo dục nghề nghiệp"
+    },
+    {
+      "name": "Tiền lương 01 tiết dạy (Đại học, Cao đẳng, Cơ sở đào tạo, Trường chính trị)",
+      "formula": "Tiền lương 01 tiết dạy = (Tổng tiền lương của 12 tháng trong năm học × Định mức tiết dạy/năm học tính theo giờ hành chính × 44 tuần) / (1760 giờ × 52 tuần)",
+      "type": "salary_calc",
+      "confidence": 0.95,
+      "context": "Điều 5. Tiền lương dạy thêm giờ. 1. b)",
+      "variables": [
+        "Tiền lương 01 tiết dạy",
+        "Tổng tiền lương của 12 tháng trong năm học",
+        "Định mức tiết dạy/năm học tính theo giờ hành chính"
+      ],
+      "description": "Tính tiền lương 01 tiết dạy cho nhà giáo trong cơ sở giáo dục đại học, cao đẳng sư phạm, cơ sở đào tạo, bồi dưỡng của Bộ, cơ quan ngang Bộ, cơ quan thuộc Chính phủ, tổ chức chính trị, tổ chức chính trị - xã hội, trường chính trị của tỉnh, thành phố trực thuộc Trung ương"
+    },
+    {
+      "name": "Tiền lương dạy thêm giờ/năm học",
+      "formula": "Tiền lương dạy thêm giờ/năm học = Số tiết dạy thêm/năm học × Tiền lương 01 tiết dạy thêm",
+      "type": "salary_calc",
+      "confidence": 0.95,
+      "context": "Điều 5. Tiền lương dạy thêm giờ. 2.",
+      "variables": [
+        "Tiền lương dạy thêm giờ/năm học",
+        "Số tiết dạy thêm/năm học",
+        "Tiền lương 01 tiết dạy thêm"
+      ],
+      "description": "Tính tiền lương dạy thêm giờ trong một năm học"
+    },
+    {
+      "name": "Tổng số tiết dạy thêm/năm học",
+      "formula": "Tổng số tiết dạy thêm = Tổng số tiết dạy được tính để thực hiện các nhiệm vụ khác/năm học - Tổng định mức tiết dạy của tất cả nhà giáo/năm học",
+      "type": "rate_calc",
+      "confidence": 0.95,
+      "context": "Điều 4. Tổng số tiết dạy thêm trong một năm học. 1.",
+      "variables": [
+        "Tổng số tiết dạy thêm",
+        "Tổng số tiết dạy được tính để thực hiện các nhiệm vụ khác/năm học",
+        "Tổng định mức tiết dạy của tất cả nhà giáo/năm học"
+      ],
+      "description": "Tính tổng số tiết dạy thêm trong một năm học"
+    },
+    {
+      "name": "Số tiết dạy thêm của nhà giáo/năm học",
+      "formula": "Số tiết dạy thêm của nhà giáo/năm học = (Tổng số tiết dạy được tính thực tế/năm học) - (Định mức tiết dạy/năm học)",
+      "type": "rate_calc",
+      "confidence": 0.95,
+      "context": "Điều 4. Tổng số tiết dạy thêm trong một năm học. 2.",
+      "variables": [
+        "Số tiết dạy thêm của nhà giáo/năm học",
+        "Tổng số tiết dạy được tính thực tế/năm học",
+        "Định mức tiết dạy/năm học"
+      ],
+      "description": "Tính số tiết dạy thêm của nhà giáo trong một năm học"
+    },
+    {
+      "name": "Định mức tiết dạy/năm học của giáo viên mầm non",
+      "formula": "Định mức tiết dạy/năm học của giáo viên mầm non = (Số giờ dạy định mức/ngày) × (Số ngày làm việc/tuần) × (Số tuần dạy trẻ/năm học)",
+      "type": "rate_calc",
+      "confidence": 0.95,
+      "context": "Điều 4. Tổng số tiết dạy thêm trong một năm học. 3.",
+      "variables": [
+        "Định mức tiết dạy/năm học của giáo viên mầm non",
+        "Số giờ dạy định mức/ngày",
+        "Số ngày làm việc/tuần",
+        "Số tuần dạy trẻ/năm học"
+      ],
+      "description": "Tính định mức tiết dạy của giáo viên mầm non trong một năm học"
+    }
+  ],
+  "parameters": [
+    {
+      "name": "Số tuần",
+      "value": "52",
+      "unit": "tuần",
+      "type": "rate",
+      "confidence": 0.9
+    },
+    {
+      "name": "Định mức tiết dạy/năm học",
+      "value": "1760",
+      "unit": "giờ",
+      "type": "rate",
+      "confidence": 0.9
+    },
+    {
+      "name": "Số tuần",
+      "value": "44",
+      "unit": "tuần",
+      "type": "rate",
+      "confidence": 0.9
+    },
+    {
+      "name": "Số tiết dạy thêm",
+      "value": "200",
+      "unit": "tiết",
+      "type": "limit",
+      "confidence": 0.9
+    },
+    {
+      "name": "Mức lương cơ bản tối thiểu",
+      "value": "1800000",
+      "unit": "đồng/tháng",
+      "type": "minimum",
+      "confidence": 0.9
+    }
+  ],
+  "url": "https://thuvienphapluat.vn/van-ban/Giao-duc/Thong-tu-21-2025-TT-BGDDT-che-do-tra-tien-luong-day-them-gio-nha-giao-trong-cac-co-so-giao-duc-cong-lap-673797.aspx",
+  "total_formulas": 6,
+  "total_parameters": 5,
+  "extraction_method": "gemini_2_5_pro",
+  "content_length": 1832
+}

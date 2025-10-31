@@ -1,0 +1,112 @@
+{
+  "layer2_findings": [
+    {
+      "timestamp": "2025-10-20T11:01:53.393592",
+      "url": "https://example.com/test",
+      "formula": "Mức lương tối thiểu: 1.800.000 đồng/tháng",
+      "method": "layer_2_gemini",
+      "analyzed": true
+    },
+    {
+      "timestamp": "2025-10-20T11:02:59.539935",
+      "url": "https://example.com/test",
+      "formula": "Mức lương tối thiểu: 1.800.000 đồng/tháng",
+      "method": "layer_2_gemini",
+      "analyzed": true
+    },
+    {
+      "timestamp": "2025-10-20T11:03:13.674457",
+      "url": "https://example.com/test",
+      "formula": "Mức lương tối thiểu: 1.800.000 đồng/tháng",
+      "method": "layer_2_gemini",
+      "analyzed": true
+    },
+    {
+      "timestamp": "2025-10-20T11:03:13.676470",
+      "url": "https://example.com/test",
+      "formula": "Tỷ lệ hưởng: 150% tiền lương cơ bản",
+      "method": "layer_2_gemini",
+      "analyzed": true
+    },
+    {
+      "timestamp": "2025-10-20T11:03:13.679473",
+      "url": "https://example.com/test",
+      "formula": "Số tiết tối đa: 200 tiết/năm học",
+      "method": "layer_2_gemini",
+      "analyzed": true
+    },
+    {
+      "timestamp": "2025-10-20T11:03:13.681030",
+      "url": "https://example.com/test",
+      "formula": "Mức phụ cấp: 50% lương cơ bản",
+      "method": "layer_2_gemini",
+      "analyzed": true
+    },
+    {
+      "timestamp": "2025-10-20T11:03:13.682554",
+      "url": "https://example.com/test",
+      "formula": "Tỷ lệ đóng góp: 8% thu nhập",
+      "method": "layer_2_gemini",
+      "analyzed": true
+    },
+    {
+      "timestamp": "2025-10-20T11:03:13.683581",
+      "url": "https://example.com/test",
+      "formula": "Định mức giảng dạy = (Số giờ/ngày) × (Số ngày/tuần)",
+      "method": "layer_2_gemini",
+      "analyzed": true
+    },
+    {
+      "timestamp": "2025-10-20T11:03:13.685111",
+      "url": "https://example.com/test",
+      "formula": "Tiền thưởng = Lương cơ bản × Hệ số thưởng",
+      "method": "layer_2_gemini",
+      "analyzed": true
+    }
+  ],
+  "suggested_patterns": [
+    {
+      "pattern": "name_colon_value",
+      "regex_suggestion": "([^:]+):\\s*([^.]+)",
+      "examples": [
+        "Mức lương tối thiểu: 1.800.000 đồng/tháng",
+        "Mức lương tối thiểu: 1.800.000 đồng/tháng",
+        "Mức lương tối thiểu: 1.800.000 đồng/tháng"
+      ],
+      "count": 7,
+      "confidence": 0.7
+    },
+    {
+      "pattern": "percentage_formula",
+      "regex_suggestion": "([^%]*\\d+(?:[.,]\\d+)?%[^.]*)",
+      "examples": [
+        "Tỷ lệ hưởng: 150% tiền lương cơ bản",
+        "Mức phụ cấp: 50% lương cơ bản",
+        "Tỷ lệ đóng góp: 8% thu nhập"
+      ],
+      "count": 3,
+      "confidence": 0.3
+    },
+    {
+      "pattern": "name_equals_calculation",
+      "regex_suggestion": "([^=]+)=\\s*([^.]+)",
+      "examples": [
+        "Định mức giảng dạy = (Số giờ/ngày) × (Số ngày/tuần)",
+        "Tiền thưởng = Lương cơ bản × Hệ số thưởng"
+      ],
+      "count": 2,
+      "confidence": 0.2
+    },
+    {
+      "pattern": "multiplication_formula",
+      "regex_suggestion": "([^×x*]*[×x*][^.]*)",
+      "examples": [
+        "Định mức giảng dạy = (Số giờ/ngày) × (Số ngày/tuần)",
+        "Tiền thưởng = Lương cơ bản × Hệ số thưởng"
+      ],
+      "count": 2,
+      "confidence": 0.2
+    }
+  ],
+  "implemented_patterns": []
+}

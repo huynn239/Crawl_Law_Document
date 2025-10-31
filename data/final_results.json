@@ -1,0 +1,35 @@
+[
+  {
+    "stt": 1,
+    "url": "https://thuvienphapluat.vn/van-ban/Thue-Phi-Le-Phi/Thong-tu-30-2016-TT-BTC-huong-dan-thuc-hien-mot-so-dieu-cua-Luat-Thue-thu-nhap-ca-nhan-309144.aspx",
+    "title": "Thông tư 30/2016/TT-BTC hướng dẫn thực hiện một số điều của Luật Thuế thu nhập cá nhân",
+    "error": "Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://thuvienphapluat.vn/van-ban/Thue-Phi-Le-Phi/Thong-tu-30-2016-TT-BTC-huong-dan-thuc-hien-mot-so-dieu-cua-Luat-Thue-thu-nhap-ca-nhan-309144.aspx\", waiting until \"domcontentloaded\"\n",
+    "formulas": [],
+    "total_formulas": 0
+  },
+  {
+    "url": "https://thuvienphapluat.vn/van-ban/Bao-hiem/Nghi-dinh-38-2019-ND-CP-quy-dinh-ve-bao-hiem-xa-hoi-415578.aspx",
+    "content_length": 49623,
+    "content_sources": [
+      "Tab1 content",
+      "Full body content"
+    ],
+    "formulas": [],
+    "total_formulas": 0,
+    "extraction_method": "final_multi_source",
+    "stt": 2,
+    "title": "Nghị định 38/2019/NĐ-CP quy định về bảo hiểm xã hội"
+  },
+  {
+    "url": "https://thuvienphapluat.vn/van-ban/Thue-Phi-Le-Phi/Thong-tu-78-2014-TT-BTC-huong-dan-tinh-thue-gia-tri-gia-tang-250508.aspx",
+    "content_length": 86,
+    "content_sources": [
+      "Body fallback"
+    ],
+    "formulas": [],
+    "total_formulas": 0,
+    "extraction_method": "final_multi_source",
+    "stt": 3,
+    "title": "Thông tư 78/2014/TT-BTC hướng dẫn tính thuế giá trị gia tăng"
+  }
+]

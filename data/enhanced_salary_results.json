@@ -1,0 +1,20 @@
+[
+  {
+    "url": "https://thuvienphapluat.vn/van-ban/Giao-duc/Thong-tu-21-2025-TT-BGDDT-che-do-tra-tien-luong-day-them-gio-nha-giao-trong-cac-co-so-giao-duc-cong-lap-673797.aspx",
+    "tab1_content_length": 18740,
+    "formulas": [
+      {
+        "name": "không quá",
+        "formula": "không quá 200 tiết",
+        "description": "limit - 0.8",
+        "context": ") Tổng số tiết dạy thêm trong một năm học của mỗi nhà giáo được tính để trả tiền lương dạy thêm giờ không quá 200 tiết trừ trường hợp quy định tại điểm b khoản này; b) Trường hợp tổng số tiết dạy thêm trong một năm học",
+        "confidence": 0.8,
+        "type": "limit"
+      }
+    ],
+    "total_formulas": 1,
+    "extraction_method": "enhanced_simple",
+    "stt": 1,
+    "title": ""
+  }
+]

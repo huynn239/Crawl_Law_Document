@@ -1,0 +1,131 @@
+{
+  "name": "TVPL Crawler - Supabase Node",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [{"field": "cronExpression", "expression": "0 2 * * *"}]
+        }
+      },
+      "name": "Schedule",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "url": "http://tvpl-api:8000/links-basic",
+        "method": "POST",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\"url\": \"https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&match=True&area=0\", \"start_page\": 1, \"end_page\": 5, \"only_basic\": false}",
+        "options": {}
+      },
+      "name": "Crawl Links",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [500, 300]
+    },
+    {
+      "parameters": {
+        "url": "http://tvpl-api:8000/crawl-documents",
+        "method": "POST",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\"links\": $json, \"concurrency\": 2, \"timeout_ms\": 30000, \"reuse_session\": true}",
+        "options": {}
+      },
+      "name": "Crawl Docs",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [750, 300]
+    },
+    {
+      "parameters": {
+        "url": "http://tvpl-api:8000/transform",
+        "method": "POST",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "=$json",
+        "options": {}
+      },
+      "name": "Transform",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [1000, 300]
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "tableId": "doc_metadata",
+        "fieldsUi": {
+          "fieldValues": [
+            {"fieldId": "url", "fieldValue": "={{ $json.url }}"},
+            {"fieldId": "doc_id", "fieldValue": "={{ $json.doc_id }}"},
+            {"fieldId": "con_hieu_luc", "fieldValue": "={{ $json.con_hieu_luc }}"},
+            {"fieldId": "content_hash", "fieldValue": "={{ $json.content_hash }}"},
+            {"fieldId": "extra_data", "fieldValue": "={{ JSON.stringify($json.extra_data) }}"}
+          ]
+        },
+        "options": {
+          "upsert": true,
+          "onConflict": "url"
+        }
+      },
+      "name": "Insert Metadata",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [1250, 200],
+      "credentials": {
+        "supabaseApi": {
+          "id": "1",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "tableId": "relationships",
+        "fieldsUi": {
+          "fieldValues": [
+            {"fieldId": "source_doc_id", "fieldValue": "={{ $json.source_doc_id }}"},
+            {"fieldId": "target_doc_id", "fieldValue": "={{ $json.target_doc_id }}"},
+            {"fieldId": "target_doc_url", "fieldValue": "={{ $json.target_doc_url }}"},
+            {"fieldId": "relationship_type", "fieldValue": "={{ $json.relationship_type }}"}
+          ]
+        },
+        "options": {
+          "upsert": true
+        }
+      },
+      "name": "Insert Relationships",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [1250, 400],
+      "credentials": {
+        "supabaseApi": {
+          "id": "1",
+          "name": "Supabase account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Schedule": {
+      "main": [[{"node": "Crawl Links", "type": "main", "index": 0}]]
+    },
+    "Crawl Links": {
+      "main": [[{"node": "Crawl Docs", "type": "main", "index": 0}]]
+    },
+    "Crawl Docs": {
+      "main": [[{"node": "Transform", "type": "main", "index": 0}]]
+    },
+    "Transform": {
+      "main": [
+        [{"node": "Insert Metadata", "type": "main", "index": 0}],
+        [{"node": "Insert Relationships", "type": "main", "index": 0}]
+      ]
+    }
+  }
+}

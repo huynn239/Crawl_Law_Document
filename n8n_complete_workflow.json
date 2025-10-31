@@ -1,0 +1,216 @@
+{
+  "name": "TVPL Complete Crawler to Supabase",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [{"field": "hours", "hoursInterval": 6}]
+        }
+      },
+      "name": "Schedule Every 6h",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "position": [250, 300],
+      "id": "schedule-trigger"
+    },
+    {
+      "parameters": {
+        "command": "python n8n_node1_get_urls.py \"https://thuvienphapluat.vn/page/tim-van-ban.aspx?keyword=&match=True&area=0\" 5",
+        "workingDirectory": "/app"
+      },
+      "name": "Node 1: Crawl Hyperlinks",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [450, 300],
+      "id": "node1-crawl-links"
+    },
+    {
+      "parameters": {
+        "jsCode": "const fs = require('fs');\nconst data = JSON.parse(fs.readFileSync('/app/data/n8n_urls_output.json', 'utf8'));\nreturn data.map(item => ({ json: item }));"
+      },
+      "name": "Read URLs Output",
+      "type": "n8n-nodes-base.code",
+      "position": [650, 300],
+      "id": "read-urls"
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "table": "doc_urls",
+        "options": {
+          "onConflict": "url",
+          "onConflictAction": "ignore"
+        }
+      },
+      "name": "Supabase: Insert URLs",
+      "type": "n8n-nodes-base.supabase",
+      "position": [850, 300],
+      "id": "insert-urls"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT id, url FROM doc_urls WHERE status = 'pending' ORDER BY crawl_priority DESC, created_at ASC LIMIT 10"
+      },
+      "name": "Supabase: Get Pending URLs",
+      "type": "n8n-nodes-base.supabase",
+      "position": [1050, 300],
+      "id": "get-pending"
+    },
+    {
+      "parameters": {
+        "jsCode": "const urls = $input.all().map(item => item.json.url);\nconst fs = require('fs');\nfs.writeFileSync('/app/data/pending_urls.json', JSON.stringify(urls, null, 2));\nreturn [{ json: { count: urls.length, file: '/app/data/pending_urls.json' } }];"
+      },
+      "name": "Prepare URLs File",
+      "type": "n8n-nodes-base.code",
+      "position": [1250, 300],
+      "id": "prepare-urls"
+    },
+    {
+      "parameters": {
+        "command": "python n8n_node2_crawl_docs.py data/pending_urls.json 2",
+        "workingDirectory": "/app"
+      },
+      "name": "Node 2: Crawl Documents",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [1450, 300],
+      "id": "node2-crawl-docs"
+    },
+    {
+      "parameters": {
+        "jsCode": "const fs = require('fs');\nconst data = JSON.parse(fs.readFileSync('/app/data/n8n_supabase_output.json', 'utf8'));\nreturn [{ json: data }];"
+      },
+      "name": "Read Crawled Data",
+      "type": "n8n-nodes-base.code",
+      "position": [1650, 300],
+      "id": "read-crawled"
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = $input.first().json;\nreturn data.doc_metadata.map(item => ({ json: item }));"
+      },
+      "name": "Split Metadata",
+      "type": "n8n-nodes-base.code",
+      "position": [1850, 200],
+      "id": "split-metadata"
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = $input.first().json;\nreturn data.relationships.map(item => ({ json: item }));"
+      },
+      "name": "Split Relationships",
+      "type": "n8n-nodes-base.code",
+      "position": [1850, 300],
+      "id": "split-relationships"
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = $input.first().json;\nreturn data.doc_files.map(item => ({ json: item }));"
+      },
+      "name": "Split Files",
+      "type": "n8n-nodes-base.code",
+      "position": [1850, 400],
+      "id": "split-files"
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "table": "doc_metadata",
+        "options": {
+          "onConflict": "url",
+          "onConflictAction": "update"
+        }
+      },
+      "name": "Supabase: Insert Metadata",
+      "type": "n8n-nodes-base.supabase",
+      "position": [2050, 200],
+      "id": "insert-metadata"
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "table": "relationships",
+        "options": {
+          "onConflict": "source_url,target_doc_url,relationship_type",
+          "onConflictAction": "ignore"
+        }
+      },
+      "name": "Supabase: Insert Relationships",
+      "type": "n8n-nodes-base.supabase",
+      "position": [2050, 300],
+      "id": "insert-relationships"
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "table": "doc_files",
+        "options": {
+          "onConflict": "source_url,file_type,file_url",
+          "onConflictAction": "ignore"
+        }
+      },
+      "name": "Supabase: Insert Files",
+      "type": "n8n-nodes-base.supabase",
+      "position": [2050, 400],
+      "id": "insert-files"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "UPDATE doc_urls SET status = 'crawled', updated_at = NOW() WHERE url IN (SELECT url FROM doc_metadata WHERE created_at > NOW() - INTERVAL '5 minutes')"
+      },
+      "name": "Supabase: Update Status",
+      "type": "n8n-nodes-base.supabase",
+      "position": [2250, 300],
+      "id": "update-status"
+    }
+  ],
+  "connections": {
+    "Schedule Every 6h": {
+      "main": [[{"node": "Node 1: Crawl Hyperlinks", "type": "main", "index": 0}]]
+    },
+    "Node 1: Crawl Hyperlinks": {
+      "main": [[{"node": "Read URLs Output", "type": "main", "index": 0}]]
+    },
+    "Read URLs Output": {
+      "main": [[{"node": "Supabase: Insert URLs", "type": "main", "index": 0}]]
+    },
+    "Supabase: Insert URLs": {
+      "main": [[{"node": "Supabase: Get Pending URLs", "type": "main", "index": 0}]]
+    },
+    "Supabase: Get Pending URLs": {
+      "main": [[{"node": "Prepare URLs File", "type": "main", "index": 0}]]
+    },
+    "Prepare URLs File": {
+      "main": [[{"node": "Node 2: Crawl Documents", "type": "main", "index": 0}]]
+    },
+    "Node 2: Crawl Documents": {
+      "main": [[{"node": "Read Crawled Data", "type": "main", "index": 0}]]
+    },
+    "Read Crawled Data": {
+      "main": [
+        [
+          {"node": "Split Metadata", "type": "main", "index": 0},
+          {"node": "Split Relationships", "type": "main", "index": 0},
+          {"node": "Split Files", "type": "main", "index": 0}
+        ]
+      ]
+    },
+    "Split Metadata": {
+      "main": [[{"node": "Supabase: Insert Metadata", "type": "main", "index": 0}]]
+    },
+    "Split Relationships": {
+      "main": [[{"node": "Supabase: Insert Relationships", "type": "main", "index": 0}]]
+    },
+    "Split Files": {
+      "main": [[{"node": "Supabase: Insert Files", "type": "main", "index": 0}]]
+    },
+    "Supabase: Insert Metadata": {
+      "main": [[{"node": "Supabase: Update Status", "type": "main", "index": 0}]]
+    },
+    "Supabase: Insert Relationships": {
+      "main": [[{"node": "Supabase: Update Status", "type": "main", "index": 0}]]
+    },
+    "Supabase: Insert Files": {
+      "main": [[{"node": "Supabase: Update Status", "type": "main", "index": 0}]]
+    }
+  }
+}

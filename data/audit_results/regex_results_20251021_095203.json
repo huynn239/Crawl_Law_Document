@@ -1,0 +1,35 @@
+[
+  {
+    "url": "https://thuvienphapluat.vn/van-ban/Giao-duc/Thong-tu-21-2025-TT-BGDDT-che-do-tra-tien-luong-day-them-gio-nha-giao-trong-cac-co-so-giao-duc-cong-lap-673797.aspx?dll=true",
+    "error": "Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://thuvienphapluat.vn/van-ban/Giao-duc/Thong-tu-21-2025-TT-BGDDT-che-do-tra-tien-luong-day-them-gio-nha-giao-trong-cac-co-so-giao-duc-cong-lap-673797.aspx?dll=true\", waiting until \"domcontentloaded\"\n",
+    "formulas": [],
+    "parameters": [],
+    "total_formulas": 0,
+    "total_parameters": 0,
+    "extraction_method": "regex_only_system_a_failed"
+  },
+  {
+    "url": "https://thuvienphapluat.vn/van-ban/Lao-dong-Tien-luong/Thong-tu-lien-tich-07-2013-TTLT-BGDDT-BNV-BTC-huong-dan-che-do-tra-luong-176067.aspx",
+    "error": "Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://thuvienphapluat.vn/van-ban/Lao-dong-Tien-luong/Thong-tu-lien-tich-07-2013-TTLT-BGDDT-BNV-BTC-huong-dan-che-do-tra-luong-176067.aspx\", waiting until \"domcontentloaded\"\n",
+    "formulas": [],
+    "parameters": [],
+    "total_formulas": 0,
+    "total_parameters": 0,
+    "extraction_method": "regex_only_system_a_failed"
+  },
+  {
+    "formulas": [],
+    "parameters": [],
+    "total_formulas": 0,
+    "total_parameters": 0,
+    "original_matches": 0,
+    "content_length": 2670,
+    "extraction_method": "regex_only_system_a",
+    "separation_method": "smart_type_based_detection",
+    "formula_confidence_avg": 0.0,
+    "parameter_confidence_avg": 0.0,
+    "formula_types": {},
+    "parameter_types": {},
+    "url": "https://thuvienphapluat.vn/cong-van/Lao-dong-Tien-luong/Cong-van-7516-BGDDT-NGCBQLGD-2024-che-do-phu-cap-uu-dai-nha-giao-trong-thoi-gian-nghi-om-dau-634140.aspx"
+  }
+]

@@ -1,0 +1,92 @@
+{
+  "name": "TVPL Crawler to Supabase",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 1
+            }
+          ]
+        }
+      },
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT id, url FROM doc_urls WHERE status = 'pending' ORDER BY crawl_priority DESC LIMIT 10"
+      },
+      "name": "Supabase - Get Pending URLs",
+      "type": "n8n-nodes-base.supabase",
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Tạo file links.json từ URLs\nconst urls = $input.all().map((item, index) => ({\n  \"Stt\": index + 1,\n  \"Url\": item.json.url,\n  \"Ten van ban\": \"\"\n}));\n\nconst fs = require('fs');\nfs.writeFileSync('/app/data/temp_links.json', JSON.stringify(urls, null, 2));\n\nreturn { json: { count: urls.length, file: '/app/data/temp_links.json' } };"
+      },
+      "name": "Create Links File",
+      "type": "n8n-nodes-base.code",
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "command": "cd /app && python crawl_data_fast.py data/temp_links.json data/temp_result.json 2 30000 --reuse-session",
+        "workingDirectory": "/app"
+      },
+      "name": "Run Crawler",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [850, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Đọc kết quả từ file\nconst fs = require('fs');\nconst data = JSON.parse(fs.readFileSync('/app/data/temp_result.json', 'utf8'));\n\nreturn data.map(item => ({ json: item }));"
+      },
+      "name": "Read Results",
+      "type": "n8n-nodes-base.code",
+      "position": [1050, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Transform sang Supabase format\nconst item = $input.item.json;\nconst url = item.url;\nconst docInfo = item.doc_info || {};\n\n// Parse date helper\nfunction parseDate(dateStr) {\n  if (!dateStr || dateStr === 'Dữ liệu đang cập nhật') return null;\n  const parts = dateStr.split('/');\n  if (parts.length === 3) {\n    return `${parts[2]}-${parts[1]}-${parts[0]}`;\n  }\n  return null;\n}\n\n// Generate hash\nconst crypto = require('crypto');\nconst hash = crypto.createHash('md5').update(JSON.stringify(docInfo)).digest('hex');\n\nreturn {\n  json: {\n    url: url,\n    so_hieu: docInfo['Số hiệu'],\n    loai_van_ban: docInfo['Loại văn bản'],\n    linh_vuc: docInfo['Lĩnh vực, ngành'],\n    noi_ban_hanh: docInfo['Nơi ban hành'],\n    nguoi_ky: docInfo['Người ký'],\n    ngay_ban_hanh: parseDate(docInfo['Ngày ban hành']),\n    ngay_hieu_luc: parseDate(docInfo['Ngày hiệu lực']),\n    tinh_trang: docInfo['Tình trạng'],\n    raw_json: item,\n    content_hash: hash,\n    relationships: item.tab4?.relations || {},\n    files: item.tab8?.links || []\n  }\n};"
+      },
+      "name": "Transform Data",
+      "type": "n8n-nodes-base.code",
+      "position": [1250, 300]
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "table": "doc_metadata",
+        "options": {\n          "onConflict": "url",\n          "onConflictAction": "update"\n        }
+      },
+      "name": "Supabase - Insert Metadata",
+      "type": "n8n-nodes-base.supabase",
+      "position": [1450, 300]
+    }
+  ],
+  "connections": {
+    "Schedule Trigger": {
+      "main": [[{ "node": "Supabase - Get Pending URLs", "type": "main", "index": 0 }]]
+    },
+    "Supabase - Get Pending URLs": {
+      "main": [[{ "node": "Create Links File", "type": "main", "index": 0 }]]
+    },
+    "Create Links File": {
+      "main": [[{ "node": "Run Crawler", "type": "main", "index": 0 }]]
+    },
+    "Run Crawler": {
+      "main": [[{ "node": "Read Results", "type": "main", "index": 0 }]]
+    },
+    "Read Results": {
+      "main": [[{ "node": "Transform Data", "type": "main", "index": 0 }]]
+    },
+    "Transform Data": {
+      "main": [[{ "node": "Supabase - Insert Metadata", "type": "main", "index": 0 }]]
+    }
+  }
+}

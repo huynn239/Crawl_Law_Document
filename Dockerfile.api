@@ -10,7 +10,7 @@ COPY requirements.txt /app/
 RUN pip install --no-cache-dir --upgrade pip \
     && pip install --no-cache-dir -r requirements.txt \
     && playwright install --with-deps \
-    && apt-get update && apt-get install -y --no-install-recommends xvfb \
+    && apt-get update && apt-get install -y --no-install-recommends xvfb tesseract-ocr \
     && rm -rf /var/lib/apt/lists/*
 
 # --- Copy project source

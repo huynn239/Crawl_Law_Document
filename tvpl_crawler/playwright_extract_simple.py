@@ -107,9 +107,7 @@ async def extract_tab4_simple_async(page):
             tab4_summary[title_text] = len(relations_list)
             tab4_total += len(relations_list)
     except Exception as e:
-        import traceback
-        print(f"Error extracting tab4: {e}")
-        traceback.print_exc()
+        pass
     
     return {
         "doc_info": doc_info,

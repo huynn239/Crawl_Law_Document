@@ -1,0 +1,82 @@
+{
+  "test_type": "real_content_thong_tu_21_2025",
+  "content_length": 2149,
+  "regex_system": {
+    "formulas": 6,
+    "parameters": 14,
+    "confidence": 0.9916666666666667,
+    "top_formulas": [
+      {
+        "name": "Tiền lương",
+        "formula": "Tiền lương 01 tiết dạy = (Tổng tiền lương của 12 tháng trong năm học × Số tuần giảng dạy hoặc dạy trẻ) / (Định mức tiết dạy/năm học × 52 tuần) b) Đối với nhà giáo trong cơ sở giáo dục đại học, cao đẳng sư phạm: Tiền lương 01 tiết dạy = (Tổng tiền lương của 12 tháng trong năm học × Định mức tiết dạy/năm học tính theo giờ hành chính × 44 tuần) / (Định mức tiết dạy/năm học × 1760 giờ × 52 tuần) 3. Định mức tiết dạy/năm học: a) Định mức giờ dạy/năm học đối với giáo viên mầm non; định mức tiết dạy/năm học đối với giáo viên phổ thông: 200 tiết b) Định mức tiết dạy/năm học của giáo viên mầm non = (Số giờ dạy định mức/ngày) × (Số ngày làm việc/tuần) × (Số tuần dạy trẻ/năm học) 4. Tiền lương 01 tiết dạy thêm = Tiền lương 01 tiết dạy × 150% 5. Tiền lương dạy thêm giờ/năm = Số tiết × Tiền lương 01 tiết 6. Tổng số tiết dạy thêm trong một năm học không quá 200 tiết 7. Mức lương cơ bản hiện hành: 1.800.000 đồng/tháng 8. Tỷ lệ đóng bảo hiểm xã hội: 8% 9. Tỷ lệ đóng bảo hiểm y tế: 1.5% 10. Phụ cấp trách nhiệm = 25% × mức lương cơ bản 11. Giảm trừ gia cảnh: 11.000.000 đồng/tháng 12. Thuế suất thuế thu nhập cá nhân: 10% 13. Lệ phí đăng ký hồ sơ: 500.000 đồng 14. Mức phạt vi phạm hành chính: từ 1.000.000 đến 5.000.000 đồng 15. Hệ số lương K = 2.34 16. Lãi suất cho vay ưu đãi: 6.5%/năm 17. Tỷ giá USD: 24.500 đồng 18. Chỉ số giá tiêu dùng tăng: 3.2%",
+        "description": "Multi-line Formula - multi_line_formula",
+        "context": "được tính như sau: a) Đối với nhà giáo trong cơ sở giáo dục mầm non, phổ thông, thường xuyên, trung tâm giáo dục nghề nghiệp - giáo dục thường xuyên: **Tiền lương 01 tiết dạy = (Tổng tiền lương của 12 tháng trong năm học × Số tuần giảng dạy hoặc dạy trẻ) / (Định mức tiết dạy/năm học × 52 tuần) b) Đối với nhà giáo trong cơ sở giáo dục đại học, cao đẳng sư phạm: Tiền lương 01 tiết dạy = (Tổng tiền lương của 12 tháng trong năm học × Định mức tiết dạy/năm học tính theo giờ hành chính × 44 tuần) / (Định mức tiết dạy/năm học × 1760 giờ × 52 tuần) 3. Định mức tiết dạy/năm học: a) Định mức giờ dạy/năm học đối với giáo viên mầm non; định mức tiết dạy/năm học đối với giáo viên phổ thông: 200 tiết b) Định mức tiết dạy/năm học của giáo viên mầm non = (Số giờ dạy định mức/ngày) × (Số ngày làm việc/tuần) × (Số tuần dạy trẻ/năm học) 4. Tiền lương 01 tiết dạy thêm = Tiền lương 01 tiết dạy × 150% 5. Tiền lương dạy thêm giờ/năm = Số tiết × Tiền lương 01 tiết 6. Tổng số tiết dạy thêm trong một năm học không quá 200 tiết 7. Mức lương cơ bản hiện hành: 1.800.000 đồng/tháng 8. Tỷ lệ đóng bảo hiểm xã hội: 8% 9. Tỷ lệ đóng bảo hiểm y tế: 1.5% 10. Phụ cấp trách nhiệm = 25% × mức lương cơ bản 11. Giảm trừ gia cảnh: 11.000.000 đồng/tháng 12. Thuế suất thuế thu nhập cá nhân: 10% 13. Lệ phí đăng ký hồ sơ: 500.000 đồng 14. Mức phạt vi phạm hành chính: từ 1.000.000 đến 5.000.000 đồng 15. Hệ số lương K = 2.34 16. Lãi suất cho vay ưu đãi: 6.5%/năm 17. Tỷ giá USD: 24.500 đồng 18. Chỉ số giá tiêu dùng tăng: 3.2%**",
+        "confidence": 1.0,
+        "type": "multi_line_formula",
+        "extraction_method": "production_enhanced_regex",
+        "groups": [
+          "Tiền lương",
+          "(Tổng tiền lương của 12 tháng trong năm học × Số tuần giảng dạy hoặc dạy trẻ) / (Định mức tiết dạy/năm học × 52 tuần) b) Đối với nhà giáo trong cơ sở giáo dục đại học, cao đẳng sư phạm: Tiền lương 01 tiết dạy = (Tổng tiền lương của 12 tháng trong năm học × Định mức tiết dạy/năm học tính theo giờ hành chính × 44 tuần) / (Định mức tiết dạy/năm học × 1760 giờ × 52 tuần) 3. Định mức tiết dạy/năm học: a) Định mức giờ dạy/năm học đối với giáo viên mầm non; định mức tiết dạy/năm học đối với giáo viên phổ thông: 200 tiết b) Định mức tiết dạy/năm học của giáo viên mầm non = (Số giờ dạy định mức/ngày) × (Số ngày làm việc/tuần) × (Số tuần dạy trẻ/năm học) 4. Tiền lương 01 tiết dạy thêm = Tiền lương 01 tiết dạy × 150% 5. Tiền lương dạy thêm giờ/năm = Số tiết × Tiền lương 01 tiết 6. Tổng số tiết dạy thêm trong một năm học không quá 200 tiết 7. Mức lương cơ bản hiện hành: 1.800.000 đồng/tháng 8. Tỷ lệ đóng bảo hiểm xã hội: 8% 9. Tỷ lệ đóng bảo hiểm y tế: 1.5% 10. Phụ cấp trách nhiệm = 25% × mức lương cơ bản 11. Giảm trừ gia cảnh: 11.000.000 đồng/tháng 12. Thuế suất thuế thu nhập cá nhân: 10% 13. Lệ phí đăng ký hồ sơ: 500.000 đồng 14. Mức phạt vi phạm hành chính: từ 1.000.000 đến 5.000.000 đồng 15. Hệ số lương K = 2.34 16. Lãi suất cho vay ưu đãi: 6.5%/năm 17. Tỷ giá USD: 24.500 đồng 18. Chỉ số giá tiêu dùng tăng: 3.2%"
+        ]
+      },
+      {
+        "name": "Định mức tiết",
+        "formula": "Định mức tiết dạy/năm học của giáo viên mầm non = (Số giờ dạy định mức/ngày) × (Số ngày làm việc/tuần) × (Số tuần dạy trẻ/năm học) 4. Tiền lương 01 tiết dạy thêm = Tiền lương 01 tiết dạy × 150% 5. Tiền lương dạy thêm giờ/năm = Số tiết × Tiền lương 01 tiết 6. Tổng số tiết dạy thêm trong một năm học không quá 200 tiết 7. Mức lương cơ bản hiện hành: 1.800.000 đồng/tháng 8. Tỷ lệ đóng bảo hiểm xã hội: 8% 9. Tỷ lệ đóng bảo hiểm y tế: 1.5% 10. Phụ cấp trách nhiệm = 25% × mức lương cơ bản 11. Giảm trừ gia cảnh: 11.000.000 đồng/tháng 12. Thuế suất thuế thu nhập cá nhân: 10% 13. Lệ phí đăng ký hồ sơ: 500.000 đồng 14. Mức phạt vi phạm hành chính: từ 1.000.000 đến 5.000.000 đồng 15. Hệ số lương K = 2.34 16. Lãi suất cho vay ưu đãi: 6.5%/năm 17. Tỷ giá USD: 24.500 đồng 18. Chỉ số giá tiêu dùng tăng: 3.2%",
+        "description": "Compact Formula No Year - compact_formula",
+        "context": "Định mức tiết dạy/năm học: a) Định mức giờ dạy/năm học đối với giáo viên mầm non; định mức tiết dạy/năm học đối với giáo viên phổ thông: 200 tiết b) **Định mức tiết dạy/năm học của giáo viên mầm non = (Số giờ dạy định mức/ngày) × (Số ngày làm việc/tuần) × (Số tuần dạy trẻ/năm học) 4. Tiền lương 01 tiết dạy thêm = Tiền lương 01 tiết dạy × 150% 5. Tiền lương dạy thêm giờ/năm = Số tiết × Tiền lương 01 tiết 6. Tổng số tiết dạy thêm trong một năm học không quá 200 tiết 7. Mức lương cơ bản hiện hành: 1.800.000 đồng/tháng 8. Tỷ lệ đóng bảo hiểm xã hội: 8% 9. Tỷ lệ đóng bảo hiểm y tế: 1.5% 10. Phụ cấp trách nhiệm = 25% × mức lương cơ bản 11. Giảm trừ gia cảnh: 11.000.000 đồng/tháng 12. Thuế suất thuế thu nhập cá nhân: 10% 13. Lệ phí đăng ký hồ sơ: 500.000 đồng 14. Mức phạt vi phạm hành chính: từ 1.000.000 đến 5.000.000 đồng 15. Hệ số lương K = 2.34 16. Lãi suất cho vay ưu đãi: 6.5%/năm 17. Tỷ giá USD: 24.500 đồng 18. Chỉ số giá tiêu dùng tăng: 3.2%**",
+        "confidence": 1.0,
+        "type": "compact_formula",
+        "extraction_method": "production_enhanced_regex",
+        "groups": [
+          "Định mức tiết"
+        ]
+      },
+      {
+        "name": "Tổng tiền lương của 12 tháng trong năm học  Định mức tiết dạ",
+        "formula": "(Tổng tiền lương của 12 tháng trong năm học × Định mức tiết dạy/năm học tính theo giờ hành chính × 44 tuần) / (Định mức tiết dạy/năm học × 1760 giờ × 52 tuần) 3. Định mức tiết dạy/năm học: a) Định mức giờ dạy/năm học đối với giáo viên mầm non; định mức tiết dạy/năm học đối với giáo viên phổ thông: 200 tiết b) Định mức tiết dạy/năm học của giáo viên mầm non = (Số giờ dạy định mức/ngày) × (Số ngày làm việc/tuần) × (Số tuần dạy trẻ/năm học) 4. Tiền lương 01 tiết dạy thêm",
+        "description": "Unicode Math Formula - unicode_math_formula",
+        "context": "dạy hoặc dạy trẻ) / (Định mức tiết dạy/năm học × 52 tuần) b) Đối với nhà giáo trong cơ sở giáo dục đại học, cao đẳng sư phạm: Tiền lương 01 tiết dạy =** (Tổng tiền lương của 12 tháng trong năm học × Định mức tiết dạy/năm học tính theo giờ hành chính × 44 tuần) / (Định mức tiết dạy/năm học × 1760 giờ × 52 tuần) 3. Định mức tiết dạy/năm học: a) Định mức giờ dạy/năm học đối với giáo viên mầm non; định mức tiết dạy/năm học đối với giáo viên phổ thông: 200 tiết b) Định mức tiết dạy/năm học của giáo viên mầm non = (Số giờ dạy định mức/ngày) × (Số ngày làm việc/tuần) × (Số tuần dạy trẻ/năm học) 4. Tiền lương 01 tiết dạy thêm **= Tiền lương 01 tiết dạy × 150% 5. Tiền lương dạy thêm giờ/năm = Số tiết × Tiền lương 01 tiết 6. Tổng số tiết dạy thêm trong một năm học không quá 200",
+        "confidence": 1.0,
+        "type": "unicode_math_formula",
+        "extraction_method": "production_enhanced_regex",
+        "groups": [
+          " (Tổng tiền lương của 12 tháng trong năm học × Định mức tiết dạy/năm học tính theo giờ hành chính × 44 tuần) / (Định mức tiết dạy/năm học × 1760 giờ × 52 tuần) 3. Định mức tiết dạy/năm học: a) Định mức giờ dạy/năm học đối với giáo viên mầm non; định mức tiết dạy/năm học đối với giáo viên phổ thông: 200 tiết b) Định mức tiết dạy/năm học của giáo viên mầm non = (Số giờ dạy định mức/ngày) × (Số ngày làm việc/tuần) × (Số tuần dạy trẻ/năm học) 4. Tiền lương 01 tiết dạy thêm ",
+          "×"
+        ]
+      }
+    ]
+  },
+  "llm_system": {
+    "formulas": 4,
+    "confidence": 0.93,
+    "top_formulas": [
+      {
+        "name": "Tiền lương 01 tiết dạy",
+        "formula": "Tiền lương 01 tiết dạy = (Tổng tiền lương của 12 tháng trong năm học × Số tuần giảng dạy hoặc dạy trẻ) ÷ (Định mức tiết dạy÷năm học × 52 tuần)",
+        "description": "Công thức salary_calculation",
+        "confidence": 0.98,
+        "type": "salary_calculation"
+      },
+      {
+        "name": "Định mức tiết dạy/năm học của giáo viên mầm non",
+        "formula": "b) Định mức tiết dạy÷năm học của giáo viên mầm non = (Số giờ dạy định mức÷ngày) × (Số ngày làm việc÷tuần) × (Số tuần dạy trẻ÷năm học)",
+        "description": "Công thức salary_calculation",
+        "confidence": 0.98,
+        "type": "salary_calculation"
+      },
+      {
+        "name": "Tiền lương 01 tiết dạy thêm",
+        "formula": "4. Tiền lương 01 tiết dạy thêm = Tiền lương 01 tiết dạy × 150%",
+        "description": "Công thức salary_calculation",
+        "confidence": 0.89,
+        "type": "salary_calculation"
+      }
+    ]
+  },
+  "combined_performance": {
+    "total_formulas": 10,
+    "total_parameters": 14,
+    "total_items": 24,
+    "estimated_coverage_pct": 100
+  }
+}

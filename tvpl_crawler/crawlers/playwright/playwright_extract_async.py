@@ -3,9 +3,9 @@
 from pathlib import Path
 from typing import Dict, Optional
 from playwright.async_api import async_playwright
-from .captcha_solver import bypass_captcha
+from tvpl_crawler.utils.captcha_solver import bypass_captcha
 from .playwright_extract_simple import extract_tab4_simple_async
-from .formula_extractor import extract_tab1_content_simple
+from tvpl_crawler.extractors.formula_extractor import extract_tab1_content_simple
 import re
 
 async def extract_luoc_do_async(

@@ -5,7 +5,7 @@ from loguru import logger
 from urllib.parse import urlparse
 import json
 import re
-from .core.config import settings
+from tvpl_crawler.core.config import settings
 import os
 from .playwright_login import login_with_playwright
 

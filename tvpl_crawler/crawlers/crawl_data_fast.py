@@ -8,9 +8,9 @@ import random
 from pathlib import Path
 from dotenv import load_dotenv
 from playwright.async_api import async_playwright
-from tvpl_crawler.compact_schema import compact_schema
+from tvpl_crawler.utils.compact_schema import compact_schema
 from tvpl_crawler.core.db import TVPLDatabase
-from tvpl_crawler.playwright_extract_async import extract_luoc_do_async
+from tvpl_crawler.crawlers.playwright.playwright_extract_async import extract_luoc_do_async
 from tvpl_crawler.utils.captcha_solver import bypass_captcha
 
 try:
@@ -333,7 +333,7 @@ async def main():
     global_session_id = None
     if SAVE_PER_BATCH and os.getenv('SUPABASE_URL'):
         try:
-            from tvpl_crawler.import_supabase_v2 import start_session
+            from tvpl_crawler.utils.import_supabase_v2 import start_session
             global_session_id = start_session()
             print(f"✓ Started crawl session #{global_session_id}\n")
         except Exception as e:
@@ -360,7 +360,7 @@ async def main():
 
 def _fail_session(session_id, error_msg):
     try:
-        from tvpl_crawler.import_supabase_v2 import supabase
+        from tvpl_crawler.utils.import_supabase_v2 import supabase
         from datetime import datetime
         supabase.table('crawl_sessions').update({
             'status': 'FAILED',
@@ -448,7 +448,7 @@ async def _run_crawl(global_session_id):
             # Lưu batch vào Supabase ngay (nếu có flag)
             if SAVE_PER_BATCH and global_session_id:
                 try:
-                    from tvpl_crawler.import_supabase_v2 import save_document
+                    from tvpl_crawler.utils.import_supabase_v2 import save_document
                     compact_batch = compact_schema(batch_results)
                     batch_new = 0
                     batch_unchanged = 0
@@ -511,7 +511,7 @@ async def _run_crawl(global_session_id):
                 # Lưu retry results vào Supabase nếu cần
                 if SAVE_PER_BATCH and global_session_id:
                     try:
-                        from tvpl_crawler.import_supabase_v2 import save_document
+                        from tvpl_crawler.utils.import_supabase_v2 import save_document
                         compact_retry = compact_schema(retry_results)
                         retry_new = 0
                         retry_unchanged = 0
@@ -541,7 +541,7 @@ async def _run_crawl(global_session_id):
         # Complete session
         if global_session_id:
             try:
-                from tvpl_crawler.import_supabase_v2 import complete_session
+                from tvpl_crawler.utils.import_supabase_v2 import complete_session
                 complete_session(global_session_id, len(results), total_new, total_unchanged)
                 print(f"\n✓ Completed session #{global_session_id}: {total_new} changed, {total_unchanged} unchanged")
             except Exception as e:
